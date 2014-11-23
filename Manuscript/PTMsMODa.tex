@@ -61,6 +61,12 @@ A
 
 \section{Introduction}
 
+Most of the times, specific biological function of the proteins is identified by the post-translational modification associated with it. Much work has been done in identifying the protein coding genes, however, identification of the functional PTMs is still at its infancy. Mass-spectrometry (MS) based proteomics is the only technique that can characterize these PTMs in large scale. Peptide search algorithms are then run on these mass-spectrometry data sets to identify peptides and PTMs associated with it. Here we used MS on E. coli proteome grown under glucose-limiting conditions and then identified various PTMs in large scale.
+
+Identifying a targeted list of PTMs (mostly up to 6) is a general norm with most of the sequence search algorithms. As the number of target PTMs increase, search space and the false positives generally increase that limits the number of input PTMs. However recently, software for unrestricted search of PTMs is starting to grow. We used MODa, a naive based multi-blind spectral alignment algorithm, to look for PTMs in this dataset. 
+
+Most of the studies till date limit to capturing RNA/proteome information to 1 or 2 time points during exponential and stationary phases for analysis. Here we collected MS data on E. coli proteome at 9 different time points ranging from exponential to long-stationary phases up to 2 weeks under glucose-limiting conditions. To our knowledge this is a first attempt to look into time-course of PTMs over 2 weeks of a microbe.
+
 \cite{Stadtman1992}
 {Protein oxidation and aging}
 
@@ -196,6 +202,11 @@ To see if the results and trends of the PTMs over time holds, we changed the MOD
 
 \section{Discussion}
 
+Limitations:
+Talk about PTM enrichment step.
+
+Relative quantitation and stoichiometry.
+
 We have developed
 
 Such analysis can also be integrated in whole-cell models such as \cite{Covertetal2008}
@@ -239,7 +250,7 @@ Conceived and designed the experiments: V.S., C.O.W and E.M.M. Performed the exp
 This project was funded by ARO Grant W911NF-12-1-0390. We thank members of the Colin Brown for helpful discussions on post-translational modifications. The Bioinformatics Consulting Group and the Texas Advanced Computing Center (TACC) at UT provided high-performance computing resources. 
 
 
-\section{References}
+%\section{References} (automatically pops up with bibliography)
 % Bibliography tex filename
 \bibliography{PTMsMODaBibliography}
 
