@@ -41,7 +41,7 @@
 
 \title{Large-scale analysis of post-translational modifications in \emph{E. coli} under glucose-limiting conditions over 2 weeks}
 
-\author{Viswanadham Sridhara$^1$, Daniel R. Boutz$^{2,3}$, Craig Barnhart$^3$, Jeffrey E. Barrick$^{1,2,3,4}$,\\
+\author{Viswanadham Sridhara$^1$, Colin Brown$^{2}$, Daniel R. Boutz$^{2,3}$, Craig Barnhart$^3$, Maria Person$^{2,3}$,Jeffrey E. Barrick$^{1,2,3,4}$,\\
 Edward M. Marcotte$^{1,2,3,4,5}$, and Claus O. Wilke$^{1,2,3,5}$}
 \maketitle
 
@@ -54,18 +54,18 @@ $^5$Department of Integrative Biology, The University of Texas at Austin, Austin
 
 
 \begin{abstract}
-A 
+How do the post-translational modifications change over time during species growth? We sought to answer this question using E. coli grown under glucose starvation conditions. We gathered mass-spectrometry based proteomics data at 9 different time points during exponential and long stationary phases. We then used MODa to perform an unrestricted search of PTMs in this data. We found new and interesting observations from this analysis. First, we show that modified protein seems to be constant, occuring ~30\%, at all the 9 time points. Second, we show that acetylations,carboxylations and phosphorylations increase, while nitrosylations seem to be constant from exponential to stationary phases.Third, we show that sulfoxide reductases fix MetSO to Met during stationary phase, when oxidative damage should be more. Finally, we found some novel post-translational modifications using this data, a frequent one being phosphogluconylation on serine in R6 ribosomal protein.
 \end{abstract}
 
 % keywords: post-translational modifications
 
 \section{Introduction}
 
-Most of the times, specific biological function of the proteins is identified by the post-translational modification associated with it. Much work has been done in identifying the protein coding genes, however, identification of the functional PTMs is still at its infancy. Mass-spectrometry (MS) based proteomics is the only technique that can characterize these PTMs in large scale. Peptide search algorithms are then run on these mass-spectrometry data sets to identify peptides and PTMs associated with it. Here we used MS on E. coli proteome grown under glucose-limiting conditions and then identified various PTMs in large scale.
+Most of the times, specific biological function of the proteins is identified by the post-translational modification associated with it. Much work has been done in identifying or quantifying the protein coding genes, for example, using mass-spectrometry based proteomics. However, identification or quantification of the functional PTMs is still at its infancy. Mass-spectrometry (MS) based proteomics is the only technique that can be used to characterize these PTMs in large scale. To identify all the PTMs in the dataset, an unrestricted search of all possible PTMs in the data is necessary. Here we gathered MS data on E. coli proteome grown under glucose-limiting conditions for 2 weeks. The goal is then to search for most of the PTMs and understand how these modifications change over time i.e., from exponential to long-stationary phases (~2 weeks).
 
-Identifying a targeted list of PTMs (mostly up to 6) is a general norm with most of the sequence search algorithms. As the number of target PTMs increase, search space and the false positives generally increase that limits the number of input PTMs. However recently, software for unrestricted search of PTMs is starting to grow. We used MODa, a naive based multi-blind spectral alignment algorithm, to look for PTMs in this dataset. 
+Peptide search algorithms are then run on these mass-spectrometry data sets to identify peptides and PTMs associated with it. However, because of computational limitations, most of the current search algorithms such as Mascot\cite{Perkinsetal1999}, Sequest \cite{Engetal1994}, OMSSA \cite{Geeretal2004}, X!Tandem \cite{CraigBeavis2004} search for only few variable modifications, i.e., oxidation of methionine etc or a small targeted list of PTMs. This technique of restricted search not only reduces the size of the database to search but in some cases shown to reduce false positives (Cite?). However recently, software for unrestricted search of PTMs is starting to be available. MODa \cite{Naetal2012} is one such unrestricted search engine, along with others such as TagRecon\cite{Dasarietal2010} and Byonic \cite{Bernetal2012}. We used MODa, a naive based multi-blind spectral alignment algorithm, to look for PTMs in the E. coli dataset. 
 
-Most of the studies till date limit to capturing RNA/proteome information to 1 or 2 time points during exponential and stationary phases for analysis. Here we collected MS data on E. coli proteome at 9 different time points ranging from exponential to long-stationary phases up to 2 weeks under glucose-limiting conditions. To our knowledge this is a first attempt to look into time-course of PTMs over 2 weeks of a microbe.
+Most of the studies till date limit to capturing proteome information to 1 or 2 time points during exponential and stationary phases for analysis. Here we collected MS data on E. coli proteome at 9 different time points ranging from exponential to long-stationary phases up to 2 weeks under glucose-limiting conditions. Moreover bioinformatics analyses focussed on few PTMs, but to our knowledge never looked at time course of PTMs. Ours is a first attempt to look into time-course of PTMs over 2 weeks of a E. coli REL606 strain grown under glucose starvation.
 
 \cite{Stadtman1992}
 {Protein oxidation and aging}
@@ -90,8 +90,6 @@ This fixation of MsrA is helpful \cite{Abramsetal1981}
 
 \cite{Davisetal2000}
 {HIV-2 protease is inactivated after oxidation at the dimer interface and activity can be partly restored with methionine sulphoxide reductase}
-
-Mascot\cite{Perkinsetal1999}, Sequest \cite{Engetal1994}, OMSSA \cite{Geeretal2004}, X!Tandem \cite{CraigBeavis2004}, TagRecon\cite{Dasarietal2010}, MODa\cite{Naetal2012}, and Byonic \cite{Bernetal2012}
 
 Large-scale analysis of PTMs \cite{OlsenMann2013}
 
@@ -178,6 +176,10 @@ This is in agreement with some of the previous studies (Cite papers which show t
 \subsection{N-term protein acetylations are frequent in \emph{E. coli}}
 Since MODa outputs mass-shift, we used UNIMOD database to map the mass-shift to the probable PTM. MODa outputs not only the mass-shifts, but also the amino-acids on which this mass-shift occurs. We focussed not only on the most common PTM-amino acid combination, but also on the PTMs irrespective of the amino acid. For example, we know acetylation is most common on n-term and lysine, however we also looked at the time-course of all acetylations i.e., sum of acetylations on all amino acids. (Add other citations and results from literature)
 
+Out of 3919 total acetylations at all 9 time points combined, 3373 (86\%) of them seem to occur at n-term of the protein. A look-up of the amino acid position for n-term acetylations on ID'ed peptides showed that these were the 2nd amino acid in most (quote?) of the cases. {May be add about the signal peptides here}. Also, most of the acetylations seem to occur on serine (2358 out of 3919). Among n-term protein acetylations, 2350 (70\%) happened on serine, 483 (14.3\%) happened on alanine and 260 (7.7\%) were on threonine. These were the top 3 frequent n-term acetylations. A literature search also showed us the same frequently occuring n-term acetylated amino acids in E. coli {cite}.
+
+{Colin Brown's analysis could go here}
+
 \subsection{\emph{E. coli} carboxylations, nitrosylations and other PTMs}
 To understand what kinds of PTMs or mutations are present in the sample, we plotted the frequency of the mass-shifts from the MODa output. MODa program calculates the mass-shifts in intervals of 1Da, along with the amino acid on which it finds the mass-shift. Along with the amino acids, it also calculates the N-term and C-term mass-shifts. Figure 2 shows the mass-shift frequency matrix. A zoomed-in version (b) shows that +1 Da peak is the most frequent one. However this modification seems to be 13C peak-picking as it seems to occur on all the amino acids, when we looked at the profile (Suppl Figure 1). Next frequent modification is +16Da. A look at profile (Suppl Figure 2) shows majority of oxidations on methionine which is expected.
 
@@ -233,7 +235,7 @@ Current whole-cell models \cite{Covertetal2008} are trying to integrate diverse 
 
 \section{Conclusions}
 
-We have found
+The modified protein seems to be 30\% during exponential as well as the long stationary phases. Acetylation, in particular n-term acetylation seems to go up from exponential to stationary phases. Surprisingly oxidation seemed to go down from exponential to stationary phases, owing to sulfoxide reductases playing a role in fixing methionine sulfoxide back to methionine. A novel phosphoserinegluconylaiton on ribosomal protein seem to happen frequently. Finally, we would like to conclude that unrestricted search engines can be used to identify frequently occuring PTMs, which can then be used with restricted search algorithms to improve the sensitivity of the ID'ed peptides.
 
 
 \section{Materials and Methods}
@@ -277,7 +279,7 @@ This project was funded by ARO Grant W911NF-12-1-0390. We thank members of the C
 \section*{Figures}
 
 \begin{figure}[!ht]
-\centerline{\includegraphics[width=4in]{Figures/Paper_Ecoli_PTM_Modified_Figure1.pdf}}
+\centerline{\includegraphics[width=4in]{Figures/PTM_modified.pdf}}
 \caption{\label{fig:flowchart}\textbf{Flowchart.} We use .
 }
 \end{figure}
@@ -316,7 +318,7 @@ This project was funded by ARO Grant W911NF-12-1-0390. We thank members of the C
 \bigskip
 \section*{Supplementary Figures}
 \clearpage
-\centerline{\includegraphics[width=5in]{Figures/PTM_Modified.pdf}}
+\centerline{\includegraphics[width=5in]{Figures/GrowthCurve.pdf}}
 \customlabel{fig:GrowthCurve}{S1}
 \textbf{Figure S1: Scatter .} We .
 
