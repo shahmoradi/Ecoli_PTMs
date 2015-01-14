@@ -54,7 +54,7 @@ $^5$Department of Integrative Biology, The University of Texas at Austin, Austin
 
 
 \begin{abstract}
-How do the post-translational modifications change over time during species growth? We sought to answer this question using \emph{E. coli} grown under glucose starvation conditions. We gathered mass-spectrometry based proteomics data at 9 different time points during exponential and long stationary phases. We then used MODa to perform an unrestricted search of PTMs in this data. We found new and interesting observations from this analysis. First, we show that modified protein seems to be constant, occuring ~30\%, at all the 9 time points. Second, we show that acetylations,carboxylations and phosphorylations increase, while nitrosylations seem to be constant from exponential to stationary phases.Third, we show that sulfoxide reductases fix MetSO to Met during stationary phase, when oxidative damage should be more. Finally, we found some novel post-translational modifications using this data, a frequent one being phosphogluconylation on serine in R6 ribosomal protein.
+How do the post-translational modifications change over time during microbial growth under nutrient limiting conditions? We sought to answer this question using \emph{E. coli} grown under glucose starvation conditions. We generated mass-spectrometry based proteomics data at 9 different time points ranging from exponential to long stationary phases i.e., 2 weeks. We then ran MODa on this data for an unrestricted search of PTMs. There were several interesting observations in this MODa analysis. First, we show that the amount of modified protein seems to be constant, occuring approx. 30\%, at all the 9 time points. Second, we show that acetylations, carboxylations and phosphorylations increase, while nitrosylations seem to be constant from exponential to stationary phases.Third, we show that sulfoxide reductases fix MetSO to Met during stationary phase, protecting \emph{E. coli} from oxidative damage. Finally, we found some novel post-translational modifications in this data, a frequent one being phosphogluconylation on serine in R6 ribosomal protein.
 \end{abstract}
 
 % keywords: post-translational modifications
@@ -139,50 +139,35 @@ Out of 3919 total acetylations at all 9 time points combined, 3373 (86\%) of the
 
 \subsection{\emph{E. coli} Phosphorylations, carboxylations, nitrosylations and other PTMs}
 
-E. coli phosphoproteome dynamics \cite{Soaresetal2013}
-{Global dynamics of the Escherichia coli proteome and phosphoproteome during growth in minimal medium},
+Next we analyzed other PTMs that were previously shown to be key in E. coli. In particular, we looked at phosphorylation, carboxylation, nitrosylation and oxidation. As mentioned earlier, a key point to note in this analysis is that there is no enrichment done for any of these PTMs, hence the coverage will be smaller than expected. Typical studies that identify phosphopeptides are generally enriched for phosphorylations using enrichment techniques such as IMAC, TiO2 etc. However as we mentioned early, our goal here is to identify different kinds of PTMs in this proteomics data and look at how they change over time. Figure~\ref{fig:Phos} shows the phosphorylations at different points of the growth curve. Here, we counted the phosphorylations on Serine, Threonine and Tyrosine only as they seem to be well known amino acids that get phosphorylated \cite{Maceketal2008}. There are 2 interesting observations seen in this curve. First, the number of phosphorylations seem to be small as expected, as these are not enriched for phosphorylations and moreover, the number of phosphorylations seem to be comparatively lower in E. coli. Second, and probably an interesting observation is that there is an increase of the number of phosphorylations from exponential to stationary phases. Such pattern is also previously shown in phosphoproteomic studies \cite{Soaresetal2013} probably pointing to a role of phosphorylation in later stages of the growth cycle.
 
-E. coli nitrosylation \cite{Sethetal2012}
-{Endogenous protein S-Nitrosylation in E. coli: regulation by OxyR},
-
-Next we analyzed other PTMs that were previously shown to be key in E. coli. In particular, we looked at phosphorylation, carboxylation, nitrosylation and oxidation. As mentioned earlier, a key point to note in this analysis is that there is no enrichment done for any of these PTMs, hence the coverage will be smaller than expected. Typical studies that identify phosphopeptides are generally enriched for phosphorylations using enrichment techniques such as IMAC, TiO2 etc. However as we mentioned early, our goal here is to identify different kinds of PTMs in this proteomics data and look at how they change over time. Figure~\ref{fig:Phos} shows the phosphorylations at different points of the growth curve. There are 2 interesting observations seen in this curve. First, the number of phosphorylations seem to be small as expected, as these are not enriched for phosphorylations and moreover, the number of phosphorylations seem to be comparatively lower in E. coli. Second, and probably an interesting observation is that there is an increase of the number of phosphorylations from exponential to stationary phases. Such pattern is also previously shown in phosphoproteomic studies \cite{Soaresetal2013} probably pointing to a role of phosphorylation in later stages of the growth cycle.
-
-Similarly we looked at the carboxylations (See Suppl Figure S2)and nitrosylations (See Suppl Figure S3), as they are shown in the past to be important in E. coli. Like, phosphorylations, carboxylations seem to increase during the later stages of the growth indicating a likely role of this PTM in late stationary phase. (There are studies linking cellular growth rate to carboxylases, may be related to what is shown here?) We found succinylation modification frequently at different phases, all on the succinyl-transferase. This was previously characterized in a study where the authors were analyzing data for succinylation. Here we would like to point out that this large-scale study to analyze different PTMs without any enrichment was able to identify and characterize widely occuring PTMs generally identified in E. coli. 
+Similarly we looked at the carboxylations (See Suppl Figure S2)and nitrosylations (See Suppl Figure S3), as they are shown in the past to be important in E. coli. Like, phosphorylations, carboxylations seem to increase during the later stages of the growth indicating a likely role of this PTM in late stationary phase. (There are studies linking cellular growth rate to carboxylases, may be related to what is shown here?) A previous study in S-nitrosylation in E.coli \cite{Sethetal2012}. We found succinylation modification frequently at different phases, all on the succinyl-transferase. This was previously characterized in a study where the authors were analyzing data for succinylation. Here we would like to point out that this large-scale study to analyze different PTMs without any enrichment was able to identify and characterize widely occuring PTMs generally identified in E. coli. 
 
 An artifact caused by sample preparation and mass-spectrometry analysis is the adduct formation with Na and K. Here, we plotted the profiles of Na and K adducts (see Suppl Figure S4). Na and K adducts don't seem to form on H, K and R compared to other amino acids. These are amino acids that have side chains that are basic and carry a small positive charge at physiological pH. This explains why the adducts don't form with these amino acids. We give a general recommendation to include these adducts as variable modifications in the search engines to increase the sensitivity of the peptide identifications. Most of the software have an easy option to include these adducts and hence we recommend this giving a 3-4\% increase in identifications.
 
 Glutamine conversion at n-term of the peptide to pyroglutamate is a well known PTM. This post-translational modification stabilizes the protein to avoid any further n-terminal processing. Suppl Figure 7 shows that this conversion seems to be more or less same at different phases of the growth.
 
 \subsection{Oxidative damage and repair in \emph{E. coli}}
-\cite{Stadtman1992}
-{Protein oxidation and aging}
-
-\cite{Vogt1995}
-{Oxidation of methionyl residues in proteins: tools, targets, and reversal}
-
-\cite{Grimaudetal2001}
-{Repair of oxidized proteins. Identification of a new methionine sulfoxide reductase},
-
-Msr fixing MetSO to Met \cite{Brotetal1981}
-{Enzymatic reduction of protein-bound methionine sulfoxide}
-
-\cite{Ezratyetal2004}
-{Methionine sulfoxide reductases protect Ffh from oxidative damages in Escherichia coli}
-
-\cite{Tete-Favieretal2000}
-{Crystal structure of the Escherichia coli peptide methionine sulphoxide reductase at 1.9 A resolution}
-   
-\cite{Tete-Favieretal2000b}
-{Crystallization and preliminary X-ray diffraction studies of the peptide methionine sulfoxide reductase from Escherichia coli}
-   
-\cite{ZhangWeissbach2008}
-{Origin and evolution of the protein-repairing enzymes methionine sulphoxide reductases}
-   
-This fixation of MsrA is helpful \cite{Abramsetal1981}
-{Enzymatic reduction of oxidized alpha-1-proteinase inhibitor restores biological activity}
-
-\cite{Davisetal2000}
-{HIV-2 protease is inactivated after oxidation at the dimer interface and activity can be partly restored with methionine sulphoxide reductase}
+%\cite{Stadtman1992}
+%{Protein oxidation and aging}
+%
+%\cite{Vogt1995}
+%{Oxidation of methionyl residues in proteins: tools, targets, and reversal}
+%
+%\cite{Tete-Favieretal2000}
+%{Crystal structure of the Escherichia coli peptide methionine sulphoxide reductase at 1.9 A resolution}
+%   
+%\cite{Tete-Favieretal2000b}
+%{Crystallization and preliminary X-ray diffraction studies of the peptide methionine sulfoxide reductase from Escherichia coli}
+%   
+%\cite{ZhangWeissbach2008}
+%{Origin and evolution of the protein-repairing enzymes methionine sulphoxide reductases}
+%   
+%This fixation of MsrA is helpful \cite{Abramsetal1981}
+%{Enzymatic reduction of oxidized alpha-1-proteinase inhibitor restores biological activity}
+%
+%\cite{Davisetal2000}
+%{HIV-2 protease is inactivated after oxidation at the dimer interface and activity can be partly restored with methionine sulphoxide reductase}
 Next, we looked into oxidation of methionine. Oxidation generally occurs frequently on cysteine and methionine. However since cysteine is capped to avoid disulphide bond formation in these experiments, we expect +16Da shift to occur frequently on methionone. Other than cysteine and methionine, there are 8 other amino acids that have been shown to be oxidized although at a lower rate and less frequent. 
 
 E. coli grown aerobically react with oxygen in the atmosphere producing reactive oxygen species such as H2O2 {CiteGonzalez-Flecha B, Demple B (1995) Metabolic sources of hydrogen peroxide in aerobically growing Escherichia coli. J Biol Chem 270: 13681–13687}. Targets for these ROS are generally proteins and lipids, that get oxidized. This oxidized state affects the protein structure and hence results in changes in its function leading to disturbances in the metabolism. Bacteria have genetic systems that responds to this oxidative stress through oxyR, SoxXY etc or through reductases that reduce protein to its original non-oxidized state. Here, we investigated the levels of oxidation at different phases of growth.
@@ -196,64 +181,43 @@ Earlier, we analyzed the PTMs that are less than 200 daltons. In another run, we
 
 (Add how MODa uses score and other features to calculate the probability?), (Also add how MODa can distribute the hits with the charge state?)
 
-In a typical mass-spectrometry based proteomics experiment, proteins are first digested into peptides and then these were analyzed by mass-spectrometry to identify/characterize peptides, and post-translational modifications associated with the protein. The coverage of PTMs identified is limited because of the mass-spectrometry limitation along with the PTM enrichment protocol. Peptide search algorithms are then run on these mass-spectrometry data sets to identify peptides and PTMs associated with it. However, because of computational limitations, most of the current search algorithms such as Mascot\cite{Perkinsetal1999}, Sequest \cite{Engetal1994}, OMSSA \cite{Geeretal2004}, X!Tandem \cite{CraigBeavis2004} search for only few variable modifications, i.e., oxidation of methionine etc or a small targeted list of PTMs. This technique of restricted search not only reduces the size of the database to search but in some cases shown to reduce false positives (Cite?). However recently, software for unrestricted search of PTMs is starting to be available. MODa \cite{Naetal2012} is one such unrestricted search engine, along with others such as TagRecon\cite{Dasarietal2010} and Byonic \cite{Bernetal2012}. We used MODa, a naive based multi-blind spectral alignment algorithm, to look for PTMs in the E. coli dataset. 
+We looked at temporal changes at the post-translational modification level using the \emph{E. coli} REL606 mass-spectrometry based proteomics data. This data is collected under glucose limiting conditions at different phases during exponetial growth to long-stationary phases upto 2 weeks under these conditions. Several interesting distributions of these post-translational modifications were found using this data. First, we show that consistently 30\% of the proteome is modified during all the 9 time points analyzed. Second, we show that n-term protein acetylation goes up from exponential to stationary phases pointing to a likely role of this modification during late stages of the growth. Similar results were found for phosphorylation too. However, oxidative stress seem to go down from exponetial to stationary phases. Nutrient limitation, accumulation of toxic substances and change in pH were supposed to increase the oxidiative stress, however this is compensated by the sulfoxide reductases fixing MetSO back to Met. Finally, the methodology used in the study resulted in identification of few novel modifications.
 
-Phosphorylation:
-E. coli phosphoproteomics \cite{Maceketal2008}
-{Phosphoproteome analysis of E. coli reveals evolutionary conservation of bacterial Ser/Thr/Tyr phosphorylation}
-
-Protein oxidation by reactive oxygen species (ROS) and reduction of MetSO back to Met is important is linked to various diseases including aging \cite{Stadtman1992}.
-
-Limitations:
-Large-scale analysis of PTMs \cite{OlsenMann2013}
-
-PTM network motif \cite{Olsenetal2006}
-{Global, in vivo, and site-specific phosphorylation dynamics in signaling networks}
-
-PTM cross talk \cite{Pengetal2014}
-{Identification of enriched PTM crosstalk motifs from large-scale experimental data sets}
-
-MODa application \cite{Kimetal2014}
-{ROSics: Chemistry and proteomics of cysteine modifications in redox biology}
-
-N-terminal processing \cite{Kimuraetal2003}
-{N-Terminal modifications of the 19S regulatory particle subunits of the yeast proteasome}
-
-Mass-spec E. coli proteome \cite{Krugetal2013}
-{Deep coverage of the Escherichia coli proteome enables the assessment of false discovery rates in simple proteogenomic experiments},
-
-MODa application in urine proteomics \cite{Liuetal2013}
-{Unrestrictive identification of post-translational modifications in the urine proteome without enrichment},
-
-In this study, we used \emph{E. coli} proteome data obtained under glucose-limiting conditions for over 2 weeks. This is a first study to look at E. coli growth for a period of 2 weeks, considered as long-stationary phase in this work. These are some of the key findings in this study. Our analysis showed that 1/3rd of the peptide spectral matches found are modified consistently at all the 9 time points analyzed (from 3 hours to 2 weeks). An increase in acetylation level from exponential to stationary phase is shown in this work. Likewise, even though phosphorylation levels are low, they seem to increase from exponential to stationary phases. We also saw a decrease in oxidation levels from exponential to stationary phase, with sulfoxide reductases playing a role in fixing Methionine oxide back to methionine. n-term acetylations are frequent, with serine n-term acetylation happening 75\% of all n-term acetylations, all the times on the 2nd amino acids of the protein, after methionine excision. Phosphorylation increased from exponential to stationary phases, while carboxylations and nitrosylations remained constant throughout the time course of E. coli growth. Na and K adducts seem to happen 3-4\% of the time. Finally, a novel serine modification i.e., phosphogluconylation of serine seems to happen on ribosomal protein S6 frequently.
+In a typical mass-spectrometry based proteomics experiment, proteins are first digested into peptides and then these were analyzed by mass-spectrometry to identify/characterize peptides, and post-translational modifications associated with the protein. The coverage of PTMs identified is limited because of the mass-spectrometry limitation along with the PTM enrichment protocol. Peptide search algorithms are then run on these mass-spectrometry data sets to identify peptides and PTMs associated with it. However, because of computational limitations, most of the current search algorithms such as Mascot\cite{Perkinsetal1999}, Sequest \cite{Engetal1994}, OMSSA \cite{Geeretal2004}, X!Tandem \cite{CraigBeavis2004} search for only few variable modifications, i.e., oxidation of methionine etc or a small targeted list of PTMs. This technique of restricted search not only reduces the size of the database to search but in some cases shown to reduce false positives (Cite?). However recently, software for unrestricted search of PTMs is starting to be available. MODa \cite{Naetal2012} is one such unrestricted search engine, along with others such as TagRecon\cite{Dasarietal2010} and Byonic \cite{Bernetal2012}. We used MODa, a naive based multi-blind spectral alignment algorithm, to look for PTMs in the E. coli dataset. A few studies that used MODa both to look at few PTMs in depth such as \cite{Kimetal2014}, or to look at wider coverage of PTMs such as \cite{Liuetal2013}. Recently, the focus has shifted from identifying peptides/proteins to characterizing PTMs as shown in this recent review article \cite{OlsenMann2013}. The advantage of the present work is to understand the PTM crosstalk under each condition analyzed, which helps us to understand the protein regulation or function specifically because of many PTMs in concert, as earlier witnessed \cite{Pengetal2014}.
 
 Most of the peptide identification search algorithms require a list of PTMs to search for and generally this list is limited to 6. However there are hundreds of PTMs known to date, and well documented in databases like UNIMOD, RESID. So, we used a naive based search algorithm that outputs mass-shifts, instead of the PTMs in the peptide-spectral match. Then we used UNIMOD to identify the PTM that most probably matches the mass-shift. However we did not try and match all the mass-shifts, but investigated in detail the frequent and well known mass-shifts identified by MODa. This resulted in analysis of +1 Da mass-shift (C13 peak detection), oxidation, acetylation, Na and K adducts, along with some widely studied PTMs in phosphorylation, carboxylation and nitrosylation. This program is previously used for similar large-scale analysis with urinary proteomics and they identified novel PTMs. However the study used 2 programs and considered the overlap of PTMs as highly confident. Instead here, our focus is not to identify highly-confident PTMs later used as biomarkers, but to get a wider coverage at a lower FDR of 1\% and look at the time course or evolution of these PTMs during the entire 2 weeks of E. coli growth.
 
-There are some limitations with respect to how we did MODa searches. One of the limitations in the searches performed in the current work is that we used the default mass-range search between -200 and 200 Da (and one other search with -100 and 300 Da range). So, we miss out on larger PTMs i.e., polyubiquitination tails etc. It was shown in the past that looking for multiple PTMs on the same peptide leads to higher false positives. So, we ran our searches looking for only 1 possible modification on the peptide. After the peptides are ID'ed, generally the PTMs are validated by a 2nd round by using programs like Ascore etc. However here, we did not do any 2nd round of validating peptides, as MODa is shown to ID high-confidence PTM identications in its search. We then used MODa output to look at the global level of PTMs, instead of looking at the peptide or at the protein level. We did not do any PTM level quantitation or try to understand the specific PTM stoichiometry, as these require sophisticated experimental instrumentation, protocol and the algorithms to characterize the PTMs associated with proteins.
+N-terminal processing of proteins is a well-known PTM in diverse kinds of species ranging from eukaryotes to bacteria \cite{Kimuraetal2003}. 
 
-Nice review article on E. coli proteomics by different technologies including MS can be found here:
-Cite this paper: The Escherichia coli Proteome: Past, Present, and Future Prospects†
-Mee-Jung Han1 and Sang Yup Lee1,2,*
+Protein oxidation by reactive oxygen species (ROS) and reduction of MetSO back to Met is important is linked to various diseases including aging \cite{Stadtman1992}. ROS and RNI seem to accumulate at later stages of growth, because of reasons such as accumulation of toxic substances, nutrient limitation, changes in pH. \emph{E. coli's} internal machinery to tackle this stress comes in many forms at different levels and in this analysis, we are interested at the protein level machinery generally using sulfoxide reductases \cite{Brotetal1981} \cite{ZhangWeissbach2008}. These reductases has been shown to protect \emph{E. coli} from oxidative damage\cite{Ezratyetal2004}. 2 classes of sulfoxide reductases MsrA and yeaA in \emph{E. coli} have been identified that fix MetSO back to Met. Here, we looked at the abundances of these proteins during these late stationary phases, where oxidative stress seems to be more. Sulfoxide reducates to help reduce this oxidative stress. Our earlier work has already shown the induction of these stress proteins at stationary phases for the same data we used here.
 
-Directly taken from the above paper for my future analyses: For example, SspA expression increased with decreasing growth rate and was induced by glucose, nitrogen, phosphate, or amino acid starvation. Furthermore, the proteome profiles during the exponential growth phase showed that the expression levels of at least 11 proteins were altered in sspA mutant strains (314). These findings indicate that SspA acts as a transcription factor and is essential for starvation stress-induced tolerance (e.g., stationary phase) in E. coli.
+One of the PTM networks that is well studied in the past are the phosphorylation signaling cascades\cite{Olsenetal2006}. These are well known signalling mechansims and have been shown to respond quickly to stress during the late-stationary phases \cite{Soaresetal2013}. Our analysis also supports this behavior and would like to emphasize that while the previous paper investigated only 1 PTM, our analysis investigated most of the PTMs in tandem. 
 
-Copied from the same paper At the onset of glucose starvation, cyclic AMP and its receptor protein (cAMP-CRP) were found to play important roles in the expression of a number of genes. An early 2-DE study identified five glucose-responsive outer membrane proteins (four upregulated and one downregulated) (186). A comparison with membrane proteins from mutant strains revealed that two of the upregulated proteins were the receptors for lambda and T6, and coelectrophoresis of the outer membrane fraction identified the downregulated protein as OmpA. The glucose starvation stimulon was further examined using 2-DE followed by comparison to the E. coli gene-protein database (218). Members of this stimulon were found to include enzymes of the Embden-Meyerhof-Parnas pathway, phosphotransacetylase (Pta) and acetate kinase (AckA) in the acetic acid pathway, and formate transacetylase. Trichloroacetic acid cycle enzymes were repressed, whereas enzymes involved in acetate and formate production and the Embden-Meyerhof-Parnas pathway were induced. These modulations suggest that a glucose-starved cell increases the relative flow of carbon through the Pta-AckA pathway. Indeed, pta and pta-ackA mutants were found to be impaired in their abilities to survive glucose starvation, indicating that the capacity to synthesize acetyl phosphate, an intermediate of this pathway, is indispensable for glucose-starved cells. The pta mutant failed to induce several proteins of the glucose starvation stimulon. More recently, proteome studies revealed that glucose limitation upregulates the levels of proteins such as AceA, AldA, ArgT, AtpA, DppA, GatY, LivJ, MalE, MglB, RbsB, UgpB, and YdcS (311). Of these, ArgT, DppA, LivJ, MalE, MglB, RbsB, UgpB, and YdcS are periplasmic binding proteins of the ABC transporters, suggesting that in addition to the central metabolism proteins, periplasmic binding proteins are involved in the carbohydrate and amino acid uptakes that are important during glucose limitation.
 
-Also, A functional relA gene is required for sspA to affect protein synthesis. (taken from another paper)
-Interesting to find PTMs on these proteins?
+%Choi, Y. W.; Park, S. A.; Lee, H. W.; Kim, D. S.; Lee, N. G. Analysis of growth phase-dependent proteome profiles reveals differential regulation of mRNA and protein in Helicobacter pylori. Proteomics 2008, 8 (13), 2665–2675.
 
-Most of the times, proteins act in complexes to perform a specific function. In such process, 1 or few amino acids of a protein interact with other residues of another protein, generally through the PTMs. So, large-scale analysis of PTMs such as this work would help us better understand the fine granularity at PTM level that is responsible for a particular mechanism, such as multiple phosphorylations in the case of signalling cascades.
+%Mass-spec E. coli proteome \cite{Krugetal2013}
+%{Deep coverage of the Escherichia coli proteome enables the assessment of false discovery rates in simple proteogenomic experiments},
 
-Mass-spec analysis of human soluble protein complexes has revealed a large number of conserved complexes along with thousands of protein-protein interactions. Large-scale analysis of PTMs on these kinds of proteomics data would help to understand these interactions at PTM level. Such annotations could then be integrated with databases such as NCBI CDD
-Across diverse species (cite Emili/Marcotte collaboration cell papers) and talk about PTM annotation in databases like CDD? Cite the paper on conservation of phosphorylations etc on CDDs, but extend to other PTMs?
 
-Current whole-cell models \cite{Covertetal2008} are trying to integrate diverse kinds of OMICS data i.e., transcriptomics, proteomics not only to refine the existing models but also get the response of the models close to the experimental metabolic flux measurements. Here, we argue that including the modification information (i.e., number of modified proteins to that of the unmodified version) will improve the existing methodologies.
+%Nice review article on E. coli proteomics by different technologies including MS can be found here:
+%Cite this paper: The Escherichia coli Proteome: Past, Present, and Future Prospects†
+%Mee-Jung Han1 and Sang Yup Lee1,2,*
+
+%Directly taken from the above paper for my future analyses: For example, SspA expression increased with decreasing growth rate and was induced by glucose, nitrogen, phosphate, or amino acid starvation. Furthermore, the proteome profiles during the exponential growth phase showed that the expression levels of at least 11 proteins were altered in sspA mutant strains (314). These findings indicate that SspA acts as a transcription factor and is essential for starvation stress-induced tolerance (e.g., stationary phase) in E. coli.
+\emph{Look for PTMs on SspA}
+
+There are some limitations with respect to how we did MODa searches. One of the limitations in the searches performed in the current work is that we used the default mass-range search between -200 and 200 Da (and one other search with -100 and 300 Da range). So, we miss out on larger PTMs i.e., polyubiquitination tails etc. It was shown in the past that looking for multiple PTMs on the same peptide leads to higher false positives. So, we ran our searches looking for only 1 possible modification on the peptide. After the peptides are ID'ed, generally the PTMs are validated by a 2nd round by using programs like Ascore etc. However here, we did not do any 2nd round of validating peptides, as MODa is shown to ID high-confidence PTM identications in its search. We then used MODa output to look at the global level of PTMs, instead of looking at the peptide or at the protein level. We did not do any PTM level quantitation or try to understand the specific PTM stoichiometry, as these require sophisticated experimental instrumentation, protocol and the algorithms to characterize the PTMs associated with proteins. However MODa has been a software suite that has been recently used in both in bacterial proteomics as well as biomedical applications such as urine proteomics \cite{Liuetal2013}.
+
+Most of the times, proteins act in complexes to perform a specific function. In such process, 1 or few amino acids of a protein interact with other residues of another protein, generally through the PTMs. So, analysis of PTMs in \emph{tandem} is a necessity to get accurate reflections of the underlying interactions of the PTMs. Previous work in this area used the PTMs deposited in the database, however care must be taken, as these PTMs were identified at different growth phases under differing conditions.
+
+Current whole-cell models \cite{Covertetal2008} integrate diverse kinds of OMICS data i.e., transcriptomics, proteomics not only to refine the existing models, but also make reasonable predictions on which genes/enzymes are key for example, for a particular metabolite production etc. Here, we argue that including the modification information (i.e., number of modified proteins to that of the unmodified version) would improve the protein level abundances and thus will improve the computational predictions.
 
 
 
 \section{Conclusions}
 
-The modified protein seems to be 30\% during exponential as well as the long stationary phases. Acetylation, in particular n-term acetylation seems to go up from exponential to stationary phases. Surprisingly oxidation seemed to go down from exponential to stationary phases, owing to sulfoxide reductases playing a role in fixing methionine sulfoxide back to methionine. A novel phosphoserinegluconylaiton on ribosomal protein seem to happen frequently. Finally, we would like to conclude that unrestricted search engines can be used to identify frequently occuring PTMs, which can then be used with restricted search algorithms to improve the sensitivity of the ID'ed peptides.
+The modified protein seems to be 30\% during exponential as well as the long stationary phases. Acetylation, in particular n-term acetylation seems to go up from exponential to stationary phases. Surprisingly oxidation seemed to go down from exponential to stationary phases, owing to sulfoxide reductases playing a role in protecting \emph{E. coli} from oxidative damage by fixing methionine sulfoxide back to methionine. Phosphorylations and carboxylations also seem to increase indicating a likely role of these PTMs in late-stationary phases of the growth curve. A novel phosphoserinegluconylation on ribosomal protein seem to happen frequently. Finally, we would like to conclude that unrestricted search engines can be used to identify frequently occuring PTMs, which can then be used with restricted search algorithms to improve the sensitivity of the ID'ed peptides.
 
 
 \section{Materials and Methods}
