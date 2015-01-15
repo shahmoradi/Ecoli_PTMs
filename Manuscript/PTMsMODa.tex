@@ -41,16 +41,17 @@
 
 \title{Large-scale analysis of post-translational modifications in \emph{E. coli} under glucose-limiting conditions over 2 weeks}
 
-\author{Viswanadham Sridhara$^1$, Colin Brown$^{2}$, Daniel R. Boutz$^{2,3}$, Maria Person$^{2,3}$,Jeffrey E. Barrick$^{1,2,3,4}$,\\
-Edward M. Marcotte$^{1,2,3,4,5}$, and Claus O. Wilke$^{1,2,3,5}$}
+\author{Viswanadham Sridhara$^1$, Colin Brown$^{2}$, Daniel R. Boutz$^{2,3}$, Maria Person$^{4}$,\\
+Jeffrey E. Barrick$^{1,2,3,5}$, Edward M. Marcotte$^{1,2,3,5}$, and Claus O. Wilke$^{1,2,3,5,6}$}
 \maketitle
 
 \noindent
 $^1$Center for Computational Biology and Bioinformatics, The University of Texas at Austin, Austin, TX, USA\\
 $^2$Institute for Cellular and Molecular Biology, The University of Texas at Austin, Austin, TX, USA\\
-$^3$Center for Systems and Synthetic Biology, The University of Texas at Austin, Austin, TX, USA\\
-$^4$Department of Molecular Biosciences, The University of Texas at Austin, Austin, TX, USA\\
-$^5$Department of Integrative Biology, The University of Texas at Austin, Austin, TX, USA\\
+$^3$College of Pharmacy, The University of Texas at Austin, Austin, TX, USA\\
+$^4$Center for Systems and Synthetic Biology, The University of Texas at Austin, Austin, TX, USA\\
+$^5$Department of Molecular Biosciences, The University of Texas at Austin, Austin, TX, USA\\
+$^6$Department of Integrative Biology, The University of Texas at Austin, Austin, TX, USA\\
 
 
 \begin{abstract}
@@ -95,38 +96,10 @@ To look at the specific PTMs, we need to convert the mass-shifts outputted by MO
 Figure~\ref{fig:PTMinDalton} shows the mass-shift frequency matrix. (A) shows the distribution at 3 hours and (B) at 24 hours. We did not plot the error bars as this makes the figure a bit clumsy, with error bars appearing at each bin. These are the means of the 3 biological replicates. The error bars indicate 1 standard error. It is clear that +1 Da peak is the most frequent one. However this +1 Da modification seems to be 13C peak-picking as it seems to be randomly occuring on all the amino acids, as shown in the profile (Suppl Figure S5). At both 3 and 24 hours, next frequent modification seems to be the bin at +16Da. 16Da indicates oxidation and cysteine and methionine are the 2 most frequent amino acids that are oxidized. However, the sample is treated in a way to cap cysteines and hence we dont expect to see Cys oxidized. A look at profile (Suppl Figure S6) shows majority of oxidations on methionine which is expected. Similarly, we mapped other frequent and known mass-shifts and looked at their temporal analysis. In particular, we looked at  acetylation, oxidation, phosphorylation, carboxylation and nitrosylation in depth.
 
 \subsection{N-term protein acetylations are frequent in \emph{E. coli}}
-\cite{Charbautetal2002}
-{N-terminal acetylation of ectopic recombinant proteins in Escherichia coli}
-
-\cite{Driessenetal1985}
-{The mechanism of N-terminal acetylation of proteins}
-
-\cite{Helbigetal2010}
-{Profiling of N-acetylated protein termini provides in-depth insights into the N-terminal nature of the proteome},
-
-\cite{Gordiyenkoetal2008}
- {Acetylation of L12 increases interactions in the Escherichia coli ribosomal stalk complex}
  
-\cite{Polevodaetal2003}
-{Nat3p and Mdm20p are required for function of yeast NatB Nalpha-terminal acetyltransferase and of actin and tropomyosin}
-   
-\cite{PolevodaSherman2003}
-{Composition and function of the eukaryotic N-terminal acetyltransferase subunits},
-   
-\cite{PolevodaSherman2003b}
-{N-terminal acetyltransferases and sequence requirements for N-terminal acetylation of eukaryotic proteins}
+Acetylation in \emph{E. coli} has been studied well in the past \cite{Charbautetal2002} \cite{Gordiyenkoetal2008}. Acetylation occurs in 2 forms i.e., N-{alpha} acetylation and N-{sigma} acetylation. It is known that acetylation occurs co-translationally on n-term (N-{alpha}) and is not reversible, while post-translationally it occurs as a reversible modification, mostly on lysine  (cite this paper) \emph{The diversity of lysine-acetylated proteins in Escherichia coli.}. In the current work, we focus on n-terminal acetylation. It has been known that almost 2/3rds of the proteins are substrates for n-terminal methionine excision. Following this methionine excision, n-terminal processing, especially n-terminal acetylation \cite{Driessenetal1985} has been shown in the past to be one of the most frequently occuring PTMs. Previous data suggests that this modification is more frequent in eukaryotes than bacteria. However our results indicate that there are quite a few n-term protein acetylations identified. We summarize our results below. 
 
-\cite{Starheimetal2012}
-{Protein N-terminal acetyltransferases: when the start matters}
-
-\cite{Tanakaetal1989}
-{Cloning and molecular characterization of the gene rimL which encodes an enzyme acetylating ribosomal protein L12 of Escherichia coli K12}
-
-\cite{Yoshikawaetal1987}
-{Cloning and nucleotide sequencing of the genes rimI and rimJ which encode enzymes acetylating ribosomal proteins S18 and S5 of Escherichia coli K12}
-It has been known that almost 2/3rds of the proteins are substrates for n-terminal methionine excision. Following this, it is also shown that n-terminal acetylation is the most frequently occuring PTM. However, this modification seem to be more frequent in eukaryotes compared to bacteria. Here, we looked at this PTM in depth as there were many proteins that seem to be acetylated in our study. 
-
-Acetylation occurs in 2 forms i.e., N-{alpha} acetylation and N-{sigma} acetylation. It is known that acetylation occurs co-translationally on n-term (N-{alpha}) and is not reversible, while post-translationally it occurs as a reversible modification, mostly on lysine. Irrespective of the type of acetylation, since MODa allowed us to look at the global acetylation level i.e., all possible shifts of 42Da, we plotted the acetylation frequencies at different time points as a function of time (see Figure~\ref{fig:Acet}). The total number of acetylations seem to go up from exponential to stationary phases. In our analysis, most of the acetylations seem to be protein n-term acetylations. Either this acetylation occurs on the 1st methionine amino acid or it happens on the 2nd amino acid after the excision of the 1st methionine. Figure~\ref{fig:Acet} also shows the total n-term acetylations and the total serine acetylations. Later, we show that the serine acetylations seem to happen >99\% of the times at n-term.
+N-terminal acetyltransferases are responsible for the n-terminal acetylation \cite{Starheimetal2012}.  Irrespective of the type of acetylation, since MODa allowed us to look at the global acetylation level i.e., all possible shifts of 42Da, we plotted the acetylation frequencies at different time points as a function of time (see Figure~\ref{fig:Acet}). The total number of acetylations seem to go up from exponential to stationary phases. In our analysis, most of the acetylations seem to be protein n-term acetylations. Either this acetylation occurs on the 1st methionine amino acid or it happens on the 2nd amino acid after the excision of the 1st methionine. Figure~\ref{fig:Acet} also shows the total n-term acetylations and the total serine acetylations. Later, we show that the serine acetylations seem to happen >99\% of the times at n-term.
 
 E. coli grown on glucose have shown to accumulate acetate (Cite proper references). Our results might suggest the same given the increase in the number of acetylated proteins from exponential to stationary phases. Table 1 shows the acetylated proteins found under these 2 different phases under E. coli growth under glucose limiting conditions.
 
@@ -148,9 +121,6 @@ An artifact caused by sample preparation and mass-spectrometry analysis is the a
 Glutamine conversion at n-term of the peptide to pyroglutamate is a well known PTM. This post-translational modification stabilizes the protein to avoid any further n-terminal processing. Suppl Figure 7 shows that this conversion seems to be more or less same at different phases of the growth.
 
 \subsection{Oxidative damage and repair in \emph{E. coli}}
-%\cite{Stadtman1992}
-%{Protein oxidation and aging}
-%
 %\cite{Vogt1995}
 %{Oxidation of methionyl residues in proteins: tools, targets, and reversal}
 %
@@ -187,7 +157,7 @@ In a typical mass-spectrometry based proteomics experiment, proteins are first d
 
 Most of the peptide identification search algorithms require a list of PTMs to search for and generally this list is limited to 6. However there are hundreds of PTMs known to date, and well documented in databases like UNIMOD, RESID. So, we used a naive based search algorithm that outputs mass-shifts, instead of the PTMs in the peptide-spectral match. Then we used UNIMOD to identify the PTM that most probably matches the mass-shift. However we did not try and match all the mass-shifts, but investigated in detail the frequent and well known mass-shifts identified by MODa. This resulted in analysis of +1 Da mass-shift (C13 peak detection), oxidation, acetylation, Na and K adducts, along with some widely studied PTMs in phosphorylation, carboxylation and nitrosylation. This program is previously used for similar large-scale analysis with urinary proteomics and they identified novel PTMs. However the study used 2 programs and considered the overlap of PTMs as highly confident. Instead here, our focus is not to identify highly-confident PTMs later used as biomarkers, but to get a wider coverage at a lower FDR of 1\% and look at the time course or evolution of these PTMs during the entire 2 weeks of E. coli growth.
 
-N-terminal processing of proteins is a well-known PTM in diverse kinds of species ranging from eukaryotes to bacteria \cite{Kimuraetal2003}. 
+N-terminal processing of proteins is a well-known PTM in diverse kinds of species ranging from eukaryotes to bacteria \cite{Kimuraetal2003}. N-terminal acetylation has been shown in the past to provide insights into the nature of the n-terminal of the proteome \cite{Helbigetal2010}. In eukaryotes, n-terminal acetyltransferases are well characterized and studied, for example, as shown in these studies \cite{PolevodaSherman2003}, \cite{PolevodaSherman2003b}. In \emph{E. coli}, NATs are primarily characterized into mainly rim types \cite{Tanakaetal1989}, \cite{Yoshikawaetal1987}
 
 Protein oxidation by reactive oxygen species (ROS) and reduction of MetSO back to Met is important is linked to various diseases including aging \cite{Stadtman1992}. ROS and RNI seem to accumulate at later stages of growth, because of reasons such as accumulation of toxic substances, nutrient limitation, changes in pH. \emph{E. coli's} internal machinery to tackle this stress comes in many forms at different levels and in this analysis, we are interested at the protein level machinery generally using sulfoxide reductases \cite{Brotetal1981} \cite{ZhangWeissbach2008}. These reductases has been shown to protect \emph{E. coli} from oxidative damage\cite{Ezratyetal2004}. 2 classes of sulfoxide reductases MsrA and yeaA in \emph{E. coli} have been identified that fix MetSO back to Met. Here, we looked at the abundances of these proteins during these late stationary phases, where oxidative stress seems to be more. Sulfoxide reducates to help reduce this oxidative stress. Our earlier work has already shown the induction of these stress proteins at stationary phases for the same data we used here.
 
@@ -212,8 +182,6 @@ There are some limitations with respect to how we did MODa searches. One of the 
 Most of the times, proteins act in complexes to perform a specific function. In such process, 1 or few amino acids of a protein interact with other residues of another protein, generally through the PTMs. So, analysis of PTMs in \emph{tandem} is a necessity to get accurate reflections of the underlying interactions of the PTMs. Previous work in this area used the PTMs deposited in the database, however care must be taken, as these PTMs were identified at different growth phases under differing conditions.
 
 Current whole-cell models \cite{Covertetal2008} integrate diverse kinds of OMICS data i.e., transcriptomics, proteomics not only to refine the existing models, but also make reasonable predictions on which genes/enzymes are key for example, for a particular metabolite production etc. Here, we argue that including the modification information (i.e., number of modified proteins to that of the unmodified version) would improve the protein level abundances and thus will improve the computational predictions.
-
-
 
 \section{Conclusions}
 
@@ -257,10 +225,10 @@ All raw data and analysis scripts are available online in the form of a git repo
 %The authors declare that they have no competing interests.
 
 \section{Author Contributions}
-Conceived and designed the experiments: V.S., C.O.W and E.M.M. Performed the experiments: V.S. Analyzed the data: V.S, C.W.B, M.D.P, C.O.W and E.M.M. Wrote the paper: V.S, C.W.B, D.R.B, C.B, M.D.P, J.E.B, C.O.W and E.M.M.
+Conceived and designed the experiments: V.S, J.E.B, E.M.M, and C.O.W. Performed the experiments: V.S. Analyzed the data: V.S, C.W.B, M.D.P, J.E.B, E.M.M. and C.O.W. Wrote the paper: V.S, C.W.B, D.R.B, C.B, M.D.P, J.E.B, E.M.M and C.O.W.
 
 \section{Acknowledgments}
-This project was funded by ARO Grant W911NF-12-1-0390. We thank the Bioinformatics Consulting Group (BCG) and the Texas Advanced Computing Center (TACC) at UT for high-performance computing resources. 
+This project was funded by ARO Grant W911NF-12-1-0390. We thank John Houser and Kevin Drew for useful discussions. We thank the Bioinformatics Consulting Group (BCG) and the Texas Advanced Computing Center (TACC) at UT for high-performance computing resources. 
 
 
 %\section{References} (automatically pops up with bibliography)
