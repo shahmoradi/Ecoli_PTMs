@@ -1,0 +1,5 @@
+[1] Config.pm:318> INFO - This is Biber 1.8
+[2] Config.pm:321> INFO - Logfile is 'PTMsMODaBibliography.blg'
+[308] biber-darwin:275> INFO - === Sat Nov 22, 2014, 05:59:17
+[2061] Utils.pm:185> ERROR - Cannot find control file 'PTMsMODaBibliography.bcf'! - did you pass the "backend=biber" option to BibLaTeX?
+[2062] Biber.pm:109> INFO - ERRORS: 1

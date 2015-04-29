@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: PTMsMODa.aux
+The style file: plain.bst
+Database file #1: PTMsMODaBibliography.bib
+You've used 45 entries,
+            2118 wiz_defined-function locations,
+            805 strings with 13406 characters,
+and the built_in function-call counts, 18335 in all, are:
+= -- 1659
+> -- 1268
+< -- 0
++ -- 501
+- -- 454
+* -- 1648
+:= -- 3216
+add.period$ -- 135
+call.type$ -- 45
+change.case$ -- 362
+chr.to.int$ -- 0
+cite$ -- 45
+duplicate$ -- 494
+empty$ -- 1164
+format.name$ -- 454
+if$ -- 3630
+int.to.chr$ -- 0
+int.to.str$ -- 45
+missing$ -- 45
+newline$ -- 228
+num.names$ -- 90
+pop$ -- 274
+preamble$ -- 1
+purify$ -- 317
+quote$ -- 0
+skip$ -- 321
+stack$ -- 0
+substring$ -- 1037
+swap$ -- 45
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 180
+warning$ -- 0
+while$ -- 134
+width$ -- 47
+write$ -- 496

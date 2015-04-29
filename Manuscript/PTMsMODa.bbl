@@ -1,0 +1,277 @@
+\begin{thebibliography}{10}
+
+\bibitem{Araietal1980}
+K.~Arai, B.~F. Clark, L.~Duffy, M.~D. Jones, Y.~Kaziro, R.~A. Laursen,
+  J.~L'Italien, D.~L. Miller, S.~Nagarkatti, S.~Nakamura, K.~M. Nielsen, T.~E.
+  Petersen, K.~Takahashi, and M.~Wade.
+\newblock Primary structure of elongation factor tu from escherichia coli.
+\newblock {\em Proc Natl Acad Sci U S A}, 77(3):1326--30, 1980.
+
+\bibitem{Bernetal2012}
+M.~Bern, Y.~J. Kil, and C.~Becker.
+\newblock Byonic: advanced peptide and protein identification software.
+\newblock {\em Curr Protoc Bioinformatics}, Chapter 13:Unit13 20, 2012.
+
+\bibitem{Bernal-Perezetal2012}
+L.~F. Bernal-Perez, F.~Sahyouni, L.~Prokai, and Y.~Ryu.
+\newblock Rimj-mediated context-dependent n-terminal acetylation of the
+  recombinant z-domain protein in escherichia coli.
+\newblock {\em Mol Biosyst}, 8(4):1128--30, 2012.
+
+\bibitem{Brotetal1981}
+N.~Brot, L.~Weissbach, J.~Werth, and H.~Weissbach.
+\newblock Enzymatic reduction of protein-bound methionine sulfoxide.
+\newblock {\em Proc Natl Acad Sci U S A}, 78(4):2155--8, 1981.
+
+\bibitem{Charbautetal2002}
+E.~Charbaut, V.~Redeker, J.~Rossier, and A.~Sobel.
+\newblock N-terminal acetylation of ectopic recombinant proteins in escherichia
+  coli.
+\newblock {\em FEBS Lett}, 529(2-3):341--5, 2002.
+
+\bibitem{ClatterbuckSoperetal2013}
+S.~F. Clatterbuck~Soper, R.~P. Dator, P.~A. Limbach, and S.~A. Woodson.
+\newblock In vivo x-ray footprinting of pre-30s ribosomes reveals
+  chaperone-dependent remodeling of late assembly intermediates.
+\newblock {\em Mol Cell}, 52(4):506--16, 2013.
+
+\bibitem{Covertetal2008}
+M.~W. Covert, N.~Xiao, T.~J. Chen, and J.~R. Karr.
+\newblock Integrating metabolic, transcriptional regulatory and signal
+  transduction models in \emph{Escherichia coli}.
+\newblock {\em Bioinformatics}, 24:2044--50, 2008.
+
+\bibitem{CraigBeavis2004}
+R.~Craig and R.~C. Beavis.
+\newblock Tandem: matching proteins with tandem mass spectra.
+\newblock {\em Bioinformatics}, 20(9):1466--7, 2004.
+
+\bibitem{Dasarietal2010}
+S.~Dasari, M.~C. Chambers, R.~J. Slebos, L.~J. Zimmerman, A.~J. Ham, and D.~L.
+  Tabb.
+\newblock Tagrecon: high-throughput mutation identification through sequence
+  tagging.
+\newblock {\em J Proteome Res}, 9(4):1716--26, 2010.
+
+\bibitem{Driessenetal1985}
+H.~P. Driessen, W.~W. de~Jong, G.~I. Tesser, and H.~Bloemendal.
+\newblock The mechanism of n-terminal acetylation of proteins.
+\newblock {\em CRC Crit Rev Biochem}, 18(4):281--325, 1985.
+
+\bibitem{EliasGygi2007}
+J.~E. Elias and S.~P. Gygi.
+\newblock Target-decoy search strategy for increased confidence in large-scale
+  protein identifications by mass spectrometry.
+\newblock {\em Nat Methods}, 4(3):207--14, 2007.
+
+\bibitem{Engetal1994}
+J.~K. Eng, A.~L. McCormack, and J.~R. Yates.
+\newblock An approach to correlate tandem mass spectral data of peptides with
+  amino acid sequences in a protein database.
+\newblock {\em J Am Soc Mass Spectrom}, 5(11):976--89, 1994.
+
+\bibitem{Ezratyetal2004}
+B.~Ezraty, R.~Grimaud, M.~El~Hassouni, D.~Moinier, and F.~Barras.
+\newblock Methionine sulfoxide reductases protect ffh from oxidative damages in
+  escherichia coli.
+\newblock {\em EMBO J}, 23(8):1868--77, 2004.
+
+\bibitem{Geeretal2004}
+L.~Y. Geer, S.~P. Markey, J.~A. Kowalak, L.~Wagner, M.~Xu, D.~M. Maynard,
+  X.~Yang, W.~Shi, and S.~H. Bryant.
+\newblock Open mass spectrometry search algorithm.
+\newblock {\em J Proteome Res}, 3(5):958--64, 2004.
+
+\bibitem{Gordiyenkoetal2008}
+Y.~Gordiyenko, S.~Deroo, M.~Zhou, H.~Videler, and C.~V. Robinson.
+\newblock Acetylation of l12 increases interactions in the escherichia coli
+  ribosomal stalk complex.
+\newblock {\em J Mol Biol}, 380(2):404--14, 2008.
+
+\bibitem{Helbigetal2010}
+A.~O. Helbig, S.~Gauci, R.~Raijmakers, B.~van Breukelen, M.~Slijper,
+  S.~Mohammed, and A.~J. Heck.
+\newblock Profiling of n-acetylated protein termini provides in-depth insights
+  into the n-terminal nature of the proteome.
+\newblock {\em Mol Cell Proteomics}, 9(5):928--39, 2010.
+
+\bibitem{Kimetal2014}
+H.~J. Kim, S.~Ha, H.~Y. Lee, and K.~J. Lee.
+\newblock Rosics: Chemistry and proteomics of cysteine modifications in redox
+  biology.
+\newblock {\em Mass Spectrom Rev}, 2014.
+
+\bibitem{Kimuraetal2003}
+Y.~Kimura, Y.~Saeki, H.~Yokosawa, B.~Polevoda, F.~Sherman, and H.~Hirano.
+\newblock N-terminal modifications of the 19s regulatory particle subunits of
+  the yeast proteasome.
+\newblock {\em Arch Biochem Biophys}, 409(2):341--8, 2003.
+
+\bibitem{Kuhnetal2014}
+M.~L. Kuhn, B.~Zemaitaitis, L.~I. Hu, A.~Sahu, D.~Sorensen, G.~Minasov, B.~P.
+  Lima, M.~Scholle, M.~Mrksich, W.~F. Anderson, B.~W. Gibson, B.~Schilling, and
+  A.~J. Wolfe.
+\newblock Structural, kinetic and proteomic characterization of acetyl
+  phosphate-dependent bacterial protein acetylation.
+\newblock {\em PLoS One}, 9(4):e94816, 2014.
+
+\bibitem{Lamondetal2012}
+A.~I. Lamond, M.~Uhlen, S.~Horning, A.~Makarov, C.~V. Robinson, L.~Serrano,
+  F.~U. Hartl, W.~Baumeister, A.~K. Werenskiold, J.~S. Andersen, O.~Vorm,
+  M.~Linial, R.~Aebersold, and M.~Mann.
+\newblock Advancing cell biology through proteomics in space and time
+  (prospects).
+\newblock {\em Mol Cell Proteomics}, 11(3):O112 017731, 2012.
+
+\bibitem{Liuetal2013}
+L.~Liu, X.~Liu, W.~Sun, M.~Li, and Y.~Gao.
+\newblock Unrestrictive identification of post-translational modifications in
+  the urine proteome without enrichment.
+\newblock {\em Proteome Sci}, 11(1):1, 2013.
+
+\bibitem{Maceketal2008}
+B.~Macek, F.~Gnad, B.~Soufi, C.~Kumar, J.~V. Olsen, I.~Mijakovic, and M.~Mann.
+\newblock Phosphoproteome analysis of e. coli reveals evolutionary conservation
+  of bacterial ser/thr/tyr phosphorylation.
+\newblock {\em Mol Cell Proteomics}, 7(2):299--307, 2008.
+
+\bibitem{McHughArthur2008}
+L.~McHugh and J.~W. Arthur.
+\newblock Computational methods for protein identification from mass
+  spectrometry data.
+\newblock {\em PLoS Comput Biol}, 4(2):e12, 2008.
+
+\bibitem{Miaoetal2007}
+L.~Miao, H.~Fang, Y.~Li, and H.~Chen.
+\newblock Studies of the in vitro nalpha-acetyltransferase activities of e.
+  coli riml protein.
+\newblock {\em Biochem Biophys Res Commun}, 357(3):641--7, 2007.
+
+\bibitem{Naetal2012}
+S.~Na, N.~Bandeira, and E.~Paek.
+\newblock Fast multi-blind modification search through tandem mass
+  spectrometry.
+\newblock {\em Mol Cell Proteomics}, 11(4):M111 010199, 2012.
+
+\bibitem{Nesterchuketal2011}
+M.~V. Nesterchuk, P.~V. Sergiev, and O.~A. Dontsova.
+\newblock Posttranslational modifications of ribosomal proteins in escherichia
+  coli.
+\newblock {\em Acta Naturae}, 3(2):22--33, 2011.
+
+\bibitem{Nystrom2004}
+T.~Nystrom.
+\newblock Stationary-phase physiology.
+\newblock {\em Annu Rev Microbiol}, 58:161--81, 2004.
+
+\bibitem{Olsenetal2006}
+J.~V. Olsen, B.~Blagoev, F.~Gnad, B.~Macek, C.~Kumar, P.~Mortensen, and
+  M.~Mann.
+\newblock Global, in vivo, and site-specific phosphorylation dynamics in
+  signaling networks.
+\newblock {\em Cell}, 127(3):635--48, 2006.
+
+\bibitem{OlsenMann2013}
+J.~V. Olsen and M.~Mann.
+\newblock Status of large-scale analysis of post-translational modifications by
+  mass spectrometry.
+\newblock {\em Mol Cell Proteomics}, 12(12):3444--52, 2013.
+
+\bibitem{Pengetal2014}
+M.~Peng, A.~Scholten, A.~J. Heck, and B.~van Breukelen.
+\newblock Identification of enriched ptm crosstalk motifs from large-scale
+  experimental data sets.
+\newblock {\em J Proteome Res}, 13(1):249--59, 2014.
+
+\bibitem{Perkinsetal1999}
+D.~N. Perkins, D.~J. Pappin, D.~M. Creasy, and J.~S. Cottrell.
+\newblock Probability-based protein identification by searching sequence
+  databases using mass spectrometry data.
+\newblock {\em Electrophoresis}, 20(18):3551--67, 1999.
+
+\bibitem{PolevodaSherman2003}
+B.~Polevoda and F.~Sherman.
+\newblock Composition and function of the eukaryotic n-terminal
+  acetyltransferase subunits.
+\newblock {\em Biochem Biophys Res Commun}, 308(1):1--11, 2003.
+
+\bibitem{PolevodaSherman2003b}
+B.~Polevoda and F.~Sherman.
+\newblock N-terminal acetyltransferases and sequence requirements for
+  n-terminal acetylation of eukaryotic proteins.
+\newblock {\em J Mol Biol}, 325(4):595--622, 2003.
+
+\bibitem{Sethetal2012}
+D.~Seth, A.~Hausladen, Y.~J. Wang, and J.~S. Stamler.
+\newblock Endogenous protein s-nitrosylation in e. coli: regulation by oxyr.
+\newblock {\em Science}, 336(6080):470--3, 2012.
+
+\bibitem{Smithetal1996}
+V.~F. Smith, B.~L. Schwartz, L.~L. Randall, and R.~D. Smith.
+\newblock Electrospray mass spectrometric investigation of the chaperone secb.
+\newblock {\em Protein Sci}, 5(3):488--94, 1996.
+
+\bibitem{Soaresetal2013}
+N.~C. Soares, P.~Spat, K.~Krug, and B.~Macek.
+\newblock Global dynamics of the escherichia coli proteome and phosphoproteome
+  during growth in minimal medium.
+\newblock {\em J Proteome Res}, 12(6):2611--21, 2013.
+
+\bibitem{Soufietal2015}
+B.~Soufi, K.~Krug, A.~Harst, and B.~Macek.
+\newblock Characterization of the e. coli proteome and its modifications during
+  growth and ethanol stress.
+\newblock {\em Frontiers in Microbiology}, 6:1--11, 2015.
+
+\bibitem{Stadtman1992}
+E.~R. Stadtman.
+\newblock Protein oxidation and aging.
+\newblock {\em Science}, 257(5074):1220--4, 1992.
+
+\bibitem{Starheimetal2012}
+K.~K. Starheim, K.~Gevaert, and T.~Arnesen.
+\newblock Protein n-terminal acetyltransferases: when the start matters.
+\newblock {\em Trends Biochem Sci}, 37(4):152--61, 2012.
+
+\bibitem{Tanakaetal1989}
+S.~Tanaka, Y.~Matsushita, A.~Yoshikawa, and K.~Isono.
+\newblock Cloning and molecular characterization of the gene riml which encodes
+  an enzyme acetylating ribosomal protein l12 of escherichia coli k12.
+\newblock {\em Mol Gen Genet}, 217(2-3):289--93, 1989.
+
+\bibitem{Weinertetal2013}
+B.~T. Weinert, V.~Iesmantavicius, S.~A. Wagner, C.~Scholz, B.~Gummesson,
+  P.~Beli, T.~Nystrom, and C.~Choudhary.
+\newblock Acetyl-phosphate is a critical determinant of lysine acetylation in
+  e. coli.
+\newblock {\em Mol Cell}, 51(2):265--72, 2013.
+
+\bibitem{Wuetal2006}
+J.~Wu, S.~Chang, X.~Gong, D.~Liu, and Q.~Ma.
+\newblock Identification of n-terminal acetylation of recombinant human
+  prothymosin alpha in escherichia coli.
+\newblock {\em Biochim Biophys Acta}, 1760(8):1241--7, 2006.
+
+\bibitem{Yietal2011}
+C.~H. Yi, H.~Pan, J.~Seebacher, I.~H. Jang, S.~G. Hyberts, G.~J. Heffron, M.~G.
+  Vander~Heiden, R.~Yang, F.~Li, J.~W. Locasale, H.~Sharfi, B.~Zhai,
+  R.~Rodriguez-Mias, H.~Luithardt, L.~C. Cantley, G.~Q. Daley, J.~M. Asara,
+  S.~P. Gygi, G.~Wagner, C.~F. Liu, and J.~Yuan.
+\newblock Metabolic regulation of protein n-alpha-acetylation by bcl-xl
+  promotes cell survival.
+\newblock {\em Cell}, 146(4):607--20, 2011.
+
+\bibitem{Yoshikawaetal1987}
+A.~Yoshikawa, S.~Isono, A.~Sheback, and K.~Isono.
+\newblock Cloning and nucleotide sequencing of the genes rimi and rimj which
+  encode enzymes acetylating ribosomal proteins s18 and s5 of escherichia coli
+  k12.
+\newblock {\em Mol Gen Genet}, 209(3):481--8, 1987.
+
+\bibitem{ZhangWeissbach2008}
+X.~H. Zhang and H.~Weissbach.
+\newblock Origin and evolution of the protein-repairing enzymes methionine
+  sulphoxide reductases.
+\newblock {\em Biol Rev Camb Philos Soc}, 83(3):249--57, 2008.
+
+\end{thebibliography}
