@@ -1,0 +1,9 @@
+cat MURI_7a_MODa_PSMs.id.txt_GIs MURI_7b_MODa_PSMs.id.txt_GIs MURI_16a_MODa_PSMs.id.txt_GIs MURI_16b_MODa_PSMs.id.txt_GIs MURI_25a_MODa_PSMs.id.txt_GIs MURI_25b_MODa_PSMs.id.txt_GIs  >> MURIt1.id.txt
+cat MURI_8a_MODa_PSMs.id.txt_GIs MURI_8b_MODa_PSMs.id.txt_GIs MURI_17a_MODa_PSMs.id.txt_GIs MURI_17b_MODa_PSMs.id.txt_GIs MURI_26a_MODa_PSMs.id.txt_GIs MURI_26b_MODa_PSMs.id.txt_GIs  >> MURIt2.id.txt
+cat MURI_9a_MODa_PSMs.id.txt_GIs MURI_9b_MODa_PSMs.id.txt_GIs MURI_18a_MODa_PSMs.id.txt_GIs MURI_18b_MODa_PSMs.id.txt_GIs MURI_27a_MODa_PSMs.id.txt_GIs MURI_27b_MODa_PSMs.id.txt_GIs  >> MURIt3.id.txt
+cat MURI_10a_MODa_PSMs.id.txt_GIs MURI_10b_MODa_PSMs.id.txt_GIs MURI_19a_MODa_PSMs.id.txt_GIs MURI_19b_MODa_PSMs.id.txt_GIs MURI_28a_MODa_PSMs.id.txt_GIs MURI_28b_MODa_PSMs.id.txt_GIs  >> MURIt4.id.txt
+cat MURI_11a_MODa_PSMs.id.txt_GIs MURI_11b_MODa_PSMs.id.txt_GIs MURI_20a_MODa_PSMs.id.txt_GIs MURI_20b_MODa_PSMs.id.txt_GIs MURI_29a_MODa_PSMs.id.txt_GIs MURI_29b_MODa_PSMs.id.txt_GIs  >> MURIt5.id.txt
+cat MURI_12a_MODa_PSMs.id.txt_GIs MURI_12b_MODa_PSMs.id.txt_GIs MURI_21a_MODa_PSMs.id.txt_GIs MURI_21b_MODa_PSMs.id.txt_GIs MURI_30a_MODa_PSMs.id.txt_GIs MURI_30b_MODa_PSMs.id.txt_GIs  >> MURIt6.id.txt
+cat MURI_13a_MODa_PSMs.id.txt_GIs MURI_13b_MODa_PSMs.id.txt_GIs MURI_22a_MODa_PSMs.id.txt_GIs MURI_22b_MODa_PSMs.id.txt_GIs MURI_31a_MODa_PSMs.id.txt_GIs MURI_31b_MODa_PSMs.id.txt_GIs  >> MURIt7.id.txt
+cat MURI_14a_MODa_PSMs.id.txt_GIs MURI_14b_MODa_PSMs.id.txt_GIs MURI_23a_MODa_PSMs.id.txt_GIs MURI_23b_MODa_PSMs.id.txt_GIs MURI_32a_MODa_PSMs.id.txt_GIs MURI_32b_MODa_PSMs.id.txt_GIs  >> MURIt8.id.txt
+cat MURI_15a_MODa_PSMs.id.txt_GIs MURI_15b_MODa_PSMs.id.txt_GIs MURI_24a_MODa_PSMs.id.txt_GIs MURI_24b_MODa_PSMs.id.txt_GIs MURI_33a_MODa_PSMs.id.txt_GIs MURI_33b_MODa_PSMs.id.txt_GIs  >> MURIt9.id.txt
