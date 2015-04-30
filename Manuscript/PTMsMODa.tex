@@ -105,8 +105,8 @@ We next looked at the distribution of the mass-shifts or PTMs at each time point
 Even though the total amount of modified proteome is mostly constant ~30\%, the content of PTMs at each time point vary during different phases of growth i.e., a particular modification can either stay constant, decrease or increase from expoential to long-stationary phases. To look at this in detail, we first plotted the frequency of different mass-shifts from the MODa output at 2 different time points. Figure~\ref{fig:PTMinDalton} shows this mass-shift frequency at 3 hrs and 24 hrs. Figure~\ref{fig:PTMinDalton} (A) shows the mass-shift frequency at 3 hours, while (B) shows the frequency at 24 hours. The height of the bins is the percentage of the mass-shifts in the entire peptide-spectral match list. Since we used 3 biological replicates, the actual \% is the mean of the 3 replicates. We tabulated the frequently occuring mass-shifts at each of these time points (Table 1). +1 Da is the most frequent mass-shift at all time points. However this +1 Da modification seems to be 13C peak-picking as it seems to be randomly occuring on all the amino acids, as shown in the profile (Suppl Figure S6). Next frequently occuring modification is +16Da that represents to oxidation. Oxidation seems to clearly go down from 3 (early exponential phase) to 24 hours (stationary phsae). We investigated this in detail and presented as a separate subsection below. Other than 42Da, -2Da most other frequently occuring mass-shifts are either artifacts due to sample preparation or a combination of 2 mass-shifts i.e., +1 Da and +57 Da, 2 +57Da's = 114 Da etc. +42Da corresponds to acetylation and is a PTM that is of biological interest. Hence, we investigated this PTM in detail, especially n-terminal acetylated proteins. -2 Da seems to be methionine to glutamine substitution. Other important PTMs in E. coli reported in literature are n-terminal methionine excision, phosphorylation, carboxylation, nitrosylation, methylation, glycosylation etc. So, we investigated few of these even though these appear at lower levels in our data set.
 
 
-\subsection{N-term methionine excision mechanism in \emph{E. coli}}
-n-terminal methionine excision is shown as a process that is universally conserved across a diverse range of species, spanning bacteria to eukaryotes. Here, we looked in detail at how this mechanism changes from exponential phase to long-stationary phase. (Add text/figures etc), may be 1 figure in the main paper and one in the suppl.
+%\subsection{N-term methionine excision mechanism in \emph{E. coli}}
+%n-terminal methionine excision is shown as a process that is universally conserved across a diverse range of species, spanning bacteria to eukaryotes. Here, we looked in detail at how this mechanism changes from exponential phase to long-stationary phase. (Add text/figures etc), may be 1 figure in the main paper and one in the suppl. \textbf{Did not find any change in the time course, and hence did not continue to work on this part}
 
 \subsection{N-term protein acetylations are frequent in \emph{E. coli}}
 
@@ -170,16 +170,18 @@ Some of the frequently occuring mass-shifts (add 22 Da and 38 Da from Table X) w
 
 Most of the PTMs seem to occur less frequently, but sometimes seen on the same peptide or the protein. So, we calculated the peptide-spectrum level information to identify these low-abundant modifications. One of the mass-shifts (+ZZZDa) seem to occur on n-terminal glutamine of the protein. This represents pyroglutamate formation. This is a well known PTM that stabilizes the protein to avoid any further n-terminal processing. This PTM seemed to be constant during the entire time course (see Suppl Figure 8). We provided the list of all the modifications that occur on the same position of the peptide as supplementary information (See Suppl Table X).
 
-\subsection{Novel phosphoserinegluconylation on ribosomal protein S6}
+\subsection{Large PTM analysis}
 
 %TO DO: Then, we looked into spectra that appear at least x times at any given time point. Out of these, z mods seem to be novel as we did not find them in Uniprot database. We list these in Table 3.
 
-\textbf{\emph{SHOW MS/MS FOR NOVEL PTM, VERY IMP COMMENT BY MDP}}
+%\textbf{\emph{SHOW MS/MS FOR NOVEL PTM, VERY IMP COMMENT BY MDP}}
 
-The recommended mass-shift for MODa program is finding mass-shifts between -200 and 200Da. However it is known that some PTMs are heavier and could not be identified using this mass-range. So, to see if we can identify any frequently occuring peptide-spectrum matches with a higher mass-shift we changed this mass-range to -100 and 300. This did not change previous results, but a +258 Da shift on serine on one of the peptides (ribosomal protein S6) is found consistently at all time points of the growth curve. When we looked into into literature, this seemed to be a combination of both phosphorylation and gluconylation on Serine (CITE).
+The recommended mass-shift for MODa program is finding mass-shifts between -200 and 200Da. However it is known that some PTMs are larger and would miss out using the recommended mass-range. So, to see if we can identify any frequently occuring peptide-spectrum matches with a higher mass-shift we changed this mass-range to -200 and 300. We did not identify any PSMs (peptide spectral matches) that occur frequently that has higher PTMs. 
 
-\subsection{Some modifications or mass-shifts represent polymorphisms or errors in genomic sequence}
-We looked at these ...
+%This did not change previous results, but a +258 Da shift on serine on one of the peptides (ribosomal protein S6) is found consistently at all time points of the growth curve. When we looked into into literature, this seemed to be a combination of both phosphorylation and gluconylation on Serine (CITE).
+
+%\subsection{Some modifications or mass-shifts represent polymorphisms or errors in genomic sequence}
+Irrelevant at this time, may focus on this on similar studies later on.
 
 \section{Discussion}
 \textbf{CRITICAL COMMENTS NOT INCLUDED HERE, BUT PLEASE REFER TO CB DISCUSSION}
