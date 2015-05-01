@@ -95,6 +95,16 @@ A.~O. Helbig, S.~Gauci, R.~Raijmakers, B.~van Breukelen, M.~Slijper,
   into the n-terminal nature of the proteome.
 \newblock {\em Mol Cell Proteomics}, 9(5):928--39, 2010.
 
+\bibitem{Houseretal2015}
+John~R. Houser, Craig Barnhart, Daniel~R. Boutz, Sean~M. Carroll, Aurko
+  Dasgupta, Joshua~K. Michener, Brittany~D. Needham, Ophelia Papoulas,
+  Viswanadham Sridhara, J.~Marx Dariya~Sadykova, Christopher, M.~Stephen Trent,
+  Jeffrey~E. Barrick, Edward~M. Marcotte, and Claus~O. Wilke.
+\newblock Controlled measurement and comparative analysis of cellular
+  components in e. coli reveals broad regulatory changes under long-term
+  starvation.
+\newblock {\em PLoS Computational Biology}, 0:0--0, 2015.
+
 \bibitem{Kimetal2014}
 H.~J. Kim, S.~Ha, H.~Y. Lee, and K.~J. Lee.
 \newblock Rosics: Chemistry and proteomics of cysteine modifications in redox
@@ -201,11 +211,6 @@ B.~Polevoda and F.~Sherman.
   n-terminal acetylation of eukaryotic proteins.
 \newblock {\em J Mol Biol}, 325(4):595--622, 2003.
 
-\bibitem{Sethetal2012}
-D.~Seth, A.~Hausladen, Y.~J. Wang, and J.~S. Stamler.
-\newblock Endogenous protein s-nitrosylation in e. coli: regulation by oxyr.
-\newblock {\em Science}, 336(6080):470--3, 2012.
-
 \bibitem{Smithetal1996}
 V.~F. Smith, B.~L. Schwartz, L.~L. Randall, and R.~D. Smith.
 \newblock Electrospray mass spectrometric investigation of the chaperone secb.
@@ -267,6 +272,11 @@ A.~Yoshikawa, S.~Isono, A.~Sheback, and K.~Isono.
   encode enzymes acetylating ribosomal proteins s18 and s5 of escherichia coli
   k12.
 \newblock {\em Mol Gen Genet}, 209(3):481--8, 1987.
+
+\bibitem{Yuetal2008}
+B.~J. Yu, J.~A. Kim, J.~H. Moon, S.~E. Ryu, and J.~G. Pan.
+\newblock The diversity of lysine-acetylated proteins in escherichia coli.
+\newblock {\em J Microbiol Biotechnol}, 18(9):1529--36, 2008.
 
 \bibitem{ZhangWeissbach2008}
 X.~H. Zhang and H.~Weissbach.
