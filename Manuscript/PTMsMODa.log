@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  4 MAY 2015 07:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  4 MAY 2015 14:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -655,34 +655,48 @@ sion > 4. Object streams disabled now.
 [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 86.
- [3] [4] [5] [6] [7]
-Overfull \hbox (27.43657pt too wide) in paragraph at lines 168--169
-\OT1/ptm/m/n/12 tochrome d ubiquinol ox-i-dase, elon-ga-tion fac-tor G, phospho
-ribosylaminoimidazole-succinocarboxamide
+ [3] [4] [5] [6]
+
+LaTeX Warning: Citation `Vogt1995' on page 7 undefined on input line 164.
+
+[7]
+
+LaTeX Warning: Citation `Abramsetal1981' on page 8 undefined on input line 168.
+
+
+
+LaTeX Warning: Citation `Grimaudetal2001' on page 8 undefined on input line 168
+.
+
+
+Overfull \hbox (38.58461pt too wide) in paragraph at lines 170--171
+\OT1/ptm/m/n/12 cy-tochrome d ubiquinol ox-i-dase, elon-ga-tion fac-tor G, phos
+phoribosylaminoimidazole-succinocarboxamide
  []
 
 [8] [9]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 209.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 211.
  [10] [11] [12]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 272.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 274.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) (./PTMsMODa.bbl [13] [14] [15] [16]) [17]
+) [13]
+(./PTMsMODa.bbl [14] [15] [16]) [17]
 <Figures/PTM_modified.pdf, id=61, 614.295pt x 794.97pt>
 File: Figures/PTM_modified.pdf Graphic file (type pdf)
 
 <use Figures/PTM_modified.pdf>
-Package pdftex.def Info: Figures/PTM_modified.pdf used on input line 293.
+Package pdftex.def Info: Figures/PTM_modified.pdf used on input line 295.
 (pdftex.def)             Requested size: 289.07999pt x 374.10904pt.
  [18 <./Figures/PTM_modified.pdf>]
 <Figures/PTMdalton.pdf, id=68, 1228.59pt x 794.97pt>
 File: Figures/PTMdalton.pdf Graphic file (type pdf)
 
 <use Figures/PTMdalton.pdf>
-Package pdftex.def Info: Figures/PTMdalton.pdf used on input line 300.
+Package pdftex.def Info: Figures/PTMdalton.pdf used on input line 302.
 (pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
  [19
 
@@ -691,51 +705,51 @@ Package pdftex.def Info: Figures/PTMdalton.pdf used on input line 300.
 File: Figures/Acetylation_AAs.pdf Graphic file (type pdf)
 
 <use Figures/Acetylation_AAs.pdf>
-Package pdftex.def Info: Figures/Acetylation_AAs.pdf used on input line 306.
+Package pdftex.def Info: Figures/Acetylation_AAs.pdf used on input line 308.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [20 <./Figures/Acetylation_AAs.pdf>]
 <Figures/AcetylatedProteins.png, id=103, 397.485pt x 1084.05pt>
 File: Figures/AcetylatedProteins.png Graphic file (type png)
 
 <use Figures/AcetylatedProteins.png>
-Package pdftex.def Info: Figures/AcetylatedProteins.png used on input line 312.
+Package pdftex.def Info: Figures/AcetylatedProteins.png used on input line 314.
 
 (pdftex.def)             Requested size: 361.34999pt x 985.52766pt.
 
 
-LaTeX Warning: Float too large for page by 432.09764pt on input line 314.
+LaTeX Warning: Float too large for page by 432.09764pt on input line 316.
 
 [21 <./Figures/AcetylatedProteins.png>]
 <Figures/Phosphorylations.pdf, id=109, 614.295pt x 794.97pt>
 File: Figures/Phosphorylations.pdf Graphic file (type pdf)
 
 <use Figures/Phosphorylations.pdf>
-Package pdftex.def Info: Figures/Phosphorylations.pdf used on input line 318.
+Package pdftex.def Info: Figures/Phosphorylations.pdf used on input line 320.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [22 <./Figures/Phosphorylations.pdf>]
 <Figures/MetGluTimeCourse.pdf, id=116, 614.295pt x 794.97pt>
 File: Figures/MetGluTimeCourse.pdf Graphic file (type pdf)
 
 <use Figures/MetGluTimeCourse.pdf>
-Package pdftex.def Info: Figures/MetGluTimeCourse.pdf used on input line 324.
+Package pdftex.def Info: Figures/MetGluTimeCourse.pdf used on input line 326.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [23 <./Figures/MetGluTimeCourse.pdf>]
 <Figures/Oxidations.pdf, id=123, 1228.59pt x 794.97pt>
 File: Figures/Oxidations.pdf Graphic file (type pdf)
 
 <use Figures/Oxidations.pdf>
-Package pdftex.def Info: Figures/Oxidations.pdf used on input line 331.
+Package pdftex.def Info: Figures/Oxidations.pdf used on input line 333.
 (pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
  [24 <./Figures/Oxidations.pdf>]
 <Figures/Ecoli_MsrAB_MODa.pdf, id=146, 1228.59pt x 794.97pt>
 File: Figures/Ecoli_MsrAB_MODa.pdf Graphic file (type pdf)
 
 <use Figures/Ecoli_MsrAB_MODa.pdf>
-Package pdftex.def Info: Figures/Ecoli_MsrAB_MODa.pdf used on input line 337.
+Package pdftex.def Info: Figures/Ecoli_MsrAB_MODa.pdf used on input line 339.
 (pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
  [25 <./Figures/Ecoli_MsrAB_MODa.pdf>]
 
-LaTeX Warning: Float too large for page by 599.69048pt on input line 436.
+LaTeX Warning: Float too large for page by 599.69048pt on input line 438.
 
 [26
 
@@ -749,7 +763,7 @@ LaTeX Warning: Float too large for page by 599.69048pt on input line 436.
 File: Figures/GrowthCurve.pdf Graphic file (type pdf)
 
 <use Figures/GrowthCurve.pdf>
-Package pdftex.def Info: Figures/GrowthCurve.pdf used on input line 441.
+Package pdftex.def Info: Figures/GrowthCurve.pdf used on input line 443.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [28
 
@@ -758,7 +772,7 @@ Package pdftex.def Info: Figures/GrowthCurve.pdf used on input line 441.
 File: Figures/AcetylatedPeptides.pdf Graphic file (type pdf)
 
 <use Figures/AcetylatedPeptides.pdf>
-Package pdftex.def Info: Figures/AcetylatedPeptides.pdf used on input line 446.
+Package pdftex.def Info: Figures/AcetylatedPeptides.pdf used on input line 448.
 
 (pdftex.def)             Requested size: 361.34999pt x 301.13896pt.
  [29
@@ -768,7 +782,7 @@ Package pdftex.def Info: Figures/AcetylatedPeptides.pdf used on input line 446.
 File: Figures/Carboxylations.pdf Graphic file (type pdf)
 
 <use Figures/Carboxylations.pdf>
-Package pdftex.def Info: Figures/Carboxylations.pdf used on input line 451.
+Package pdftex.def Info: Figures/Carboxylations.pdf used on input line 453.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [30
 
@@ -777,7 +791,7 @@ Package pdftex.def Info: Figures/Carboxylations.pdf used on input line 451.
 File: Figures/Nitrosylations.pdf Graphic file (type pdf)
 
 <use Figures/Nitrosylations.pdf>
-Package pdftex.def Info: Figures/Nitrosylations.pdf used on input line 456.
+Package pdftex.def Info: Figures/Nitrosylations.pdf used on input line 458.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [31
 
@@ -786,7 +800,7 @@ Package pdftex.def Info: Figures/Nitrosylations.pdf used on input line 456.
 File: Figures/NaKAdducts.pdf Graphic file (type pdf)
 
 <use Figures/NaKAdducts.pdf>
-Package pdftex.def Info: Figures/NaKAdducts.pdf used on input line 461.
+Package pdftex.def Info: Figures/NaKAdducts.pdf used on input line 463.
 (pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
  [32
 
@@ -795,7 +809,7 @@ Package pdftex.def Info: Figures/NaKAdducts.pdf used on input line 461.
 File: Figures/1DaProfile.pdf Graphic file (type pdf)
 
 <use Figures/1DaProfile.pdf>
-Package pdftex.def Info: Figures/1DaProfile.pdf used on input line 466.
+Package pdftex.def Info: Figures/1DaProfile.pdf used on input line 468.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [33
 
@@ -804,7 +818,7 @@ Package pdftex.def Info: Figures/1DaProfile.pdf used on input line 466.
 File: Figures/OxidationProfile.pdf Graphic file (type pdf)
 
 <use Figures/OxidationProfile.pdf>
-Package pdftex.def Info: Figures/OxidationProfile.pdf used on input line 471.
+Package pdftex.def Info: Figures/OxidationProfile.pdf used on input line 473.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [34
 
@@ -814,7 +828,7 @@ File: Figures/Ecoli_MsrAB_MODa_Sequest.pdf Graphic file (type pdf)
 
 <use Figures/Ecoli_MsrAB_MODa_Sequest.pdf>
 Package pdftex.def Info: Figures/Ecoli_MsrAB_MODa_Sequest.pdf used on input lin
-e 476.
+e 478.
 (pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
  [35
 
@@ -823,7 +837,7 @@ e 476.
 File: Figures/PyroGlutamate.pdf Graphic file (type pdf)
 
 <use Figures/PyroGlutamate.pdf>
-Package pdftex.def Info: Figures/PyroGlutamate.pdf used on input line 481.
+Package pdftex.def Info: Figures/PyroGlutamate.pdf used on input line 483.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [36
 
@@ -832,21 +846,24 @@ Package pdftex.def Info: Figures/PyroGlutamate.pdf used on input line 481.
 File: Figures/MetGluProfile.pdf Graphic file (type pdf)
 
 <use Figures/MetGluProfile.pdf>
-Package pdftex.def Info: Figures/MetGluProfile.pdf used on input line 486.
+Package pdftex.def Info: Figures/MetGluProfile.pdf used on input line 488.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [37
 
  <./Figures/MetGluProfile.pdf>]
 (./PTMsMODa.aux)
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4755 strings out of 493117
- 70355 string characters out of 6135433
+ 4758 strings out of 493117
+ 70398 string characters out of 6135433
  144551 words of memory out of 5000000
- 8084 multiletter control sequences out of 15000+600000
+ 8087 multiletter control sequences out of 15000+600000
  45235 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,8n,38p,2638b,313s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -857,7 +874,7 @@ xlive/2014/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/20
 ist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on PTMsMODa.pdf (37 pages, 367711 bytes).
+Output written on PTMsMODa.pdf (37 pages, 368906 bytes).
 PDF statistics:
  347 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
