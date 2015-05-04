@@ -82,11 +82,24 @@ L.~Y. Geer, S.~P. Markey, J.~A. Kowalak, L.~Wagner, M.~Xu, D.~M. Maynard,
 \newblock Open mass spectrometry search algorithm.
 \newblock {\em J Proteome Res}, 3(5):958--64, 2004.
 
+\bibitem{GonzalezDemple1995}
+B.~Gonzalez-Flecha and B.~Demple.
+\newblock Metabolic sources of hydrogen peroxide in aerobically growing
+  escherichia coli.
+\newblock {\em J Biol Chem}, 270(23):13681--7, 1995.
+
 \bibitem{Gordiyenkoetal2008}
 Y.~Gordiyenko, S.~Deroo, M.~Zhou, H.~Videler, and C.~V. Robinson.
 \newblock Acetylation of l12 increases interactions in the escherichia coli
   ribosomal stalk complex.
 \newblock {\em J Mol Biol}, 380(2):404--14, 2008.
+
+\bibitem{Guptaetal2007}
+N.~Gupta, S.~Tanner, N.~Jaitly, J.~N. Adkins, M.~Lipton, R.~Edwards, M.~Romine,
+  A.~Osterman, V.~Bafna, R.~D. Smith, and P.~A. Pevzner.
+\newblock Whole proteome analysis of post-translational modifications:
+  applications of mass-spectrometry for proteogenomic annotation.
+\newblock {\em Genome Res}, 17(9):1362--77, 2007.
 
 \bibitem{Helbigetal2010}
 A.~O. Helbig, S.~Gauci, R.~Raijmakers, B.~van Breukelen, M.~Slijper,
@@ -210,6 +223,12 @@ B.~Polevoda and F.~Sherman.
 \newblock N-terminal acetyltransferases and sequence requirements for
   n-terminal acetylation of eukaryotic proteins.
 \newblock {\em J Mol Biol}, 325(4):595--622, 2003.
+
+\bibitem{SchugMcNair2003}
+K.~Schug and H.~M. McNair.
+\newblock Adduct formation in electrospray ionization mass spectrometry ii.
+  benzoic acid derivatives.
+\newblock {\em J Chromatogr A}, 985(1-2):531--9, 2003.
 
 \bibitem{Smithetal1996}
 V.~F. Smith, B.~L. Schwartz, L.~L. Randall, and R.~D. Smith.

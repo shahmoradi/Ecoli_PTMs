@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  30 APR 2015 23:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  3 MAY 2015 19:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -465,22 +465,44 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
 LaTeX Info: Redefining \hbar on input line 50.
 )
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip46
+\LTright=\skip47
+\LTpre=\skip48
+\LTpost=\skip49
+\LTchunksize=\count103
+\LTcapwidth=\dimen122
+\LT@head=\box28
+\LT@firsthead=\box29
+\LT@foot=\box30
+\LT@lastfoot=\box31
+\LT@cols=\count104
+\LT@rows=\count105
+\c@LT@tables=\count106
+\c@LT@chunks=\count107
+\LT@p@ftn=\toks23
+)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen122
-\captionmargin@=\dimen123
-\captionwidth=\dimen124
-\caption@tempdima=\dimen125
-\caption@indent=\dimen126
-\caption@parindent=\dimen127
-\caption@hangindent=\dimen128
+\captionmargin=\dimen123
+\captionmargin@=\dimen124
+\captionwidth=\dimen125
+\caption@tempdima=\dimen126
+\caption@indent=\dimen127
+\caption@parindent=\dimen128
+\caption@hangindent=\dimen129
 )
-\c@ContinuedFloat=\count103
-)
+\c@ContinuedFloat=\count108
+Package caption Info: longtable package is loaded.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
+))
 (/usr/local/texlive/2014/texmf-dist/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 373.
@@ -498,47 +520,47 @@ LaTeX Warning: Label `fig:PyroGlutamateFig' multiply defined.
 )
 \openout1 = `PTMsMODa.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 40.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Info: Redefining \celsius on input line 39.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 39.
+LaTeX Info: Redefining \celsius on input line 40.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 40.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 39.
-Package gensymb Info: Using \upOmega for \ohm on input line 39.
+LaTeX Info: Redefining \ohm on input line 40.
+Package gensymb Info: Using \upOmega for \ohm on input line 40.
 
 Package gensymb Warning: Not defining \micro.
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count104
-\scratchdimen=\dimen129
-\scratchbox=\box28
-\nofMPsegments=\count105
-\nofMParguments=\count106
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count107
-\MPscratchDim=\dimen130
-\MPnumerator=\count108
-\makeMPintoPDFobject=\count109
-\everyMPtoPDFconversion=\toks24
+\scratchcounter=\count109
+\scratchdimen=\dimen130
+\scratchbox=\box32
+\nofMPsegments=\count110
+\nofMParguments=\count111
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count112
+\MPscratchDim=\dimen131
+\MPnumerator=\count113
+\makeMPintoPDFobject=\count114
+\everyMPtoPDFconversion=\toks25
 )
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -576,51 +598,51 @@ Package gensymb Warning: Not defining \micro.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 46
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 47
 .
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 46
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 47
 .
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 46
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 47
 .
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 46
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 47
 .
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--55
+Underfull \hbox (badness 10000) in paragraph at lines 49--56
 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
 
-Overfull \hbox (25.13145pt too wide) in paragraph at lines 65--66
-\OT1/ptm/m/n/12 Mass-spectrometry based pro-teomics [21] of-fers a unique way t
+Overfull \hbox (25.13145pt too wide) in paragraph at lines 66--67
+\OT1/ptm/m/n/12 Mass-spectrometry based pro-teomics [23] of-fers a unique way t
 o char-ac-ter-ize dif-fer-ent post-translational
  []
 
@@ -632,208 +654,199 @@ sion > 4. Object streams disabled now.
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 85.
- [3] [4] [5] [6]
-Overfull \hbox (27.43657pt too wide) in paragraph at lines 164--165
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 86.
+ [3] [4] [5] [6] [7]
+Overfull \hbox (27.43657pt too wide) in paragraph at lines 168--169
 \OT1/ptm/m/n/12 tochrome d ubiquinol ox-i-dase, elon-ga-tion fac-tor G, phospho
 ribosylaminoimidazole-succinocarboxamide
  []
 
-[7]
-
-LaTeX Warning: Citation `SchugMcNair2003' on page 8 undefined on input line 174
-.
-
-[8]
+[8] [9]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 206.
- [9] [10] [11]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 269.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 209.
+ [10] [11] [12]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 272.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [12]
-(./PTMsMODa.bbl [13] [14] [15]) [16]
-<Figures/PTM_modified.pdf, id=58, 614.295pt x 794.97pt>
+) (./PTMsMODa.bbl [13] [14] [15] [16]) [17]
+<Figures/PTM_modified.pdf, id=61, 614.295pt x 794.97pt>
 File: Figures/PTM_modified.pdf Graphic file (type pdf)
 
 <use Figures/PTM_modified.pdf>
-Package pdftex.def Info: Figures/PTM_modified.pdf used on input line 290.
+Package pdftex.def Info: Figures/PTM_modified.pdf used on input line 293.
 (pdftex.def)             Requested size: 289.07999pt x 374.10904pt.
- [17 <./Figures/PTM_modified.pdf>]
-<Figures/PTMdalton.pdf, id=65, 1228.59pt x 794.97pt>
+ [18 <./Figures/PTM_modified.pdf>]
+<Figures/PTMdalton.pdf, id=68, 1228.59pt x 794.97pt>
 File: Figures/PTMdalton.pdf Graphic file (type pdf)
 
 <use Figures/PTMdalton.pdf>
-Package pdftex.def Info: Figures/PTMdalton.pdf used on input line 297.
+Package pdftex.def Info: Figures/PTMdalton.pdf used on input line 300.
 (pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
- [18
+ [19
 
  <./Figures/PTMdalton.pdf>]
-<Figures/Acetylation_AAs.pdf, id=91, 614.295pt x 794.97pt>
+<Figures/Acetylation_AAs.pdf, id=95, 614.295pt x 794.97pt>
 File: Figures/Acetylation_AAs.pdf Graphic file (type pdf)
 
 <use Figures/Acetylation_AAs.pdf>
-Package pdftex.def Info: Figures/Acetylation_AAs.pdf used on input line 303.
+Package pdftex.def Info: Figures/Acetylation_AAs.pdf used on input line 306.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
- [19 <./Figures/Acetylation_AAs.pdf>]
-<Figures/AcetylatedProteins.png, id=100, 397.485pt x 1084.05pt>
+ [20 <./Figures/Acetylation_AAs.pdf>]
+<Figures/AcetylatedProteins.png, id=103, 397.485pt x 1084.05pt>
 File: Figures/AcetylatedProteins.png Graphic file (type png)
 
 <use Figures/AcetylatedProteins.png>
-Package pdftex.def Info: Figures/AcetylatedProteins.png used on input line 309.
+Package pdftex.def Info: Figures/AcetylatedProteins.png used on input line 312.
 
 (pdftex.def)             Requested size: 361.34999pt x 985.52766pt.
 
 
-LaTeX Warning: Float too large for page by 432.09764pt on input line 311.
+LaTeX Warning: Float too large for page by 432.09764pt on input line 314.
 
-[20 <./Figures/AcetylatedProteins.png>]
-<Figures/Phosphorylations.pdf, id=106, 614.295pt x 794.97pt>
+[21 <./Figures/AcetylatedProteins.png>]
+<Figures/Phosphorylations.pdf, id=109, 614.295pt x 794.97pt>
 File: Figures/Phosphorylations.pdf Graphic file (type pdf)
 
 <use Figures/Phosphorylations.pdf>
-Package pdftex.def Info: Figures/Phosphorylations.pdf used on input line 315.
+Package pdftex.def Info: Figures/Phosphorylations.pdf used on input line 318.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
- [21 <./Figures/Phosphorylations.pdf>]
-<Figures/MetGluTimeCourse.pdf, id=113, 614.295pt x 794.97pt>
+ [22 <./Figures/Phosphorylations.pdf>]
+<Figures/MetGluTimeCourse.pdf, id=116, 614.295pt x 794.97pt>
 File: Figures/MetGluTimeCourse.pdf Graphic file (type pdf)
 
 <use Figures/MetGluTimeCourse.pdf>
-Package pdftex.def Info: Figures/MetGluTimeCourse.pdf used on input line 321.
+Package pdftex.def Info: Figures/MetGluTimeCourse.pdf used on input line 324.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
- [22 <./Figures/MetGluTimeCourse.pdf>]
-<Figures/Oxidations.pdf, id=120, 1228.59pt x 794.97pt>
+ [23 <./Figures/MetGluTimeCourse.pdf>]
+<Figures/Oxidations.pdf, id=123, 1228.59pt x 794.97pt>
 File: Figures/Oxidations.pdf Graphic file (type pdf)
 
 <use Figures/Oxidations.pdf>
-Package pdftex.def Info: Figures/Oxidations.pdf used on input line 328.
+Package pdftex.def Info: Figures/Oxidations.pdf used on input line 331.
 (pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
- [23 <./Figures/Oxidations.pdf>]
-<Figures/Ecoli_MsrAB_MODa.pdf, id=143, 1228.59pt x 794.97pt>
+ [24 <./Figures/Oxidations.pdf>]
+<Figures/Ecoli_MsrAB_MODa.pdf, id=146, 1228.59pt x 794.97pt>
 File: Figures/Ecoli_MsrAB_MODa.pdf Graphic file (type pdf)
 
 <use Figures/Ecoli_MsrAB_MODa.pdf>
-Package pdftex.def Info: Figures/Ecoli_MsrAB_MODa.pdf used on input line 334.
+Package pdftex.def Info: Figures/Ecoli_MsrAB_MODa.pdf used on input line 337.
 (pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
- [24
+ [25 <./Figures/Ecoli_MsrAB_MODa.pdf>]
+
+LaTeX Warning: Float too large for page by 599.69048pt on input line 436.
+
+[26
 
 
 
 
 
 
-] [25 <./Figures/Ecoli_MsrAB_MODa.pdf>]
-<Figures/GrowthCurve.pdf, id=170, 614.295pt x 794.97pt>
+
+] [27] <Figures/GrowthCurve.pdf, id=176, 614.295pt x 794.97pt>
 File: Figures/GrowthCurve.pdf Graphic file (type pdf)
 
 <use Figures/GrowthCurve.pdf>
-Package pdftex.def Info: Figures/GrowthCurve.pdf used on input line 341.
-(pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
- [26
-
- <./Figures/GrowthCurve.pdf>]
-<Figures/AcetylatedPeptides.pdf, id=177, 433.62pt x 361.35pt>
-File: Figures/AcetylatedPeptides.pdf Graphic file (type pdf)
-
-<use Figures/AcetylatedPeptides.pdf>
-Package pdftex.def Info: Figures/AcetylatedPeptides.pdf used on input line 346.
-
-(pdftex.def)             Requested size: 361.34999pt x 301.13896pt.
- [27
-
- <./Figures/AcetylatedPeptides.pdf>]
-<Figures/Carboxylations.pdf, id=228, 614.295pt x 794.97pt>
-File: Figures/Carboxylations.pdf Graphic file (type pdf)
-
-<use Figures/Carboxylations.pdf>
-Package pdftex.def Info: Figures/Carboxylations.pdf used on input line 351.
+Package pdftex.def Info: Figures/GrowthCurve.pdf used on input line 441.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [28
 
+ <./Figures/GrowthCurve.pdf>]
+<Figures/AcetylatedPeptides.pdf, id=183, 433.62pt x 361.35pt>
+File: Figures/AcetylatedPeptides.pdf Graphic file (type pdf)
+
+<use Figures/AcetylatedPeptides.pdf>
+Package pdftex.def Info: Figures/AcetylatedPeptides.pdf used on input line 446.
+
+(pdftex.def)             Requested size: 361.34999pt x 301.13896pt.
+ [29
+
+ <./Figures/AcetylatedPeptides.pdf>]
+<Figures/Carboxylations.pdf, id=234, 614.295pt x 794.97pt>
+File: Figures/Carboxylations.pdf Graphic file (type pdf)
+
+<use Figures/Carboxylations.pdf>
+Package pdftex.def Info: Figures/Carboxylations.pdf used on input line 451.
+(pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
+ [30
+
  <./Figures/Carboxylations.pdf>]
-<Figures/Nitrosylations.pdf, id=235, 614.295pt x 794.97pt>
+<Figures/Nitrosylations.pdf, id=241, 614.295pt x 794.97pt>
 File: Figures/Nitrosylations.pdf Graphic file (type pdf)
 
 <use Figures/Nitrosylations.pdf>
-Package pdftex.def Info: Figures/Nitrosylations.pdf used on input line 356.
-(pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
- [29
-
- <./Figures/Nitrosylations.pdf>]
-<Figures/NaKAdducts.pdf, id=242, 1228.59pt x 794.97pt>
-File: Figures/NaKAdducts.pdf Graphic file (type pdf)
-
-<use Figures/NaKAdducts.pdf>
-Package pdftex.def Info: Figures/NaKAdducts.pdf used on input line 361.
-(pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
- [30
-
- <./Figures/NaKAdducts.pdf>]
-<Figures/1DaProfile.pdf, id=265, 614.295pt x 794.97pt>
-File: Figures/1DaProfile.pdf Graphic file (type pdf)
-
-<use Figures/1DaProfile.pdf>
-Package pdftex.def Info: Figures/1DaProfile.pdf used on input line 366.
+Package pdftex.def Info: Figures/Nitrosylations.pdf used on input line 456.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
  [31
 
+ <./Figures/Nitrosylations.pdf>]
+<Figures/NaKAdducts.pdf, id=249, 1228.59pt x 794.97pt>
+File: Figures/NaKAdducts.pdf Graphic file (type pdf)
+
+<use Figures/NaKAdducts.pdf>
+Package pdftex.def Info: Figures/NaKAdducts.pdf used on input line 461.
+(pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
+ [32
+
+ <./Figures/NaKAdducts.pdf>]
+<Figures/1DaProfile.pdf, id=272, 614.295pt x 794.97pt>
+File: Figures/1DaProfile.pdf Graphic file (type pdf)
+
+<use Figures/1DaProfile.pdf>
+Package pdftex.def Info: Figures/1DaProfile.pdf used on input line 466.
+(pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
+ [33
+
  <./Figures/1DaProfile.pdf>]
-<Figures/OxidationProfile.pdf, id=273, 614.295pt x 794.97pt>
+<Figures/OxidationProfile.pdf, id=279, 614.295pt x 794.97pt>
 File: Figures/OxidationProfile.pdf Graphic file (type pdf)
 
 <use Figures/OxidationProfile.pdf>
-Package pdftex.def Info: Figures/OxidationProfile.pdf used on input line 371.
+Package pdftex.def Info: Figures/OxidationProfile.pdf used on input line 471.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
- [32
+ [34
 
  <./Figures/OxidationProfile.pdf>]
-<Figures/Ecoli_MsrAB_MODa_Sequest.pdf, id=280, 1228.59pt x 794.97pt>
+<Figures/Ecoli_MsrAB_MODa_Sequest.pdf, id=286, 1228.59pt x 794.97pt>
 File: Figures/Ecoli_MsrAB_MODa_Sequest.pdf Graphic file (type pdf)
 
 <use Figures/Ecoli_MsrAB_MODa_Sequest.pdf>
 Package pdftex.def Info: Figures/Ecoli_MsrAB_MODa_Sequest.pdf used on input lin
-e 376.
+e 476.
 (pdftex.def)             Requested size: 578.15999pt x 374.10904pt.
- [33
+ [35
 
- <./Figures/Ecoli_MsrAB_MODa_Sequest.pdf>] <Figures/PyroGlutamate.pdf, id=303, 
+ <./Figures/Ecoli_MsrAB_MODa_Sequest.pdf>] <Figures/PyroGlutamate.pdf, id=309, 
 614.295pt x 794.97pt>
 File: Figures/PyroGlutamate.pdf Graphic file (type pdf)
 
 <use Figures/PyroGlutamate.pdf>
-Package pdftex.def Info: Figures/PyroGlutamate.pdf used on input line 381.
+Package pdftex.def Info: Figures/PyroGlutamate.pdf used on input line 481.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
- [34
+ [36
 
  <./Figures/PyroGlutamate.pdf>]
-<Figures/MetGluProfile.pdf, id=310, 614.295pt x 794.97pt>
+<Figures/MetGluProfile.pdf, id=316, 614.295pt x 794.97pt>
 File: Figures/MetGluProfile.pdf Graphic file (type pdf)
 
 <use Figures/MetGluProfile.pdf>
-Package pdftex.def Info: Figures/MetGluProfile.pdf used on input line 386.
+Package pdftex.def Info: Figures/MetGluProfile.pdf used on input line 486.
 (pdftex.def)             Requested size: 361.34999pt x 467.63326pt.
+ [37
 
-Underfull \hbox (badness 10000) in paragraph at lines 395--397
-
- []
-
-[35
-
- <./Figures/MetGluProfile.pdf>] (./PTMsMODa.aux)
-
-LaTeX Warning: There were undefined references.
-
+ <./Figures/MetGluProfile.pdf>]
+(./PTMsMODa.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4628 strings out of 493117
- 68572 string characters out of 6135433
- 138831 words of memory out of 5000000
- 7964 multiletter control sequences out of 15000+600000
+ 4755 strings out of 493117
+ 70355 string characters out of 6135433
+ 144551 words of memory out of 5000000
+ 8084 multiletter control sequences out of 15000+600000
  45235 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,8n,38p,2638b,313s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -844,9 +857,9 @@ xlive/2014/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/20
 ist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on PTMsMODa.pdf (35 pages, 362836 bytes).
+Output written on PTMsMODa.pdf (37 pages, 367799 bytes).
 PDF statistics:
- 338 PDF objects out of 1000 (max. 8388607)
+ 347 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
