@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{Abramsetal1981}
+W.~R. Abrams, G.~Weinbaum, L.~Weissbach, H.~Weissbach, and N.~Brot.
+\newblock Enzymatic reduction of oxidized alpha-1-proteinase inhibitor restores
+  biological activity.
+\newblock {\em Proc Natl Acad Sci U S A}, 78(12):7483--6, 1981.
+
 \bibitem{Araietal1980}
 K.~Arai, B.~F. Clark, L.~Duffy, M.~D. Jones, Y.~Kaziro, R.~A. Laursen,
   J.~L'Italien, D.~L. Miller, S.~Nagarkatti, S.~Nakamura, K.~M. Nielsen, T.~E.
@@ -94,6 +100,13 @@ Y.~Gordiyenko, S.~Deroo, M.~Zhou, H.~Videler, and C.~V. Robinson.
   ribosomal stalk complex.
 \newblock {\em J Mol Biol}, 380(2):404--14, 2008.
 
+\bibitem{Grimaudetal2001}
+R.~Grimaud, B.~Ezraty, J.~K. Mitchell, D.~Lafitte, C.~Briand, P.~J. Derrick,
+  and F.~Barras.
+\newblock Repair of oxidized proteins. identification of a new methionine
+  sulfoxide reductase.
+\newblock {\em J Biol Chem}, 276(52):48915--20, 2001.
+
 \bibitem{Guptaetal2007}
 N.~Gupta, S.~Tanner, N.~Jaitly, J.~N. Adkins, M.~Lipton, R.~Edwards, M.~Romine,
   A.~Osterman, V.~Bafna, R.~D. Smith, and P.~A. Pevzner.
@@ -117,12 +130,6 @@ John~R. Houser, Craig Barnhart, Daniel~R. Boutz, Sean~M. Carroll, Aurko
   components in e. coli reveals broad regulatory changes under long-term
   starvation.
 \newblock {\em PLoS Computational Biology}, 0:0--0, 2015.
-
-\bibitem{Kimetal2014}
-H.~J. Kim, S.~Ha, H.~Y. Lee, and K.~J. Lee.
-\newblock Rosics: Chemistry and proteomics of cysteine modifications in redox
-  biology.
-\newblock {\em Mass Spectrom Rev}, 2014.
 
 \bibitem{Kimuraetal2003}
 Y.~Kimura, Y.~Saeki, H.~Yokosawa, B.~Polevoda, F.~Sherman, and H.~Hirano.
@@ -262,6 +269,12 @@ S.~Tanaka, Y.~Matsushita, A.~Yoshikawa, and K.~Isono.
 \newblock Cloning and molecular characterization of the gene riml which encodes
   an enzyme acetylating ribosomal protein l12 of escherichia coli k12.
 \newblock {\em Mol Gen Genet}, 217(2-3):289--93, 1989.
+
+\bibitem{Vogt1995}
+W.~Vogt.
+\newblock Oxidation of methionyl residues in proteins: tools, targets, and
+  reversal.
+\newblock {\em Free Radic Biol Med}, 18(1):93--105, 1995.
 
 \bibitem{Weinertetal2013}
 B.~T. Weinert, V.~Iesmantavicius, S.~A. Wagner, C.~Scholz, B.~Gummesson,

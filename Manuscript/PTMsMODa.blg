@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: PTMsMODa.aux
 The style file: plain.bst
 Database file #1: PTMsMODaBibliography.bib
-You've used 49 entries,
+You've used 51 entries,
             2118 wiz_defined-function locations,
-            833 strings with 14620 characters,
-and the built_in function-call counts, 20270 in all, are:
-= -- 1827
-> -- 1430
+            846 strings with 15018 characters,
+and the built_in function-call counts, 21140 in all, are:
+= -- 1908
+> -- 1480
 < -- 0
-+ -- 566
-- -- 514
-* -- 1831
-:= -- 3560
-add.period$ -- 147
-call.type$ -- 49
-change.case$ -- 404
++ -- 586
+- -- 532
+* -- 1914
+:= -- 3706
+add.period$ -- 153
+call.type$ -- 51
+change.case$ -- 419
 chr.to.int$ -- 0
-cite$ -- 49
-duplicate$ -- 538
-empty$ -- 1267
-format.name$ -- 514
-if$ -- 4003
+cite$ -- 51
+duplicate$ -- 561
+empty$ -- 1330
+format.name$ -- 532
+if$ -- 4180
 int.to.chr$ -- 0
-int.to.str$ -- 49
-missing$ -- 49
-newline$ -- 248
-num.names$ -- 98
-pop$ -- 308
+int.to.str$ -- 51
+missing$ -- 51
+newline$ -- 258
+num.names$ -- 102
+pop$ -- 317
 preamble$ -- 1
-purify$ -- 355
+purify$ -- 368
 quote$ -- 0
-skip$ -- 351
+skip$ -- 365
 stack$ -- 0
-substring$ -- 1130
-swap$ -- 49
+substring$ -- 1200
+swap$ -- 51
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 196
+type$ -- 204
 warning$ -- 0
-while$ -- 146
-width$ -- 51
-write$ -- 540
+while$ -- 153
+width$ -- 53
+write$ -- 563
