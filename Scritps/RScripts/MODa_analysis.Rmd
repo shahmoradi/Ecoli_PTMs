@@ -1,0 +1,177 @@
+---
+title: "MODa output analysis in R"
+author: "Claus Wilke"
+date: "June 25, 2015"
+output: html_document
+---
+
+# A few introductory examples
+
+Required libraries:
+```{r, message=FALSE}
+require(plyr)      # for `revalue()` Important: load before dplyr!
+require(dplyr)     # for efficient table manipulations
+require(tidyr)     # for efficient table manipulations
+require(cowplot)   # for plotting
+```
+
+Example of how to read a MODa output matrix into R:
+```{r}
+moda_folder <- "/Users/Vish/MODa_output" # location of the MODa output data
+# read the raw data
+data_a <- read.table(file.path(moda_folder, "MURI_7a_MODa_PSMs.ptm.txt"), header = TRUE, row.names = NULL)
+# R takes the first (unlabeled) column as row names. Convert into numeric column of mass shifts
+colnames(data_a)[1] <- "mass.shift"
+data_a$mass.shift <- as.numeric(data_a$mass.shift)
+
+# do the same for sample b
+data_b <- read.table(file.path(moda_folder, "MURI_7b_MODa_PSMs.ptm.txt"), header = TRUE, row.names = NULL)
+colnames(data_b)[1] <- "mass.shift"
+data_b$mass.shift <- as.numeric(data_b$mass.shift)
+
+# combine the two matrices
+data <- rbind(data_a, data_b)
+# sum entries for the same mass shift
+data <- summarise_each(group_by(data, mass.shift), funs(sum))
+```
+
+We can see that the matrices are properly combined by looking at the first few rows in all three of them:
+```{r}
+head(data_a)
+head(data_b)
+head(data)
+```
+
+# Processing multiple samples at once
+
+We first combine all the code from the previous section into one convenient function:
+```{r}
+readMODaOutput <- function(sample, moda_folder)
+{
+  # input filenames
+  file_a <- file.path(moda_folder, paste(sample, "a_MODa_PSMs.ptm.txt", sep=''))
+  file_b <- file.path(moda_folder, paste(sample, "b_MODa_PSMs.ptm.txt", sep=''))
+
+    # read the raw data
+  data_a <- read.table(file_a, header = TRUE, row.names = NULL)
+  # R takes the first (unlabeled) column as row names. Convert into numeric column of mass shifts
+  colnames(data_a)[1] <- "mass.shift"
+  data_a$mass.shift <- as.numeric(data_a$mass.shift)
+
+  # do the same for sample b
+  data_b = read.table(file_b, header = TRUE, row.names = NULL)
+  colnames(data_b)[1] <- "mass.shift"
+  data_b$mass.shift <- as.numeric(data_b$mass.shift)
+
+  # combine the two matrices
+  data <- rbind(data_a, data_b)
+  # sum entries for the same mass shift
+  data <- summarise_each(group_by(data, mass.shift), funs(sum))
+  # return data, with column indicating the sample added
+  mutate(data, sample = sample)
+}
+```
+
+We can use this function to read in a given sample:
+```{r}
+data <- readMODaOutput("MURI_7", "./MODa_output")
+head(data)
+```
+
+We can also use it to easily read in multiple samples and combine them:
+```{r}
+# create a list of all sample names from MURI_7 to MURI_33
+sample_list <- as.list(paste("MURI_", 7:33, sep=''))
+# read all corresponding data tables
+data_list <- lapply(sample_list, readMODaOutput, moda_folder = "./MODa_output")
+# combine into one gigantic data dable
+data_all <- do.call("rbind", data_list)
+head(data_all)
+```
+
+# Example analyses
+
+Let's plot the total number of modifications at each mass shift, aggregated over all samples:
+```{r}
+# we calculate the sum of all "Sum" values for each mass shift
+aggregated <- summarise(group_by(data_all, mass.shift), sum_total = sum(Sum))
+# add a normalized column by dividing by total count
+total_count <- sum(aggregated$sum_total)
+aggregated <- mutate(aggregated, percent = 100*sum_total/total_count)
+# now generate the plot
+plot <- ggplot(aggregated, aes(x=mass.shift, y=percent)) + geom_bar(stat="identity") +
+  xlim(-20, 20) +
+  ylab("Modified peptides (%)") +
+  xlab("Mass shift (Dalton)")
+# save the plot as pdf
+save_plot("percent_modified_vs_mass_shift.pdf", plot)
+plot # display plot
+```
+
+Now we make a bar plot of the percent of modified peptides of a given mass shift, using the variation among samples to estimate errors. Note that the following code assumes that the chosen modification exists in all samples. If it doesn't exist in a sample, the code has to be modified to get the errors correct.
+```{r}
+# define standard error function
+se <- function(x) sqrt(var(x)/length(x))
+
+# first we extract the specific mass shift we're interested in, e.g. +16
+filtered <- filter(data_all, mass.shift==16)
+# now we normalize that shift for all samples, by dividing by "Sum"
+# (and multiplying by 100 to get percent)
+plus16_shifts <- summarise_each(group_by(filtered, sample), funs(100*./Sum), -mass.shift)
+# remove column "Sum"
+plus16_shifts <- select(plus16_shifts, -Sum)
+# turn table into "long" format
+plus16_long <- gather(plus16_shifts, amino.acid, percent, -sample)
+# now summarize by calculating means and standard errors
+plus16_summarized <- summarise(group_by(plus16_long, amino.acid), percent.mean = mean(percent), percent.se = se(percent))
+
+# shorten the Nterm and Cterm labels
+plus16_summarized$amino.acid <- revalue(plus16_summarized$amino.acid, c("Nterm"="Nt", "Cterm"="Ct"))
+
+# now plot
+plot <- ggplot(plus16_summarized, aes(x=amino.acid, y=percent.mean)) +
+  geom_bar(stat="identity", fill='red') +
+  geom_errorbar(aes(ymin = percent.mean-percent.se, ymax = percent.mean+percent.se)) + 
+  ylab("Modified peptides (%)") +
+  xlab("Modification target")
+
+# save the plot as pdf
+save_plot("plus16_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+
+Finally, let's do a time-course plot. I'm not sure how the time points map to samples, but I assume they are just in order. So let's first make a table that lists the times and biological repeats:
+```{r}
+# make data frame that maps sample names to time points and biological replicates
+time <- rep(c(3, 4, 5, 6, 8, 24, 48, 168, 336), 3)
+sample <- paste("MURI_", 7:33, sep='')
+biol.rep <- factor(c(rep("repeat 1", 9), rep("repeat 2", 9), rep("repeat 3", 9)))
+time.table <- data.frame(sample, time, biol.rep)
+head(time.table)
+```
+
+Now, to plot a given modification over time, we first extract that modification for all samples, then merge with the time table, and then plot:
+```{r}
+# let's extract the oxygen modification
+filtered <- filter(data_all, mass.shift==16)
+# we only need the total sum here
+plus16_totals <- select(filtered, sample, sum_plus16=Sum)
+# now make another table where we have the total sums over all modifications
+all_totals <- summarise(group_by(data_all, sample), sum_all=sum(Sum))
+# now combine these two tables
+combined <- inner_join(plus16_totals, all_totals)
+# and add the time table also
+combined <- inner_join(combined, time.table)
+plot <- ggplot(combined, aes(x=time, y=100*sum_plus16/sum_all, color=biol.rep)) +
+  scale_x_log10(breaks = c(3, 4, 5, 6, 8, 24, 48, 168, 336)) +
+  geom_point() +
+  geom_line() +
+  ylab("Percent modified peptides") +
+  xlab("Time (hours)") +
+  scale_color_discrete(name = "Biol. repeat")
+
+# save the plot as pdf
+save_plot("plus16_vs_time.pdf", plot)
+plot # display plot
+```
