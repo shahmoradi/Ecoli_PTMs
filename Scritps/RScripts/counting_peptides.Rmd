@@ -1,0 +1,47 @@
+---
+title: "counting peptides"
+author: "Claus Wilke"
+date: "June 27, 2015"
+output: html_document
+---
+
+Required libraries
+```{r}
+require(stringr) # for string manipulation
+require(dplyr) # for table manipulation
+```
+
+
+Read in the raw files 
+```{r}
+# read raw files
+peptides_a <- read.table("../../ProcessedData/MODa_output/PSMHits/MURI_10a_MODa_PSMs.id.txt", header = TRUE, stringsAsFactors = FALSE)
+peptides_b <- read.table("../../ProcessedData/MODa_output/PSMHits/MURI_10b_MODa_PSMs.id.txt", header = TRUE, stringsAsFactors = FALSE)
+# combine
+peptides <- rbind(peptides_a, peptides_b)
+head(peptides)
+```
+
+Create columns for base peptide (without mods) and modifications
+```{r}
+# extract all the base peptides (remove any +number or -number elements)
+Base.Peptide <- factor(str_replace(peptides$Peptide, "[\\+\\-]\\d+", ""))
+# extract all the modifications (+number or -number elements)
+Modification <- as.numeric(str_extract(peptides$Peptide, "[\\+\\-]\\d+"))
+# add to peptides table
+peptides <- data.frame(peptides, Base.Peptide, Modification)
+head(peptides)
+```
+
+Now, downstream analysis (counting number and types of modifications of given peptides) can be done easily with the dplyr package.
+```{r}
+# count un-modified and modified (any) versions of each peptide
+peptides %>% group_by(Base.Peptide) %>%
+  summarize( unmod = sum(is.na(Modification)),
+             anymod = sum(!is.na(Modification)),
+             mod.plus16 = sum(na.omit(Modification) == 16),
+             mod.plus2 = sum(na.omit(Modification) == 2),
+             mod.minus2 = sum(na.omit(Modification) == -2)) -> peptide.mod.counts
+head(peptide.mod.counts)
+
+```
