@@ -76,17 +76,22 @@ img {
 ## 
 ## Attaching package: 'dplyr'
 ## 
-## The following objects are masked from 'package:stats':
+## The following object is masked from 'package:stats':
 ## 
-##     filter, lag
+##     filter
 ## 
 ## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>require(tidyr) # for table reshaping</code></pre>
+<pre><code>## Loading required package: tidyr</code></pre>
 <p>Read in the raw files</p>
-<pre class="r"><code># read raw files
-peptides_a &lt;- read.table(&quot;../../ProcessedData/MODa_output/PSMHits/MURI_10a_MODa_PSMs.id.txt&quot;, header = TRUE, stringsAsFactors = FALSE)
-peptides_b &lt;- read.table(&quot;../../ProcessedData/MODa_output/PSMHits/MURI_10b_MODa_PSMs.id.txt&quot;, header = TRUE, stringsAsFactors = FALSE)
+<pre class="r"><code># define path to data 
+data_folder &lt;- &quot;../../ProcessedData/MODa_output/PSMHits/&quot;
+
+# read raw files
+peptides_a &lt;- read.table(file.path(data_folder, &quot;MURI_10a_MODa_PSMs.id.txt&quot;), header = TRUE, stringsAsFactors = FALSE)
+peptides_b &lt;- read.table(file.path(data_folder, &quot;MURI_10b_MODa_PSMs.id.txt&quot;), header = TRUE, stringsAsFactors = FALSE)
 # combine
 peptides &lt;- rbind(peptides_a, peptides_b)
 head(peptides)</code></pre>
@@ -135,22 +140,710 @@ head(peptides)</code></pre>
 ## 6 R.GTAMNPVDHPHGGGEGR.N           NA</code></pre>
 <p>Now, downstream analysis (counting number and types of modifications of given peptides) can be done easily with the dplyr package.</p>
 <pre class="r"><code># count un-modified and modified (any) versions of each peptide
+
+for (i in -200:200){
+  if(i!=0){
 peptides %&gt;% group_by(Base.Peptide) %&gt;%
   summarize( unmod = sum(is.na(Modification)),
              anymod = sum(!is.na(Modification)),
-             mod.plus16 = sum(na.omit(Modification) == 16),
-             mod.plus2 = sum(na.omit(Modification) == 2),
-             mod.minus2 = sum(na.omit(Modification) == -2)) -&gt; peptide.mod.counts
-head(peptide.mod.counts)</code></pre>
-<pre><code>## Source: local data frame [6 x 6]
+             mod = sum(na.omit(Modification) == i)) -&gt; peptide.mod.counts
+  if(i==-200){peptideAll&lt;-peptide.mod.counts}
+  if(i&gt;-200) {peptideAll &lt;- cbind(peptideAll, peptide.mod.counts[1:dim(peptide.mod.counts)[1],4])}
+  }
+}
+head(peptideAll)</code></pre>
+<pre><code>##              Base.Peptide unmod anymod mod mod mod mod mod mod mod mod mod
+## 1        -.MAGINLNKKLWR.I     0      1   0   0   0   0   0   0   0   0   0
+## 2        -.MAKLTLQEQLLK.A     0      1   0   0   0   0   0   0   0   0   0
+## 3      -.MALPRITQKEMTER.E     0      1   0   0   0   0   0   0   0   0   0
+## 4 -.MASVSISCPSCSATDGVVR.N     0      3   0   0   0   0   0   0   0   0   0
+## 5         -.MDALELLINRR.S     7      2   0   0   0   0   0   0   0   0   0
+## 6     -.MDDLTAQALKDFTAR.Y     4      0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   3   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   2   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+##   mod mod mod mod mod mod mod mod mod mod mod mod mod
+## 1   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 2   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 3   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 4   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 5   0   0   0   0   0   0   0   0   0   0   0   0   0
+## 6   0   0   0   0   0   0   0   0   0   0   0   0   0</code></pre>
+<pre class="r"><code>head(peptide.mod.counts)</code></pre>
+<pre><code>## Source: local data frame [6 x 4]
 ## 
-##              Base.Peptide unmod anymod mod.plus16 mod.plus2 mod.minus2
-## 1        -.MAGINLNKKLWR.I     0      1          0         0          0
-## 2        -.MAKLTLQEQLLK.A     0      1          0         0          0
-## 3      -.MALPRITQKEMTER.E     0      1          0         0          0
-## 4 -.MASVSISCPSCSATDGVVR.N     0      3          0         0          3
-## 5         -.MDALELLINRR.S     7      2          2         0          0
-## 6     -.MDDLTAQALKDFTAR.Y     4      0          0         0          0</code></pre>
+##              Base.Peptide unmod anymod mod
+## 1        -.MAGINLNKKLWR.I     0      1   0
+## 2        -.MAKLTLQEQLLK.A     0      1   0
+## 3      -.MALPRITQKEMTER.E     0      1   0
+## 4 -.MASVSISCPSCSATDGVVR.N     0      3   0
+## 5         -.MDALELLINRR.S     7      2   0
+## 6     -.MDDLTAQALKDFTAR.Y     4      0   0</code></pre>
+<p>Alternative way of counting. Uses <code>lapply()</code> instead of <code>for</code>.</p>
+<pre class="r"><code># First, we want to treate any and no mods separately from specific mods. So let's do those first.
+peptides %&gt;% group_by(Base.Peptide) %&gt;%
+  summarize( unmod = sum(is.na(Modification)),
+             anymod = sum(!is.na(Modification))) -&gt; peptide.anymod.counts
+
+# now the specific mods
+mods &lt;- as.list(c(-200:-1, 1:200))
+# the following code uses the .dots argument and summarize_ to work around
+# non-standard evaluation, as described here:
+# http://cran.r-project.org/web/packages/dplyr/vignettes/nse.html
+counts.list &lt;- lapply(mods, 
+                      function(i){
+                        peptides %&gt;% group_by(Base.Peptide) %&gt;%
+                          summarize_( .dots = setNames(list(~sum(na.omit(Modification) == i)), paste(&quot;mod&quot;, i, sep='')))
+                      }
+                      )
+
+# now combine everything into one table
+peptide.mod.counts &lt;- Reduce(inner_join, c(list(peptide.anymod.counts)
+, counts.list))</code></pre>
+<pre><code>## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;
+## Joining by: &quot;Base.Peptide&quot;</code></pre>
+<pre class="r"><code>head(peptide.anymod.counts)</code></pre>
+<pre><code>## Source: local data frame [6 x 3]
+## 
+##              Base.Peptide unmod anymod
+## 1        -.MAGINLNKKLWR.I     0      1
+## 2        -.MAKLTLQEQLLK.A     0      1
+## 3      -.MALPRITQKEMTER.E     0      1
+## 4 -.MASVSISCPSCSATDGVVR.N     0      3
+## 5         -.MDALELLINRR.S     7      2
+## 6     -.MDDLTAQALKDFTAR.Y     4      0</code></pre>
+<pre class="r"><code>head(peptide.mod.counts)</code></pre>
+<pre><code>## Source: local data frame [6 x 403]
+## 
+##              Base.Peptide unmod anymod mod-200 mod-199 mod-198 mod-197
+## 1        -.MAGINLNKKLWR.I     0      1       0       0       0       0
+## 2        -.MAKLTLQEQLLK.A     0      1       0       0       0       0
+## 3      -.MALPRITQKEMTER.E     0      1       0       0       0       0
+## 4 -.MASVSISCPSCSATDGVVR.N     0      3       0       0       0       0
+## 5         -.MDALELLINRR.S     7      2       0       0       0       0
+## 6     -.MDDLTAQALKDFTAR.Y     4      0       0       0       0       0
+## Variables not shown: mod-196 (int), mod-195 (int), mod-194 (int), mod-193
+##   (int), mod-192 (int), mod-191 (int), mod-190 (int), mod-189 (int),
+##   mod-188 (int), mod-187 (int), mod-186 (int), mod-185 (int), mod-184
+##   (int), mod-183 (int), mod-182 (int), mod-181 (int), mod-180 (int),
+##   mod-179 (int), mod-178 (int), mod-177 (int), mod-176 (int), mod-175
+##   (int), mod-174 (int), mod-173 (int), mod-172 (int), mod-171 (int),
+##   mod-170 (int), mod-169 (int), mod-168 (int), mod-167 (int), mod-166
+##   (int), mod-165 (int), mod-164 (int), mod-163 (int), mod-162 (int),
+##   mod-161 (int), mod-160 (int), mod-159 (int), mod-158 (int), mod-157
+##   (int), mod-156 (int), mod-155 (int), mod-154 (int), mod-153 (int),
+##   mod-152 (int), mod-151 (int), mod-150 (int), mod-149 (int), mod-148
+##   (int), mod-147 (int), mod-146 (int), mod-145 (int), mod-144 (int),
+##   mod-143 (int), mod-142 (int), mod-141 (int), mod-140 (int), mod-139
+##   (int), mod-138 (int), mod-137 (int), mod-136 (int), mod-135 (int),
+##   mod-134 (int), mod-133 (int), mod-132 (int), mod-131 (int), mod-130
+##   (int), mod-129 (int), mod-128 (int), mod-127 (int), mod-126 (int),
+##   mod-125 (int), mod-124 (int), mod-123 (int), mod-122 (int), mod-121
+##   (int), mod-120 (int), mod-119 (int), mod-118 (int), mod-117 (int),
+##   mod-116 (int), mod-115 (int), mod-114 (int), mod-113 (int), mod-112
+##   (int), mod-111 (int), mod-110 (int), mod-109 (int), mod-108 (int),
+##   mod-107 (int), mod-106 (int), mod-105 (int), mod-104 (int), mod-103
+##   (int), mod-102 (int), mod-101 (int), mod-100 (int), mod-99 (int), mod-98
+##   (int), mod-97 (int), mod-96 (int), mod-95 (int), mod-94 (int), mod-93
+##   (int), mod-92 (int), mod-91 (int), mod-90 (int), mod-89 (int), mod-88
+##   (int), mod-87 (int), mod-86 (int), mod-85 (int), mod-84 (int), mod-83
+##   (int), mod-82 (int), mod-81 (int), mod-80 (int), mod-79 (int), mod-78
+##   (int), mod-77 (int), mod-76 (int), mod-75 (int), mod-74 (int), mod-73
+##   (int), mod-72 (int), mod-71 (int), mod-70 (int), mod-69 (int), mod-68
+##   (int), mod-67 (int), mod-66 (int), mod-65 (int), mod-64 (int), mod-63
+##   (int), mod-62 (int), mod-61 (int), mod-60 (int), mod-59 (int), mod-58
+##   (int), mod-57 (int), mod-56 (int), mod-55 (int), mod-54 (int), mod-53
+##   (int), mod-52 (int), mod-51 (int), mod-50 (int), mod-49 (int), mod-48
+##   (int), mod-47 (int), mod-46 (int), mod-45 (int), mod-44 (int), mod-43
+##   (int), mod-42 (int), mod-41 (int), mod-40 (int), mod-39 (int), mod-38
+##   (int), mod-37 (int), mod-36 (int), mod-35 (int), mod-34 (int), mod-33
+##   (int), mod-32 (int), mod-31 (int), mod-30 (int), mod-29 (int), mod-28
+##   (int), mod-27 (int), mod-26 (int), mod-25 (int), mod-24 (int), mod-23
+##   (int), mod-22 (int), mod-21 (int), mod-20 (int), mod-19 (int), mod-18
+##   (int), mod-17 (int), mod-16 (int), mod-15 (int), mod-14 (int), mod-13
+##   (int), mod-12 (int), mod-11 (int), mod-10 (int), mod-9 (int), mod-8
+##   (int), mod-7 (int), mod-6 (int), mod-5 (int), mod-4 (int), mod-3 (int),
+##   mod-2 (int), mod-1 (int), mod1 (int), mod2 (int), mod3 (int), mod4
+##   (int), mod5 (int), mod6 (int), mod7 (int), mod8 (int), mod9 (int), mod10
+##   (int), mod11 (int), mod12 (int), mod13 (int), mod14 (int), mod15 (int),
+##   mod16 (int), mod17 (int), mod18 (int), mod19 (int), mod20 (int), mod21
+##   (int), mod22 (int), mod23 (int), mod24 (int), mod25 (int), mod26 (int),
+##   mod27 (int), mod28 (int), mod29 (int), mod30 (int), mod31 (int), mod32
+##   (int), mod33 (int), mod34 (int), mod35 (int), mod36 (int), mod37 (int),
+##   mod38 (int), mod39 (int), mod40 (int), mod41 (int), mod42 (int), mod43
+##   (int), mod44 (int), mod45 (int), mod46 (int), mod47 (int), mod48 (int),
+##   mod49 (int), mod50 (int), mod51 (int), mod52 (int), mod53 (int), mod54
+##   (int), mod55 (int), mod56 (int), mod57 (int), mod58 (int), mod59 (int),
+##   mod60 (int), mod61 (int), mod62 (int), mod63 (int), mod64 (int), mod65
+##   (int), mod66 (int), mod67 (int), mod68 (int), mod69 (int), mod70 (int),
+##   mod71 (int), mod72 (int), mod73 (int), mod74 (int), mod75 (int), mod76
+##   (int), mod77 (int), mod78 (int), mod79 (int), mod80 (int), mod81 (int),
+##   mod82 (int), mod83 (int), mod84 (int), mod85 (int), mod86 (int), mod87
+##   (int), mod88 (int), mod89 (int), mod90 (int), mod91 (int), mod92 (int),
+##   mod93 (int), mod94 (int), mod95 (int), mod96 (int), mod97 (int), mod98
+##   (int), mod99 (int), mod100 (int), mod101 (int), mod102 (int), mod103
+##   (int), mod104 (int), mod105 (int), mod106 (int), mod107 (int), mod108
+##   (int), mod109 (int), mod110 (int), mod111 (int), mod112 (int), mod113
+##   (int), mod114 (int), mod115 (int), mod116 (int), mod117 (int), mod118
+##   (int), mod119 (int), mod120 (int), mod121 (int), mod122 (int), mod123
+##   (int), mod124 (int), mod125 (int), mod126 (int), mod127 (int), mod128
+##   (int), mod129 (int), mod130 (int), mod131 (int), mod132 (int), mod133
+##   (int), mod134 (int), mod135 (int), mod136 (int), mod137 (int), mod138
+##   (int), mod139 (int), mod140 (int), mod141 (int), mod142 (int), mod143
+##   (int), mod144 (int), mod145 (int), mod146 (int), mod147 (int), mod148
+##   (int), mod149 (int), mod150 (int), mod151 (int), mod152 (int), mod153
+##   (int), mod154 (int), mod155 (int), mod156 (int), mod157 (int), mod158
+##   (int), mod159 (int), mod160 (int), mod161 (int), mod162 (int), mod163
+##   (int), mod164 (int), mod165 (int), mod166 (int), mod167 (int), mod168
+##   (int), mod169 (int), mod170 (int), mod171 (int), mod172 (int), mod173
+##   (int), mod174 (int), mod175 (int), mod176 (int), mod177 (int), mod178
+##   (int), mod179 (int), mod180 (int), mod181 (int), mod182 (int), mod183
+##   (int), mod184 (int), mod185 (int), mod186 (int), mod187 (int), mod188
+##   (int), mod189 (int), mod190 (int), mod191 (int), mod192 (int), mod193
+##   (int), mod194 (int), mod195 (int), mod196 (int), mod197 (int), mod198
+##   (int), mod199 (int), mod200 (int)</code></pre>
 
 
 </div>

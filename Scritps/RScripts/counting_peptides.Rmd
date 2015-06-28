@@ -9,14 +9,18 @@ Required libraries
 ```{r}
 require(stringr) # for string manipulation
 require(dplyr) # for table manipulation
+require(tidyr) # for table reshaping
 ```
 
 
 Read in the raw files 
 ```{r}
+# define path to data 
+data_folder <- "../../ProcessedData/MODa_output/PSMHits/"
+
 # read raw files
-peptides_a <- read.table("../../ProcessedData/MODa_output/PSMHits/MURI_10a_MODa_PSMs.id.txt", header = TRUE, stringsAsFactors = FALSE)
-peptides_b <- read.table("../../ProcessedData/MODa_output/PSMHits/MURI_10b_MODa_PSMs.id.txt", header = TRUE, stringsAsFactors = FALSE)
+peptides_a <- read.table(file.path(data_folder, "MURI_10a_MODa_PSMs.id.txt"), header = TRUE, stringsAsFactors = FALSE)
+peptides_b <- read.table(file.path(data_folder, "MURI_10b_MODa_PSMs.id.txt"), header = TRUE, stringsAsFactors = FALSE)
 # combine
 peptides <- rbind(peptides_a, peptides_b)
 head(peptides)
@@ -49,5 +53,31 @@ peptides %>% group_by(Base.Peptide) %>%
 }
 head(peptideAll)
 head(peptide.mod.counts)
+```
 
+Alternative way of counting. Uses `lapply()` instead of `for`.
+```{r}
+# First, we want to treate any and no mods separately from specific mods. So let's do those first.
+peptides %>% group_by(Base.Peptide) %>%
+  summarize( unmod = sum(is.na(Modification)),
+             anymod = sum(!is.na(Modification))) -> peptide.anymod.counts
+
+# now the specific mods
+mods <- as.list(c(-200:-1, 1:200))
+# the following code uses the .dots argument and summarize_ to work around
+# non-standard evaluation, as described here:
+# http://cran.r-project.org/web/packages/dplyr/vignettes/nse.html
+counts.list <- lapply(mods, 
+                      function(i){
+                        peptides %>% group_by(Base.Peptide) %>%
+                          summarize_( .dots = setNames(list(~sum(na.omit(Modification) == i)), paste("mod", i, sep='')))
+                      }
+                      )
+
+# now combine everything into one table
+peptide.mod.counts <- Reduce(inner_join, c(list(peptide.anymod.counts)
+, counts.list))
+
+head(peptide.anymod.counts)
+head(peptide.mod.counts)
 ```
