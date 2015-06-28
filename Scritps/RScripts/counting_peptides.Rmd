@@ -1,0 +1,83 @@
+---
+title: "counting peptides"
+author: "Claus Wilke"
+date: "June 27, 2015"
+output: html_document
+---
+
+Required libraries
+```{r}
+require(stringr) # for string manipulation
+require(dplyr) # for table manipulation
+require(tidyr) # for table reshaping
+```
+
+
+Read in the raw files 
+```{r}
+# define path to data 
+data_folder <- "../../ProcessedData/MODa_output/PSMHits/"
+
+# read raw files
+peptides_a <- read.table(file.path(data_folder, "MURI_10a_MODa_PSMs.id.txt"), header = TRUE, stringsAsFactors = FALSE)
+peptides_b <- read.table(file.path(data_folder, "MURI_10b_MODa_PSMs.id.txt"), header = TRUE, stringsAsFactors = FALSE)
+# combine
+peptides <- rbind(peptides_a, peptides_b)
+head(peptides)
+```
+
+Create columns for base peptide (without mods) and modifications
+```{r}
+# extract all the base peptides (remove any +number or -number elements)
+Base.Peptide <- factor(str_replace(peptides$Peptide, "[\\+\\-]\\d+", ""))
+# extract all the modifications (+number or -number elements)
+Modification <- as.numeric(str_extract(peptides$Peptide, "[\\+\\-]\\d+"))
+# add to peptides table
+peptides <- data.frame(peptides, Base.Peptide, Modification)
+head(peptides)
+```
+
+Now, downstream analysis (counting number and types of modifications of given peptides) can be done easily with the dplyr package.
+```{r}
+# count un-modified and modified (any) versions of each peptide
+
+for (i in -200:200){
+  if(i!=0){
+peptides %>% group_by(Base.Peptide) %>%
+  summarize( unmod = sum(is.na(Modification)),
+             anymod = sum(!is.na(Modification)),
+             mod = sum(na.omit(Modification) == i)) -> peptide.mod.counts
+  if(i==-200){peptideAll<-peptide.mod.counts}
+  if(i>-200) {peptideAll <- cbind(peptideAll, peptide.mod.counts[1:dim(peptide.mod.counts)[1],4])}
+  }
+}
+head(peptideAll)
+head(peptide.mod.counts)
+```
+
+Alternative way of counting. Uses `lapply()` instead of `for`.
+```{r}
+# First, we want to treate any and no mods separately from specific mods. So let's do those first.
+peptides %>% group_by(Base.Peptide) %>%
+  summarize( unmod = sum(is.na(Modification)),
+             anymod = sum(!is.na(Modification))) -> peptide.anymod.counts
+
+# now the specific mods
+mods <- as.list(c(-200:-1, 1:200))
+# the following code uses the .dots argument and summarize_ to work around
+# non-standard evaluation, as described here:
+# http://cran.r-project.org/web/packages/dplyr/vignettes/nse.html
+counts.list <- lapply(mods, 
+                      function(i){
+                        peptides %>% group_by(Base.Peptide) %>%
+                          summarize_( .dots = setNames(list(~sum(na.omit(Modification) == i)), paste("mod", i, sep='')))
+                      }
+                      )
+
+# now combine everything into one table
+peptide.mod.counts <- Reduce(inner_join, c(list(peptide.anymod.counts)
+, counts.list))
+
+head(peptide.anymod.counts)
+head(peptide.mod.counts)
+```
