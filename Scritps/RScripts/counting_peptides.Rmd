@@ -36,12 +36,18 @@ head(peptides)
 Now, downstream analysis (counting number and types of modifications of given peptides) can be done easily with the dplyr package.
 ```{r}
 # count un-modified and modified (any) versions of each peptide
+
+for (i in -200:200){
+  if(i!=0){
 peptides %>% group_by(Base.Peptide) %>%
   summarize( unmod = sum(is.na(Modification)),
              anymod = sum(!is.na(Modification)),
-             mod.plus16 = sum(na.omit(Modification) == 16),
-             mod.plus2 = sum(na.omit(Modification) == 2),
-             mod.minus2 = sum(na.omit(Modification) == -2)) -> peptide.mod.counts
+             mod = sum(na.omit(Modification) == i)) -> peptide.mod.counts
+  if(i==-200){peptideAll<-peptide.mod.counts}
+  if(i>-200) {peptideAll <- cbind(peptideAll, peptide.mod.counts[1:dim(peptide.mod.counts)[1],4])}
+  }
+}
+head(peptideAll)
 head(peptide.mod.counts)
 
 ```
