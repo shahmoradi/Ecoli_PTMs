@@ -81,3 +81,32 @@ peptide.mod.counts <- Reduce(inner_join, c(list(peptide.anymod.counts)
 head(peptide.anymod.counts)
 head(peptide.mod.counts)
 ```
+
+Calculating the odds ratio of modified to unmodified peptides
+```{r}
+odds<-rep(0,400)
+for ( i in -200:-1) {
+sum<-0;
+#Just counting the unmods when there is a mod
+for (k in 1:dim(peptideAll)[1]) {
+  if(peptideAll[k,204+i]>0) { 
+    sum=sum+ peptideAll[k,2]
+    }
+}
+#odds ratio of modified to unmodified
+odds[i+201]=sum(peptideAll[204+i])/(sum+1);
+}
+
+for ( i in 1:200) {
+sum<-0;
+#Just counting the unmods when there is a mod
+for (k in 1:dim(peptideAll)[1]) {
+  if(peptideAll[k,203+i]>0) { 
+    sum=sum+ peptideAll[k,2]
+    }
+}
+#odds ratio of modified to unmodified
+odds[i+200]=sum(peptideAll[203+i])/(sum+1);
+}
+head(odds)
+```
