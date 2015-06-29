@@ -110,3 +110,18 @@ odds[i+200]=sum(peptideAll[203+i])/(sum+1);
 }
 head(odds)
 ```
+
+
+Use tidyr and dplyr to calculate ratios of modified to unmodified peptides
+```{r}
+# turn peptide count table into long format
+peptide.mod.counts %>% gather(mod, count, 4:403) -> peptide.mod.counts.long
+
+# calculate the ratio of modified to un-modified peptides
+# I'm adding +1 to the total # of un-modified peptides for now, but that's something
+# I want to think through some more.
+peptide.mod.counts.long %>% group_by(mod) %>%
+  summarize( total.mod = sum(count), total.unmod = sum(unmod*(count>0)) + 1,
+             odds = total.mod / total.unmod ) -> odds.table
+head(odds.table)
+```
