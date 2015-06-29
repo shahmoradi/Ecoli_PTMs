@@ -32,9 +32,21 @@ Create columns for base peptide (without mods) and modifications
 Base.Peptide <- factor(str_replace(peptides$Peptide, "[\\+\\-]\\d+", ""))
 # extract all the modifications (+number or -number elements)
 Modification <- as.numeric(str_extract(peptides$Peptide, "[\\+\\-]\\d+"))
-# add to peptides table
-peptides <- data.frame(peptides, Base.Peptide, Modification)
+# extract all AAs (amino acids) that get modified
+Modified.aa <- str_extract(str_extract(peptides$Peptide, "[A-Z.][\\+\\-]\\d+"), '[A-Z.]')
+# extract the position with respect to peptide where modification occurs
+Modified.pos <- data.frame(str_locate(peptides$Peptide, "[A-Z.][\\+\\-]\\d+"))$start
+
+# add all this information to peptides table
+peptides <- data.frame(peptides, Base.Peptide, Modification, Modified.aa, Modified.pos)
+
 head(peptides)
+```
+
+To get the counts of the mass-shifts on the  methionines, for example you can do something like this:
+```{r}
+testhits<-peptides %>% group_by(Modification) %>%summarize(MetHits=sum(Modified.aa=='M'))
+head(testhits)
 ```
 
 Now, downstream analysis (counting number and types of modifications of given peptides) can be done easily with the dplyr package.
