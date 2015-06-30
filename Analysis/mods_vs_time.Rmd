@@ -1,0 +1,45 @@
+---
+title: "Mods vs. time"
+author: COW and VS
+output: html_document
+---
+
+Load the required libraries.
+```{r message=FALSE}
+require(dplyr) # for table manipulation
+require(tidyr) # for table reshaping
+require(cowplot) # for plotting
+```
+
+This is currently a work in progress and doesn't work yet.
+```{r}
+summarizeMods <- function(mod_counts)
+{
+  # turn peptide count table into long format
+  mod_counts %>% gather(mod, count, 4:length(names(mod_counts))) -> mod_counts.long
+
+  # for now, only calculate the ratio of modified to total peptides
+  # I want to think through some more.
+  mod_counts.long %>% group_by(mod) %>%
+    summarize( total.mod = sum(count), total.unmod = sum(unmod),
+               total.unmod.of.mod = sum(unmod*(count>0)),
+               frac.mod.abs = total.mod/(total.mod + total.unmod),
+               frac.mod.rel = total.mod/(total.mod + total.unmod.of.mod))
+}
+```
+
+
+```{r}
+# read the information about the samples
+samples <- read.csv("samples.csv")
+# turn to list
+sample.list <- as.list(as.character(samples$sample))
+names(sample.list) <- samples$sample
+
+f <- gzfile("GeneratedDataFiles/PSMHits/MURI_7_PSM_mod_counts.csv.gz")
+# We set check.names = FALSE so that "mod-2"" doesn't turn into "mod.2".
+mod_counts <- read.csv(f, check.names = FALSE)
+mods_summary <- summarizeMods(mod_counts)
+```
+
+
