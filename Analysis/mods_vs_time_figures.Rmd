@@ -6,7 +6,9 @@ output: html_document
 
 Load the required libraries.
 ```{r message=FALSE}
+require(stringr) # for string manipulation
 require(dplyr) # for table manipulation
+require(tidyr) # for table manipulation
 require(cowplot) # for plotting
 ```
 
@@ -14,6 +16,72 @@ Read in the previously generated data table:
 ```{r}
 mods_summary <- read.csv("./GeneratedDataFiles/mods_vs_time.csv")
 ```
+
+## Percent modified as a function of mass shift
+
+This figure is used mainly as example to show the kind of results we're getting.
+```{r fig.width=10, fig.height=4, warning=FALSE}
+# define standard error function
+se <- function(x) sqrt(var(x)/length(x))
+
+# calculate mean and se of percent modified over biol. repeats for each mod,
+# and add a column that holds the mod as numerical value
+mods_summary %>% group_by(time, mod) %>%
+  summarize(percent.mean = 100*mean(frac.mod.abs), percent.se = 100*se(frac.mod.abs)) %>%
+  mutate(delta.mass = as.numeric(str_extract(mod, "[\\+\\-]*\\d+"))) -> mods_fractions
+
+# prepare data for plotting
+mods_fractions_3h <- filter(mods_fractions, time==3)
+mod1_3h_perc <- filter(mods_fractions_3h, mod=='mod1')$percent.mean
+mod16_3h_perc <- filter(mods_fractions_3h, mod=='mod16')$percent.mean
+mods_fractions_336h <- filter(mods_fractions, time==336)
+mod1_336h_perc <- filter(mods_fractions_336h, mod=='mod1')$percent.mean
+mod16_336h_perc <- filter(mods_fractions_336h, mod=='mod16')$percent.mean
+
+plot1 <- ggplot(mods_fractions_3h, aes(x=delta.mass, y=percent.mean)) +
+  geom_bar(stat="identity", fill='blue') +
+  geom_errorbar(aes(ymin = percent.mean-percent.se, ymax = percent.mean+percent.se)) + 
+  xlim(-20, 40) +
+  scale_y_continuous(limits=c(0,14), expand=c(0, 0)) +
+  ylab("Modified peptides (%)") +
+  xlab("Mass shift (Da)") +
+  draw_line(c(2, 5), c(mod1_3h_perc+.2, mod1_3h_perc+1.), colour='red') +
+  draw_line(c(17, 20), c(mod16_3h_perc+.2, mod16_3h_perc+1.), colour='red') +
+  draw_label("+1 Da", x=5, y=mod1_3h_perc+1., hjust=0, vjust=0) +
+  draw_label("+16 Da", x=20, y=mod16_3h_perc+1., hjust=0, vjust=0) +
+  draw_label("3 hours", x=-20, y=13, hjust=0, vjust=0)
+
+plot2 <- ggplot(mods_fractions_336h, aes(x=delta.mass, y=percent.mean)) +
+  geom_bar(stat="identity", fill='blue') +
+  geom_errorbar(aes(ymin = percent.mean-percent.se, ymax = percent.mean+percent.se)) + 
+  xlim(-20, 40) +
+  scale_y_continuous(limits=c(0,14), expand=c(0, 0)) +
+  ylab("Modified peptides (%)") +
+  xlab("Mass shift (Da)") +
+  draw_line(c(2, 5), c(mod1_336h_perc+.2, mod1_336h_perc+1.), colour='red') +
+  draw_line(c(17, 20), c(mod16_336h_perc+.2, mod16_336h_perc+1.), colour='red') +
+  draw_label("+1 Da", x=5, y=mod1_336h_perc+1., hjust=0, vjust=0) +
+  draw_label("+16 Da", x=20, y=mod16_336h_perc+1., hjust=0, vjust=0) +
+  draw_label("336 hours", x=-20, y=13, hjust=0, vjust=0)
+
+plot_grid(plot1, plot2, labels=c("A", "B"))
+```
+
+Are the shown changes statistically different? Let's do t tests of 3h vs 336h:
+```{r}
+# 3h vs 336h for +1 mod
+mods_summary %>% filter(time==3 | time==336, mod=="mod1") %>%
+  select(time, biol.rep, frac.mod.abs) %>%
+  spread(time, frac.mod.abs) -> mod1.table
+t.test(mod1.table$"3", mod1.table$"336", paired=T)
+
+# 3h vs 336h for +16 mod
+mods_summary %>% filter(time==3 | time==336, mod=="mod16") %>%
+  select(time, biol.rep, frac.mod.abs) %>%
+  spread(time, frac.mod.abs) -> mod16.table
+t.test(mod16.table$"3", mod16.table$"336", paired=T)
+```
+In a direct comparison of 3h vs. 336h, neither is significant. However, we will see below that there are significant trends if we look over the entire time course.
 
 ## Percent of all mods over time
 ```{r fig.width=5, fig.height=4}
@@ -32,7 +100,7 @@ plot1 <- ggplot(plus1mod, aes(x=time, y=100*frac.anymod, color=biol.rep)) +
 plot1
 ```
 
-The percent modified peptides doesn't change significantly with time:
+The overall percentage of modified peptides doesn't change significantly with time:
 ```{r}
 perc.model <- lm(frac.anymod ~ log(time), data=plus1mod)
 summary(perc.model)
