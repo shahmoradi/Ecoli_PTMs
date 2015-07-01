@@ -11,8 +11,9 @@ require(tidyr) # for table reshaping
 require(cowplot) # for plotting
 ```
 
-This is currently a work in progress and doesn't work yet.
+Define two helpful functions that we can use to load in all the mods and summarize them.
 ```{r}
+# function that takes a table with individual modification counts and summarizes them
 summarizeMods <- function(mod_counts)
 {
   # turn peptide count table into long format
@@ -21,25 +22,64 @@ summarizeMods <- function(mod_counts)
   # for now, only calculate the ratio of modified to total peptides
   # I want to think through some more.
   mod_counts.long %>% group_by(mod) %>%
-    summarize( total.mod = sum(count), total.unmod = sum(unmod),
-               total.unmod.of.mod = sum(unmod*(count>0)),
-               frac.mod.abs = total.mod/(total.mod + total.unmod),
-               frac.mod.rel = total.mod/(total.mod + total.unmod.of.mod))
+    summarize( sum.mod = sum(count), sum.unmod = sum(unmod), sum.anymod = sum(anymod),
+               sum.unmod.for.mod = sum(unmod*(count>0)),
+               sum.anymod.for.mod = sum(anymod*(count>0)),
+               frac.mod.abs = sum.mod/(sum.anymod + sum.unmod),
+               frac.mod.rel = sum.mod/(sum.anymod.for.mod + sum.unmod.for.mod))
+}
+
+# function that reads the modification counts for a given sample from disk and
+# summarizes them, using the function summarizeMods() to do the heavy lifting
+summarizeModsFromCSV <- function(sample, base_name, target_folder)
+{
+  file_name <- file.path(target_folder, paste(sample, base_name, sep = ''))
+  mod_counts <- read.csv(file_name, check.names = FALSE)
+  mod_summary <- summarizeMods(mod_counts)
+  data.frame(sample = sample, mod_summary)
 }
 ```
 
-
+Read in all the data and combine into one big table.
 ```{r}
 # read the information about the samples
 samples <- read.csv("samples.csv")
 # turn to list
 sample.list <- as.list(as.character(samples$sample))
-names(sample.list) <- samples$sample
 
-f <- gzfile("GeneratedDataFiles/PSMHits/MURI_7_PSM_mod_counts.csv.gz")
-# We set check.names = FALSE so that "mod-2"" doesn't turn into "mod.2".
-mod_counts <- read.csv(f, check.names = FALSE)
-mods_summary <- summarizeMods(mod_counts)
+# read in all the data, summarize, and combine into one table
+data.list <- lapply(sample.list, summarizeModsFromCSV,
+                                 "_PSM_mod_counts.csv", "./GeneratedDataFiles/PSMHits")
+mods_summary <- do.call(rbind, data.list)
+
+# combine with other info about samples
+mods_summary <- inner_join(samples, mods_summary, by = "sample")
 ```
 
+Now, we can plot mods over time. Let's begin with the +1 mod:
+```{r fig.width=10, fig.height=4}
+# let's extract the +1 modification
+plus1mod <- filter(mods_summary, mod=="mod1")
 
+# absolute fraction
+plot1 <- ggplot(plus1mod, aes(x=time, y=100*frac.mod.abs, color=biol.rep)) +
+  scale_x_log10(breaks = c(3, 4, 5, 6, 8, 24, 48, 168, 336)) +
+  ylim(0, 25) + 
+  geom_point() +
+  geom_line() +
+  ylab("Percent modified peptides") +
+  xlab("Time (hours)") +
+  scale_color_discrete(name = "Biol. repeat")
+
+# relative fraction
+plot2 <- ggplot(plus1mod, aes(x=time, y=100*frac.mod.rel, color=biol.rep)) +
+  scale_x_log10(breaks = c(3, 4, 5, 6, 8, 24, 48, 168, 336)) +
+  ylim(0, 25) + 
+  geom_point() +
+  geom_line() +
+  ylab("Percent modified peptides") +
+  xlab("Time (hours)") +
+  scale_color_discrete(name = "Biol. repeat")
+
+plot_grid(plot1, plot2, labels = c("A", "B"))
+```
