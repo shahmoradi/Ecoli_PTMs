@@ -172,34 +172,34 @@ PSMdata.list &lt;- lapply(sample.list, cleanMODaData, &quot;../ProcessedData/MOD
 #writeDelimFromList(PSMdata.list, &quot;_PSM_mods.csv.gz&quot;, &quot;./GeneratedDataFiles/PSMHits&quot;, gz = TRUE)
 
 # next, count all the mods
-mod_count.list &lt;- lapply(PSMdata.list, countMods, -2, 2) # limit mod range for now, for development</code></pre>
-<pre><code>## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2 
-## Counting modifications between -2 and 2</code></pre>
+mod_count.list &lt;- lapply(PSMdata.list, countMods, -200, 200)</code></pre>
+<pre><code>## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200 
+## Counting modifications between -200 and 200</code></pre>
 <pre class="r"><code>writeCSVFromList(mod_count.list, &quot;_PSM_mod_counts.csv&quot;, &quot;./GeneratedDataFiles/PSMHits&quot;)</code></pre>
 <pre><code>## Writing file: ./GeneratedDataFiles/PSMHits/MURI_7_PSM_mod_counts.csv 
 ## Writing file: ./GeneratedDataFiles/PSMHits/MURI_8_PSM_mod_counts.csv 

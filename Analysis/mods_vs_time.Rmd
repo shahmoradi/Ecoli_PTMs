@@ -8,7 +8,6 @@ Load the required libraries.
 ```{r message=FALSE}
 require(dplyr) # for table manipulation
 require(tidyr) # for table reshaping
-require(cowplot) # for plotting
 ```
 
 Define two helpful functions that we can use to load in all the mods and summarize them.
@@ -19,14 +18,15 @@ summarizeMods <- function(mod_counts)
   # turn peptide count table into long format
   mod_counts %>% gather(mod, count, 4:length(names(mod_counts))) -> mod_counts.long
 
-  # for now, only calculate the ratio of modified to total peptides
-  # I want to think through some more.
+  # calculate various ratios and odds of modified peptides
   mod_counts.long %>% group_by(mod) %>%
     summarize( sum.mod = sum(count), sum.unmod = sum(unmod), sum.anymod = sum(anymod),
                sum.unmod.for.mod = sum(unmod*(count>0)),
                sum.anymod.for.mod = sum(anymod*(count>0)),
                frac.mod.abs = sum.mod/(sum.anymod + sum.unmod),
-               frac.mod.rel = sum.mod/(sum.anymod.for.mod + sum.unmod.for.mod))
+               frac.mod.rel = sum.mod/(sum.anymod.for.mod + sum.unmod.for.mod),
+               frac.anymod = sum.anymod/(sum.anymod + sum.unmod),
+               odds.mod.other = (sum.mod+1)/(sum.anymod.for.mod+sum.unmod.for.mod-sum.mod+1))
 }
 
 # function that reads the modification counts for a given sample from disk and
@@ -40,7 +40,7 @@ summarizeModsFromCSV <- function(sample, base_name, target_folder)
 }
 ```
 
-Read in all the data and combine into one big table.
+Read in all the data, combine into one big table, and save.
 ```{r}
 # read the information about the samples
 samples <- read.csv("samples.csv")
@@ -54,32 +54,6 @@ mods_summary <- do.call(rbind, data.list)
 
 # combine with other info about samples
 mods_summary <- inner_join(samples, mods_summary, by = "sample")
-```
 
-Now, we can plot mods over time. Let's begin with the +1 mod:
-```{r fig.width=10, fig.height=4}
-# let's extract the +1 modification
-plus1mod <- filter(mods_summary, mod=="mod1")
-
-# absolute fraction
-plot1 <- ggplot(plus1mod, aes(x=time, y=100*frac.mod.abs, color=biol.rep)) +
-  scale_x_log10(breaks = c(3, 4, 5, 6, 8, 24, 48, 168, 336)) +
-  ylim(0, 25) + 
-  geom_point() +
-  geom_line() +
-  ylab("Percent modified peptides") +
-  xlab("Time (hours)") +
-  scale_color_discrete(name = "Biol. repeat")
-
-# relative fraction
-plot2 <- ggplot(plus1mod, aes(x=time, y=100*frac.mod.rel, color=biol.rep)) +
-  scale_x_log10(breaks = c(3, 4, 5, 6, 8, 24, 48, 168, 336)) +
-  ylim(0, 25) + 
-  geom_point() +
-  geom_line() +
-  ylab("Percent modified peptides") +
-  xlab("Time (hours)") +
-  scale_color_discrete(name = "Biol. repeat")
-
-plot_grid(plot1, plot2, labels = c("A", "B"))
+write.csv(mods_summary, "./GeneratedDataFiles/mods_vs_time.csv", row.names = FALSE)
 ```

@@ -95,7 +95,7 @@ PSMdata.list <- lapply(sample.list, cleanMODaData, "../ProcessedData/MODa_output
 #writeDelimFromList(PSMdata.list, "_PSM_mods.csv.gz", "./GeneratedDataFiles/PSMHits", gz = TRUE)
 
 # next, count all the mods
-mod_count.list <- lapply(PSMdata.list, countMods, -2, 2) # limit mod range for now, for development
+mod_count.list <- lapply(PSMdata.list, countMods, -200, 200)
 writeCSVFromList(mod_count.list, "_PSM_mod_counts.csv", "./GeneratedDataFiles/PSMHits")
 ```
 
