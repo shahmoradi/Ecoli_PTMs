@@ -81,7 +81,7 @@ mods_summary %>% filter(time==3 | time==336, mod=="mod16") %>%
   spread(time, frac.mod.abs) -> mod16.table
 t.test(mod16.table$"3", mod16.table$"336", paired=T)
 ```
-In a direct comparison of 3h vs. 336h, neither is significant. However, we will see below that there are significant trends if we look over the entire time course.
+There is no significant difference between 3h and 336h for either +1 or +16.
 
 ## Percent of all mods over time
 ```{r fig.width=5, fig.height=4}
@@ -137,7 +137,7 @@ plot_grid(plot1, plot2, labels = c("A", "B"))
 ```
 
 
-The percent modified peptides doesn't change with time, and the odds show a very minor increase:
+The percent modified peptides doesn't change with time, and neither do the odds.
 ```{r}
 perc.model <- lm(frac.mod.abs ~ log(time), data=plus1mod)
 summary(perc.model)
@@ -174,7 +174,7 @@ plot2 <- ggplot(plus16mod, aes(x=time, y=odds.mod.other, color=biol.rep)) +
 plot_grid(plot1, plot2, labels = c("A", "B"))
 ```
 
-The percent modified peptides declines significantly with time, and so do the odds:
+The percent modified peptides doesn't change with time, and neither do the odds:
 ```{r}
 perc.model <- lm(frac.mod.abs ~ log(time), data=plus16mod)
 summary(perc.model)

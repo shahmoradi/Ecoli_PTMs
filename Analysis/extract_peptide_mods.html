@@ -73,7 +73,7 @@ require(tidyr) # for table reshaping</code></pre>
 <p>Function that reads raw MODa output and returns it in a format that is easier to process in R.</p>
 <pre class="r"><code>cleanMODaData &lt;- function(sample, data_folder)
 {
-  cat(&quot;Reading data from sample&quot;, sample, &quot;\n&quot;)
+  write_to_log(&quot;Reading data from sample&quot;, sample)
   # input filenames
   file_a &lt;- file.path(data_folder, paste(sample, &quot;a_MODa_PSMs.id.txt&quot;, sep=''))
   file_b &lt;- file.path(data_folder, paste(sample, &quot;b_MODa_PSMs.id.txt&quot;, sep=''))
@@ -104,7 +104,7 @@ require(tidyr) # for table reshaping</code></pre>
 <p>Function that takes a data frame with cleaned-up PSM output from MODa as input and counts the various types of modifications.</p>
 <pre class="r"><code>countMods &lt;- function(PSM_data, min_mod = -200, max_mod = 200)
 {
-  cat(&quot;Counting modifications between&quot;, min_mod, &quot;and&quot;, max_mod, &quot;\n&quot;)
+  write_to_log(&quot;Counting modifications between&quot;, min_mod, &quot;and&quot;, max_mod)
   
   # First, we want to treate any and no mods separately from specific mods. So let's do
   # those first.
@@ -131,86 +131,104 @@ require(tidyr) # for table reshaping</code></pre>
   mod_counts
 }</code></pre>
 <pre class="r"><code>source(&quot;./utils.R&quot;) # for function writeCSVFromList() used below
-
-# read the information about the samples
-samples &lt;- read.csv(&quot;samples.csv&quot;)
+write_to_log(&quot;Running script `extract_peptide_mods.Rmd`&quot;, append = FALSE)</code></pre>
+<pre><code>## [1] &quot;Running script `extract_peptide_mods.Rmd`&quot;</code></pre>
+<pre class="r"><code># read the information about the samples
+samples &lt;- read.csv(&quot;../DataAnnotations/samples.csv&quot;)
 # turn to list
 sample.list &lt;- as.list(as.character(samples$sample))
 names(sample.list) &lt;- samples$sample
 
 # now read in all the data and clean up
-PSMdata.list &lt;- lapply(sample.list, cleanMODaData, &quot;../ProcessedData/MODa_output/PSMHits/&quot;)</code></pre>
-<pre><code>## Reading data from sample MURI_7 
-## Reading data from sample MURI_8 
-## Reading data from sample MURI_9 
-## Reading data from sample MURI_10 
-## Reading data from sample MURI_11 
-## Reading data from sample MURI_12 
-## Reading data from sample MURI_13 
-## Reading data from sample MURI_14 
-## Reading data from sample MURI_15 
-## Reading data from sample MURI_16 
-## Reading data from sample MURI_17 
-## Reading data from sample MURI_18 
-## Reading data from sample MURI_19 
-## Reading data from sample MURI_20 
-## Reading data from sample MURI_21 
-## Reading data from sample MURI_22 
-## Reading data from sample MURI_23 
-## Reading data from sample MURI_24 
-## Reading data from sample MURI_25 
-## Reading data from sample MURI_26 
-## Reading data from sample MURI_27 
-## Reading data from sample MURI_28 
-## Reading data from sample MURI_29 
-## Reading data from sample MURI_30 
-## Reading data from sample MURI_31 
-## Reading data from sample MURI_32 
-## Reading data from sample MURI_33</code></pre>
-<pre class="r"><code># we could write these out, but it's not clear that that is useful at this time
-# so we skip this for now
-#writeDelimFromList(PSMdata.list, &quot;_PSM_mods.csv.gz&quot;, &quot;./GeneratedDataFiles/PSMHits&quot;, gz = TRUE)
-
-# next, count all the mods
+PSMdata.list &lt;- lapply(sample.list, cleanMODaData, &quot;../MODa_Output/PSMHits/&quot;)</code></pre>
+<pre><code>## [1] &quot;Reading data from sample MURI_16&quot;
+## [1] &quot;Reading data from sample MURI_17&quot;
+## [1] &quot;Reading data from sample MURI_18&quot;
+## [1] &quot;Reading data from sample MURI_19&quot;
+## [1] &quot;Reading data from sample MURI_20&quot;
+## [1] &quot;Reading data from sample MURI_21&quot;
+## [1] &quot;Reading data from sample MURI_22&quot;
+## [1] &quot;Reading data from sample MURI_23&quot;
+## [1] &quot;Reading data from sample MURI_24&quot;
+## [1] &quot;Reading data from sample MURI_25&quot;
+## [1] &quot;Reading data from sample MURI_26&quot;
+## [1] &quot;Reading data from sample MURI_27&quot;
+## [1] &quot;Reading data from sample MURI_28&quot;
+## [1] &quot;Reading data from sample MURI_29&quot;
+## [1] &quot;Reading data from sample MURI_30&quot;
+## [1] &quot;Reading data from sample MURI_31&quot;
+## [1] &quot;Reading data from sample MURI_32&quot;
+## [1] &quot;Reading data from sample MURI_33&quot;
+## [1] &quot;Reading data from sample MURI_97&quot;
+## [1] &quot;Reading data from sample MURI_98&quot;
+## [1] &quot;Reading data from sample MURI_99&quot;
+## [1] &quot;Reading data from sample MURI_100&quot;
+## [1] &quot;Reading data from sample MURI_101&quot;
+## [1] &quot;Reading data from sample MURI_102&quot;
+## [1] &quot;Reading data from sample MURI_103&quot;
+## [1] &quot;Reading data from sample MURI_104&quot;
+## [1] &quot;Reading data from sample MURI_105&quot;</code></pre>
+<pre class="r"><code># write out cleaned-up data tables
+writeCSVFromList(PSMdata.list, &quot;_PSM_mods.csv&quot;, &quot;./GeneratedDataFiles/PSMHits&quot;)</code></pre>
+<pre><code>## Writing file: ./GeneratedDataFiles/PSMHits/MURI_16_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_17_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_18_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_19_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_20_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_21_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_22_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_23_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_24_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_25_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_26_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_27_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_28_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_29_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_30_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_31_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_32_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_33_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_97_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_98_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_99_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_100_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_101_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_102_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_103_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_104_PSM_mods.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_105_PSM_mods.csv</code></pre>
+<pre class="r"><code># next, count all the mods
 mod_count.list &lt;- lapply(PSMdata.list, countMods, -200, 200)</code></pre>
-<pre><code>## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200 
-## Counting modifications between -200 and 200</code></pre>
-<pre class="r"><code>writeCSVFromList(mod_count.list, &quot;_PSM_mod_counts.csv&quot;, &quot;./GeneratedDataFiles/PSMHits&quot;)</code></pre>
-<pre><code>## Writing file: ./GeneratedDataFiles/PSMHits/MURI_7_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_8_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_9_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_10_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_11_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_12_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_13_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_14_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_15_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_16_PSM_mod_counts.csv 
+<pre><code>## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;
+## [1] &quot;Counting modifications between -200 and 200&quot;</code></pre>
+<pre class="r"><code># and save
+writeCSVFromList(mod_count.list, &quot;_PSM_mod_counts.csv&quot;, &quot;./GeneratedDataFiles/PSMHits&quot;)</code></pre>
+<pre><code>## Writing file: ./GeneratedDataFiles/PSMHits/MURI_16_PSM_mod_counts.csv 
 ## Writing file: ./GeneratedDataFiles/PSMHits/MURI_17_PSM_mod_counts.csv 
 ## Writing file: ./GeneratedDataFiles/PSMHits/MURI_18_PSM_mod_counts.csv 
 ## Writing file: ./GeneratedDataFiles/PSMHits/MURI_19_PSM_mod_counts.csv 
@@ -227,7 +245,16 @@ mod_count.list &lt;- lapply(PSMdata.list, countMods, -200, 200)</code></pre>
 ## Writing file: ./GeneratedDataFiles/PSMHits/MURI_30_PSM_mod_counts.csv 
 ## Writing file: ./GeneratedDataFiles/PSMHits/MURI_31_PSM_mod_counts.csv 
 ## Writing file: ./GeneratedDataFiles/PSMHits/MURI_32_PSM_mod_counts.csv 
-## Writing file: ./GeneratedDataFiles/PSMHits/MURI_33_PSM_mod_counts.csv</code></pre>
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_33_PSM_mod_counts.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_97_PSM_mod_counts.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_98_PSM_mod_counts.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_99_PSM_mod_counts.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_100_PSM_mod_counts.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_101_PSM_mod_counts.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_102_PSM_mod_counts.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_103_PSM_mod_counts.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_104_PSM_mod_counts.csv 
+## Writing file: ./GeneratedDataFiles/PSMHits/MURI_105_PSM_mod_counts.csv</code></pre>
 
 
 </div>

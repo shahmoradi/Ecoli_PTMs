@@ -55,4 +55,5 @@ write_to_log <- function(..., file_name = "Rscript.log", append = TRUE)
   message <- do.call(paste, list(...))
   print(message)
   write(message, fh)
+  close(fh)
 }

@@ -92,7 +92,7 @@ names(sample.list) <- samples$sample
 # now read in all the data and clean up
 PSMdata.list <- lapply(sample.list, cleanMODaData, "../MODa_Output/PSMHits/")
 # write out cleaned-up data tables
-writeDelimFromList(PSMdata.list, "_PSM_mods.csv", "./GeneratedDataFiles/PSMHits")
+writeCSVFromList(PSMdata.list, "_PSM_mods.csv", "./GeneratedDataFiles/PSMHits")
 
 # next, count all the mods
 mod_count.list <- lapply(PSMdata.list, countMods, -200, 200)

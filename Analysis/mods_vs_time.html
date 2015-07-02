@@ -98,7 +98,7 @@ summarizeModsFromCSV &lt;- function(sample, base_name, target_folder)
 }</code></pre>
 <p>Read in all the data, combine into one big table, and save.</p>
 <pre class="r"><code># read the information about the samples
-samples &lt;- read.csv(&quot;samples.csv&quot;)
+samples &lt;- read.csv(&quot;../DataAnnotations/samples.csv&quot;)
 # turn to list
 sample.list &lt;- as.list(as.character(samples$sample))
 
