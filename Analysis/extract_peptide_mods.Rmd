@@ -84,19 +84,19 @@ source("./utils.R") # for function writeCSVFromList() used below
 write_to_log("Running script `extract_peptide_mods.Rmd`", append = FALSE)
 
 # read the information about the samples
-samples <- read.csv("samples.csv")
+samples <- read.csv("../DataAnnotations/samples.csv")
 # turn to list
 sample.list <- as.list(as.character(samples$sample))
 names(sample.list) <- samples$sample
 
 # now read in all the data and clean up
-PSMdata.list <- lapply(sample.list, cleanMODaData, "../ProcessedData/MODa_output/PSMHits/")
-# we could write these out, but it's not clear that that is useful at this time
-# so we skip this for now
-#writeDelimFromList(PSMdata.list, "_PSM_mods.csv", "./GeneratedDataFiles/PSMHits")
+PSMdata.list <- lapply(sample.list, cleanMODaData, "../MODa_Output/PSMHits/")
+# write out cleaned-up data tables
+writeDelimFromList(PSMdata.list, "_PSM_mods.csv", "./GeneratedDataFiles/PSMHits")
 
 # next, count all the mods
 mod_count.list <- lapply(PSMdata.list, countMods, -200, 200)
+# and save
 writeCSVFromList(mod_count.list, "_PSM_mod_counts.csv", "./GeneratedDataFiles/PSMHits")
 ```
 

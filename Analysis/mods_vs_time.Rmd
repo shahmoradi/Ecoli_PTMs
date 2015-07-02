@@ -43,7 +43,7 @@ summarizeModsFromCSV <- function(sample, base_name, target_folder)
 Read in all the data, combine into one big table, and save.
 ```{r}
 # read the information about the samples
-samples <- read.csv("samples.csv")
+samples <- read.csv("../DataAnnotations/samples.csv")
 # turn to list
 sample.list <- as.list(as.character(samples$sample))
 
