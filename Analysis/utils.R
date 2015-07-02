@@ -39,3 +39,20 @@ readCSVFileList <- function(sample_list, base_name, target_folder, ...)
   data_all$sample <- factor(data_all$sample)
   data_all
 }
+
+
+
+# Helper function to generate log files
+# @param ... One or more messages to write to the log file (\n is appended automatically)
+# @param file The file to which to write
+# @param append Whether the message should be appended or a new file written
+write_to_log <- function(..., file_name = "Rscript.log", append = TRUE)
+{
+  if (append) mode <- "a"
+  else mode <- "w"
+  
+  fh <- file(file_name, open = mode)
+  message <- do.call(paste, list(...))
+  print(message)
+  write(message, fh)
+}

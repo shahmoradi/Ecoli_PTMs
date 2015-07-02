@@ -15,7 +15,7 @@ Function that reads raw MODa output and returns it in a format that is easier to
 ```{r}
 cleanMODaData <- function(sample, data_folder)
 {
-  cat("Reading data from sample", sample, "\n")
+  write_to_log("Reading data from sample", sample)
   # input filenames
   file_a <- file.path(data_folder, paste(sample, "a_MODa_PSMs.id.txt", sep=''))
   file_b <- file.path(data_folder, paste(sample, "b_MODa_PSMs.id.txt", sep=''))
@@ -50,7 +50,7 @@ various types of modifications.
 ```{r}
 countMods <- function(PSM_data, min_mod = -200, max_mod = 200)
 {
-  cat("Counting modifications between", min_mod, "and", max_mod, "\n")
+  write_to_log("Counting modifications between", min_mod, "and", max_mod)
   
   # First, we want to treate any and no mods separately from specific mods. So let's do
   # those first.
@@ -81,6 +81,7 @@ countMods <- function(PSM_data, min_mod = -200, max_mod = 200)
 
 ```{r}
 source("./utils.R") # for function writeCSVFromList() used below
+write_to_log("Running script `extract_peptide_mods.Rmd`", append = FALSE)
 
 # read the information about the samples
 samples <- read.csv("samples.csv")
