@@ -1,0 +1,7 @@
+E. coli LocusTag	Locus	E. coli Peptide	P. aeruginosa LocusTag	P. aeruginosa Peptide	Description
+ECB_00686	sucB	SSVDILVPDLPESVADATVATWHKK	PA14_44000	MAIEIK	dihydrolipoamide succinyltransferase
+ECB_03391	dppF	STQEATLQQPLLQAIDLKK		PA14_58490	METVLTAR	dipeptide transporter ATP-binding subunit
+ECB_00915	rpsA	TESFAQLFEESLKE			PA14_23330	SESFAELFEESLK		30S ribosomal protein S1
+ECB_00155	yadR	SDDVALPLEFTDAAANKV		PA14_08510 	SIETFTPTPLLFTPGAANK	iron-sulfur cluster insertion protein ErpA
+ECB_00183	accA	SLNFLDFEQPIAELEAKI	PA14_23860		SNWLVDKLIPSIMR		acetyl-CoA carboxylase carboxyltransferase subunit alpha
+ECB_03467	secB	SEQNNTEMTFQIQRI		PA14_67720		TEQATNGAADEQQPQFSLQR	preprotein translocase subunit SecB
