@@ -17,7 +17,7 @@ writeCSVFromList <- function(data_list, base_name, target_folder, gz = FALSE)
   }
 }
 
-# Helper function to read multiple csv files and combine into one data frame
+# Helper function to read multiple csv files and combine into a list
 # @param sample_list list of sample names
 # @param base_name part of the file name that is appended to each sample name
 # @param target_folder location where the files are stored
@@ -30,6 +30,13 @@ readCSVFileList <- function(sample_list, base_name, target_folder, ...)
                     )
   # read in all the data files
   data_list <- lapply(fn_list, read.csv, ...)
+}
+
+# make a combined data frame from a named list of individual data frames
+# adds the names into a column called "sample"
+# @param data_list named list of data frames
+make_data_frame_from_list <- function(data_list)
+{
   # add a sample column
   for(name in names(data_list))
   {
@@ -37,9 +44,9 @@ readCSVFileList <- function(sample_list, base_name, target_folder, ...)
   }
   data_all <- do.call("rbind", data_list)
   data_all$sample <- factor(data_all$sample)
+  row.names(data_all) <- NULL # clear row names
   data_all
 }
-
 
 
 # Helper function to generate log files
@@ -56,4 +63,23 @@ write_to_log <- function(..., file_name = "Rscript.log", append = TRUE)
   print(message)
   write(message, fh)
   close(fh)
+}
+
+
+
+# function that takes a table with individual modification counts and summarizes them
+summarizeMods <- function(mod_counts)
+{
+  # turn peptide count table into long format
+  mod_counts %>% gather(mod, count, 4:length(names(mod_counts))) -> mod_counts.long
+  
+  # calculate various ratios and odds of modified peptides
+  mod_counts.long %>% group_by(mod) %>%
+    summarize( sum.mod = sum(count), sum.unmod = sum(unmod), sum.anymod = sum(anymod),
+               sum.unmod.for.mod = sum(unmod*(count>0)),
+               sum.anymod.for.mod = sum(anymod*(count>0)),
+               frac.mod.abs = sum.mod/(sum.anymod + sum.unmod),
+               frac.mod.rel = sum.mod/(sum.anymod.for.mod + sum.unmod.for.mod),
+               frac.anymod = sum.anymod/(sum.anymod + sum.unmod),
+               odds.mod.other = (sum.mod+1)/(sum.anymod.for.mod+sum.unmod.for.mod-sum.mod+1))
 }

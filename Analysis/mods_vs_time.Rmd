@@ -10,27 +10,10 @@ require(dplyr) # for table manipulation
 require(tidyr) # for table reshaping
 ```
 
-Define two helpful functions that we can use to load in all the mods and summarize them.
+Define function that we can use to load in all the mods and summarize them.
 ```{r}
-# function that takes a table with individual modification counts and summarizes them
-summarizeMods <- function(mod_counts)
-{
-  # turn peptide count table into long format
-  mod_counts %>% gather(mod, count, 4:length(names(mod_counts))) -> mod_counts.long
-
-  # calculate various ratios and odds of modified peptides
-  mod_counts.long %>% group_by(mod) %>%
-    summarize( sum.mod = sum(count), sum.unmod = sum(unmod), sum.anymod = sum(anymod),
-               sum.unmod.for.mod = sum(unmod*(count>0)),
-               sum.anymod.for.mod = sum(anymod*(count>0)),
-               frac.mod.abs = sum.mod/(sum.anymod + sum.unmod),
-               frac.mod.rel = sum.mod/(sum.anymod.for.mod + sum.unmod.for.mod),
-               frac.anymod = sum.anymod/(sum.anymod + sum.unmod),
-               odds.mod.other = (sum.mod+1)/(sum.anymod.for.mod+sum.unmod.for.mod-sum.mod+1))
-}
-
 # function that reads the modification counts for a given sample from disk and
-# summarizes them, using the function summarizeMods() to do the heavy lifting
+# summarizes them, using the function summarizeMods() (defined in utils.R) to do the heavy lifting
 summarizeModsFromCSV <- function(sample, base_name, target_folder)
 {
   file_name <- file.path(target_folder, paste(sample, base_name, sep = ''))
@@ -42,6 +25,8 @@ summarizeModsFromCSV <- function(sample, base_name, target_folder)
 
 Read in all the data, combine into one big table, and save.
 ```{r}
+source("utils.R")  # for summarizeMods() 
+
 # read the information about the samples
 samples <- read.csv("../DataAnnotations/samples.csv")
 # turn to list
