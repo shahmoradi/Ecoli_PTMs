@@ -1,0 +1,82 @@
+---
+title: "Analysis of various phosphorylation patterns"
+author: COW and VS
+output: html_document
+---
+
+Load the required libraries.
+```{r message=FALSE}
+require(dplyr) # for table manipulation
+require(tidyr) # for table reshaping
+```
+
+
+A function that takes a data frame with cleaned-up PSM output from MODa as input and calculates counts of specific modifications we are interested in.
+```{r}
+countPhosphorylationsMods <- function(PSM_data)
+{
+  write_to_log("Counting phosphorylations mods")
+
+  # Count the total number of unmodified peptides and peptides with any sort of modification
+  PSM_data %>% group_by(Base.Peptide) %>%
+    summarize( unmod = sum(is.na(Modification)),
+               anymod = sum(!is.na(Modification))) -> anymod_counts
+ 
+  # now the specific mods
+  phosmod_counts <- PSM_data %>%
+                    group_by(Base.Peptide) %>%
+                    summarize(
+                      # any + 80 modification
+                      any_p80 = sum(na.omit(Modification == 80)),
+                      # any + 98 modification
+                      any_p98 = sum(na.omit(Modification == 98)),
+                      # any +80 or +98 modification
+                      any_p80_p98 = sum(na.omit(Modification == 80 | Modification == 98)),
+                      # S +80 modification
+                      S_p80 = sum(na.omit(Modification == 80 & Modified.aa == "S")),
+                      # T/Y +98 modification
+                      TY_p98 = sum(na.omit(Modification == 98 &
+                                           Modified.aa %in% c("T", "Y"))),
+                      # S +80 T/Y +98 modification
+                      S_p80_TY_p98 = sum(na.omit(
+                                           (Modification == 80 & Modified.aa == "S")
+                                         | (Modification == 98 & Modified.aa %in% c("T", "Y"))
+                                            ))
+                            )
+
+  # now combine everything into one table
+  mod_counts <- inner_join(anymod_counts, phosmod_counts, by = "Base.Peptide")
+  #return
+  mod_counts
+}
+```
+
+
+```{r}
+source("./utils.R") # for function readCSVFileList() used below
+write_to_log("Running script `phosphorylations.Rmd`", append = FALSE)
+
+# read the information about the samples
+samples <- read.csv("../DataAnnotations/samples.csv")
+# turn to list
+sample.list <- as.list(as.character(samples$sample))
+names(sample.list) <- samples$sample
+
+write_to_log("Reading data")
+PSMdata.list <- readCSVFileList(sample.list, "_PSM_mods.csv", "./GeneratedDataFiles/PSMHits")
+
+# next, count all the mods
+mod_count.list <- lapply(PSMdata.list, countPhosphorylationsMods)
+# and summarize
+mod_summary.list <- lapply(mod_count.list, summarizeMods)
+# and combine into one data frame
+phosphorylations <- make_data_frame_from_list(mod_summary.list)
+
+# combine with other info about samples
+mods_summary <- inner_join(samples, phosphorylations, by = "sample")
+
+# and save
+write.csv(mods_summary, "./GeneratedDataFiles/phosphorylations.csv", row.names = FALSE)
+```
+
+

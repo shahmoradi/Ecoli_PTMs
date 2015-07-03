@@ -52,7 +52,7 @@ countOxygenMods <- function(PSM_data)
 
 ```{r}
 source("./utils.R") # for function readCSVFileList() used below
-write_to_log("Running script `oxydations.Rmd`", append = FALSE)
+write_to_log("Running script `oxidations.Rmd`", append = FALSE)
 
 # read the information about the samples
 samples <- read.csv("../DataAnnotations/samples.csv")
@@ -68,13 +68,13 @@ mod_count.list <- lapply(PSMdata.list, countOxygenMods)
 # and summarize
 mod_summary.list <- lapply(mod_count.list, summarizeMods)
 # and combine into one data frame
-oxydations <- make_data_frame_from_list(mod_summary.list)
+oxidations <- make_data_frame_from_list(mod_summary.list)
 
 # combine with other info about samples
-mods_summary <- inner_join(samples, oxydations, by = "sample")
+mods_summary <- inner_join(samples, oxidations, by = "sample")
 
 # and save
-write.csv(mods_summary, "./GeneratedDataFiles/oxydations.csv", row.names = FALSE)
+write.csv(mods_summary, "./GeneratedDataFiles/oxidations.csv", row.names = FALSE)
 ```
 
 
