@@ -2,22 +2,22 @@
 title: "Inverted hash table for mass-shift modification mapping"
 output: html_document
 ---
-Let's use ABRF delta mass table (MassShift_ModficationType.csv) as input and create a key-value for each mass-shift to modificaiton type.
+Let's use ABRF delta mass table (MassShift_ModficationType.csv) as input and create a key-value for each mass-shift to modification type.
 ```{r}
 require(hash)
 ```
 
- Remember a mass-shift can map to many mod types, so here create a hash table (with key as mod-type) and then invert it so that we can look for mod types using mass-shift.
+Remember a mass-shift can map to many mod types, so here create a hash table (with key as mod-type) and then invert it so that we can look for mod types using mass-shift.
  
 ```{r}
 # Load the table from ABRF delta mass
-MS<-read.csv("../Analysis/MassShift_ModificationType.csv",sep="\t", header = TRUE, row.names = NULL)
+MS<-read.csv("../DataAnnotations/MassShift_ModificationType.csv", sep="\t", header = TRUE, row.names = NULL)
 #assign the name of mod as key
-key<-MS[,2]
+key<-MS[, 2]
 # assign the mass-shift as value
-value<-MS[,1]
+value<-MS[, 1]
 # create a hash table with mass-shifts as values and mod types as keys
-h<-hash(key,value)
+h<-hash(key, value)
 # invert it, as the final goal is to get the mod type from the mass-shift outputted by the MODa program
 ih<-invert(h)
 # To find what +16Dalton maps to, we can do something like this:

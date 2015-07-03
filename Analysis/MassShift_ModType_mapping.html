@@ -64,19 +64,19 @@ img {
 </div>
 
 
-<p>Let’s use ABRF delta mass table (MassShift_ModficationType.csv) as input and create a key-value for each mass-shift to modificaiton type.</p>
+<p>Let’s use ABRF delta mass table (MassShift_ModficationType.csv) as input and create a key-value for each mass-shift to modification type.</p>
 <pre class="r"><code>require(hash)</code></pre>
 <pre><code>## Loading required package: hash
 ## hash-2.2.6 provided by Decision Patterns</code></pre>
 <p>Remember a mass-shift can map to many mod types, so here create a hash table (with key as mod-type) and then invert it so that we can look for mod types using mass-shift.</p>
 <pre class="r"><code># Load the table from ABRF delta mass
-MS&lt;-read.csv(&quot;../Analysis/MassShift_ModificationType.csv&quot;,sep=&quot;\t&quot;, header = TRUE, row.names = NULL)
+MS&lt;-read.csv(&quot;../DataAnnotations/MassShift_ModificationType.csv&quot;, sep=&quot;\t&quot;, header = TRUE, row.names = NULL)
 #assign the name of mod as key
-key&lt;-MS[,2]
+key&lt;-MS[, 2]
 # assign the mass-shift as value
-value&lt;-MS[,1]
+value&lt;-MS[, 1]
 # create a hash table with mass-shifts as values and mod types as keys
-h&lt;-hash(key,value)
+h&lt;-hash(key, value)
 # invert it, as the final goal is to get the mod type from the mass-shift outputted by the MODa program
 ih&lt;-invert(h)
 # To find what +16Dalton maps to, we can do something like this:
