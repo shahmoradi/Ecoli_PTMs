@@ -16,40 +16,39 @@ Read in the previously generated data table:
 NME_summary <- read.csv("./GeneratedDataFiles/NME.csv")
 ```
 
-## All acetylations +42 Dalton mod
+## Time-course of NME proportions
 This result is simply to verify that we get the same results as using the alternative pipeline (mods_vs_time.Rmd).
 ```{r fig.width=10, fig.height=4}
-# extract the +42 modification
-mods <- filter(NME_summary, mod=="NME_ratio")
 
+NME_summary%>%group_by(sample,time,biol.rep)%>%summarize(sumPos1 = sum(na.omit(Position1count)), sumPos2=sum(na.omit(Position2count)), ratio = sumPos2/(sumPos1+sumPos2), odds = sumPos2/sumPos1)->filteredData
 # absolute fraction
-plot1 <- ggplot(mods, aes(x=time, y=100*frac.mod.abs, color=biol.rep)) +
+plot1 <- ggplot(filteredData, aes(x=time, y=ratio, color=biol.rep)) +
   scale_x_log10(breaks = c(3, 4, 5, 6, 8, 24, 48, 168, 336)) +
-  ylim(0, 0.25) + 
+  ylim(0, 0.6) + 
   geom_point() +
   geom_line() +
-  ylab("Percent modified peptides") +
+  ylab("NME") +
   xlab("Time (hours)") +
   scale_color_discrete(name = "Biol. repeat")
 
-plot2 <- ggplot(mods, aes(x=time, y=odds.mod.other, color=biol.rep)) +
+plot2 <- ggplot(filteredData, aes(x=time, y=odds, color=biol.rep)) +
   scale_x_log10(breaks = c(3, 4, 5, 6, 8, 24, 48, 168, 336)) +
   scale_y_log10(breaks = c(.03, .04, .05, .06, .07, .08, .09, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1, 1.5, 3, 4, 5),
                 labels = c("0.03", "", "", "", "", "", "", "0.1", "", "0.3", "", "0.5", "", "", "", "", "1.0", "1.5", "", "", ""),
                 limits = c(.1, 1.5)) + 
   geom_point() +
   geom_line() +
-  ylab("Odds +42 Da / other") +
+  ylab("Odds NME / other") +
   xlab("Time (hours)") +
   scale_color_discrete(name = "Biol. repeat")
 
 plot_grid(plot1, plot2, labels = c("A", "B"))
 ```
 
-The percent modified peptides significantly changes with time, but NOT the odds:
+Neither the ratio nor the odds change with time:
 ```{r}
-perc.model <- lm(frac.mod.abs ~ log(time), data=mods)
+perc.model <- lm(ratio ~ log(time), data=filteredData)
 summary(perc.model)
-odds.model <- lm(log(odds.mod.other) ~ log(time), data=mods)
+odds.model <- lm(log(odds) ~ log(time), data=filteredData)
 summary(odds.model)
 ```

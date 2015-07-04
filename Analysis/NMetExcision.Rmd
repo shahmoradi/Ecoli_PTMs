@@ -20,11 +20,7 @@ countNMEs <- function(PSM_data)
   # Count the total number of unmodified peptides and peptides with any sort of modification
   NME_counts<-PSM_data %>%group_by(Protein)%>%
     summarize( Position1count = sum(PeptideStart == 1),
-               Position2count = sum(PeptideStart == 2),
-               NME_ratio = as.numeric(as.character(Position2count/(Position1count+Position2count))),
-               NME_oods = as.numeric(as.character((Position2count+1)/(Position1count+1))),
-               unmod = sum(is.na(Modification)),
-               anymod = sum(!is.na(Modification)))
+               Position2count = sum(PeptideStart == 2))
 
   #return
   NME_counts
