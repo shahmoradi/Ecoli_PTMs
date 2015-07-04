@@ -47,7 +47,7 @@ plot2 <- ggplot(mods, aes(x=time, y=odds.mod.other, color=biol.rep)) +
 plot_grid(plot1, plot2, labels = c("A", "B"))
 ```
 
-The percent modified peptides doesn't change with time, and neither do the odds:
+The percent modified peptides significantly changes with time, and do the odds:
 ```{r}
 perc.model <- lm(frac.mod.abs ~ log(time), data=mods)
 summary(perc.model)
@@ -85,7 +85,7 @@ plot2 <- ggplot(mods, aes(x=time, y=odds.mod.other, color=biol.rep)) +
 plot_grid(plot1, plot2, labels = c("A", "B"))
 ```
 
-The percent modified peptides doesn't change with time, and neither do the odds:
+The percent modified peptides significantly changes with time, and do the odds:
 ```{r}
 perc.model <- lm(frac.mod.abs ~ log(time), data=mods)
 summary(perc.model)
