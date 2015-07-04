@@ -30,7 +30,11 @@ countNtAcMods <- function(PSM_data)
                       Nt_Ac42_pos12 = sum(na.omit(Modification == 42 & PeptideStart == 2 & Modified.pos == 1)) + sum(na.omit(Modification == 42 & PeptideStart == 1)),
   
   # N-term +42 ONLY pos 2 modification
-  Nt_Ac42_pos2 = sum(na.omit(Modification == 42 & PeptideStart == 2 & Modified.pos == 1)))
+  Nt_Ac42_pos2 = sum(na.omit(Modification == 42 & PeptideStart == 2 & Modified.pos == 1)),
+  
+  # All +42 
+  any_Ac42 = sum(na.omit(Modification == 42))
+  )
 
   # now combine everything into one table
   mod_counts <- inner_join(anymod_counts, NtAcmod_counts, by = "Base.Peptide")

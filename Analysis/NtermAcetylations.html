@@ -87,7 +87,11 @@ require(tidyr) # for table reshaping</code></pre>
                       Nt_Ac42_pos12 = sum(na.omit(Modification == 42 &amp; PeptideStart == 2 &amp; Modified.pos == 1)) + sum(na.omit(Modification == 42 &amp; PeptideStart == 1)),
   
   # N-term +42 ONLY pos 2 modification
-  Nt_Ac42_pos2 = sum(na.omit(Modification == 42 &amp; PeptideStart == 2 &amp; Modified.pos == 1)))
+  Nt_Ac42_pos2 = sum(na.omit(Modification == 42 &amp; PeptideStart == 2 &amp; Modified.pos == 1)),
+  
+  # All +42 
+  any_Ac42 = sum(na.omit(Modification == 42))
+  )
 
   # now combine everything into one table
   mod_counts &lt;- inner_join(anymod_counts, NtAcmod_counts, by = &quot;Base.Peptide&quot;)
