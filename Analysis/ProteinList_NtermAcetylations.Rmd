@@ -1,0 +1,67 @@
+---
+title: "Analysis of N-terminal acetylations"
+author: COW and VS
+output: html_document
+---
+
+Load the required libraries.
+```{r message=FALSE}
+require(dplyr) # for table manipulation
+require(tidyr) # for table reshaping
+```
+
+
+A function that takes a data frame with cleaned-up PSM output from MODa as input and calculates counts of specific modifications we are interested in.
+```{r}
+NtermProteinList <- function(PSM_data)
+{
+  write_to_log("Counting N-terminal acetylation mods")
+
+  # Count the total number of unmodified peptides and peptides with any sort of modification
+  PSM_data %>%group_by(Protein)%>%summarize(Acetylated_Peptides = sum(na.omit(Modification == 42 & PeptideStart == 2 & Modified.pos == 1)), Non_Acetylated_Peptides = sum(na.omit(PeptideStart == 2))-Acetylated_Peptides) -> Nterm_Proteins
+ 
+    #return
+    Nterm_Proteins
+}
+```
+
+
+```{r}
+source("./utils.R") # for function readCSVFileList() used below
+write_to_log("Running script `NtermAcetylations.Rmd`", append = FALSE)
+
+# read the information about the samples
+samples <- read.csv("../DataAnnotations/samples.csv")
+# turn to list
+sample.list <- as.list(as.character(samples$sample))
+names(sample.list) <- samples$sample
+
+write_to_log("Reading data")
+PSMdata.list <- readCSVFileList(sample.list, "_PSM_mods.csv", "./GeneratedDataFiles/PSMHits")
+
+# next, count all the mods
+mod_count.list <- lapply(PSMdata.list, NtermProteinList)
+# and combine into one data frame
+NtermProteinAcetylations <- make_data_frame_from_list(mod_count.list)
+
+# combine with other info about samples
+ProtList_summary <- inner_join(samples, NtermProteinAcetylations, by = "sample")
+
+# and save
+write.csv(ProtList_summary, "./GeneratedDataFiles/NtermAcetylationProteinList.csv", row.names = FALSE)
+```
+
+#Combine all the n-terminal acetylation protein hits into one and analyze
+
+
+Read in the previously generated data table:
+```{r}
+NtProtList <- read.csv("./GeneratedDataFiles/NtermAcetylationProteinList.csv")
+
+
+NtProtList%>%group_by(Protein)%>%summarize(AcetAll = sum(na.omit(Acetylated_Peptides)), NonAcetAll = sum(na.omit(Non_Acetylated_Peptides)), AcetPercent = 100*AcetAll/(AcetAll+NonAcetAll))->AcetPercentList
+
+sortAcetPercent<-AcetPercentList[with(AcetPercentList, order(-AcetAll)), ]
+head(sortAcetPercent, 15)
+```
+

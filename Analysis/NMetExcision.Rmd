@@ -1,0 +1,56 @@
+---
+title: "Analysis of N-terminal Methionine Excision"
+author: COW and VS
+output: html_document
+---
+
+Load the required libraries.
+```{r message=FALSE}
+require(dplyr) # for table manipulation
+require(tidyr) # for table reshaping
+```
+
+
+This funciton is different from other mods, as here we just count up all the PSMs that start at a particular protein position (2) and compare it with PSMs that start at (1).
+```{r}
+countNMEs <- function(PSM_data)
+{
+  write_to_log("Counting N-terminal Methionine Excisions")
+
+  # Count the total number of unmodified peptides and peptides with any sort of modification
+  NME_counts<-PSM_data %>%group_by(Protein)%>%
+    summarize( Position1count = sum(PeptideStart == 1),
+               Position2count = sum(PeptideStart == 2))
+
+  #return
+  NME_counts
+}
+```
+
+
+```{r}
+source("./utils.R") # for function readCSVFileList() used below
+write_to_log("Running script `NMetExcision.Rmd`", append = FALSE)
+
+# read the information about the samples
+samples <- read.csv("../DataAnnotations/samples.csv")
+# turn to list
+sample.list <- as.list(as.character(samples$sample))
+names(sample.list) <- samples$sample
+
+write_to_log("Reading data")
+PSMdata.list <- readCSVFileList(sample.list, "_PSM_mods.csv", "./GeneratedDataFiles/PSMHits")
+
+# next, count all the mods
+mod_count.list <- lapply(PSMdata.list, countNMEs)
+# and combine into one data frame
+NME <- make_data_frame_from_list(mod_count.list)
+
+# combine with other info about samples
+NME_summary <- inner_join(samples, NME, by = "sample")
+
+# and save
+write.csv(NME_summary, "./GeneratedDataFiles/NME.csv", row.names = FALSE)
+```
+
+
