@@ -4,7 +4,14 @@
 html_files = extract_peptide_mods.html \
 		mods_vs_time.html mods_vs_time_figures.html \
 		oxidations.html oxidations_figures.html \
-		phosphorylations.html phosphorylations_figures.html
+		phosphorylations.html phosphorylations_figures.html \
+		Methylations.html Methylations_figures.html \
+		NMetExcision.html NMetExcision_figures.html \
+		NtermAcetylations.html NtermAcetylations_figures.html \
+		ProteinList_NtermAcetylations.html \
+		ProteinList_Oxidations.html
+		
+		
 
 all: $(html_files)
 
@@ -15,6 +22,15 @@ oxidations.html: extract_peptide_mods.html
 oxidations_figures.html: extract_peptide_mods.html oxidations.html
 phosphorylations.html: extract_peptide_mods.html
 phosphorylations_figures.html: extract_peptide_mods.html phosphorylations.html
+Methylations.html: extract_peptide_mods.html
+Methylations_figures.html: extract_peptide_mods.html Methylations.html
+NMetExcision.html: extract_peptide_mods.html
+NMetExcision_figures.html: extract_peptide_mods.html NMetExcision.html
+NtermAcetylations.html: extract_peptide_mods.html
+NtermAcetylations_figures.html: extract_peptide_mods.html NtermAcetylations.html
+ProteinList_NtermAcetylations.html: extract_peptide_mods.html
+ProteinList_Oxidations.html: extract_peptide_mods.html
+
 
 # options for R when run from the command line
 R_OPTS=--no-save --no-restore --no-init-file --no-site-file

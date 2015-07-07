@@ -51,7 +51,7 @@ ProtList_summary <- inner_join(samples, ProteinOxidations, by = "sample")
 write.csv(ProtList_summary, "./GeneratedDataFiles/OxidizedProteinList.csv", row.names = FALSE)
 ```
 
-#Combine all the n-terminal acetylation protein hits into one and analyze
+#Combine all the oxidations at all time points into one big file
 
 
 Read in the previously generated data table:
