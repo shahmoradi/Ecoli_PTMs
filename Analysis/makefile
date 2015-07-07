@@ -4,7 +4,8 @@
 html_files = extract_peptide_mods.html \
 		mods_vs_time.html mods_vs_time_figures.html \
 		oxidations.html oxidations_figures.html \
-		phosphorylations.html phosphorylations_figures.html
+		phosphorylations.html phosphorylations_figures.html \
+                mods_by_amino_acid.html
 
 all: $(html_files)
 

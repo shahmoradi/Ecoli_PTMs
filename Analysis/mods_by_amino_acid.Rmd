@@ -1,0 +1,154 @@
+---
+title: "Modification abundances by amino acid"
+author: "COW"
+output: html_document
+---
+
+Required libraries:
+```{r, message=FALSE}
+require(dplyr)     # for efficient table manipulations
+require(tidyr)     # for efficient table manipulations
+require(cowplot)   # for plotting
+```
+
+Define a function that can read MODa output matrices:
+```{r}
+readMODaOutput <- function(sample, moda_folder)
+{
+  # input filenames
+  file_a <- file.path(moda_folder, paste(sample, "a_MODa_PSMs.ptm.txt", sep=''))
+  file_b <- file.path(moda_folder, paste(sample, "b_MODa_PSMs.ptm.txt", sep=''))
+
+    # read the raw data
+  data_a <- read.table(file_a, header = TRUE, row.names = NULL)
+  # R takes the first (unlabeled) column as row names. Convert into numeric column of mass shifts
+  colnames(data_a)[1] <- "mass.shift"
+  data_a$mass.shift <- as.numeric(data_a$mass.shift)
+
+  # do the same for sample b
+  data_b = read.table(file_b, header = TRUE, row.names = NULL)
+  colnames(data_b)[1] <- "mass.shift"
+  data_b$mass.shift <- as.numeric(data_b$mass.shift)
+
+  # combine the two matrices
+  data <- rbind(data_a, data_b)
+  # sum entries for the same mass shift
+  data <- summarise_each(group_by(data, mass.shift), funs(sum))
+  # return data, with column indicating the sample added
+  mutate(data, sample = sample)
+}
+```
+
+Now read in all the data:
+```{r}
+# read the information about the samples
+samples <- read.csv("../DataAnnotations/samples.csv")
+# turn to list
+sample_list <- as.list(as.character(samples$sample))
+names(sample_list) <- samples$sample
+
+data_list <- lapply(sample_list, readMODaOutput, moda_folder = "../MODa_Output/PTMHits/")
+# combine all into one table
+data_all <- do.call("rbind", data_list)
+# combine with other info about samples
+data_all <- inner_join(samples, data_all, by = "sample")
+
+head(data_all)
+```
+
+# +1 Da mod
+
+We make a bar plot of the percent of modified peptides of a given mass shift, using the variation among samples to estimate errors.
+
+```{r}
+# define standard error function
+se <- function(x) sqrt(var(x)/length(x))
+
+data_all %>%
+  filter(mass.shift==1) %>% # extract the +1 mass shift
+  group_by(sample) %>% # analyze by sample
+  summarise_each(funs(100*./Sum), -mass.shift) %>% # normalize all and calculate percent
+  select(-Sum, -Nterm, -Cterm) -> # remove Sum, Nterm, Cterm columns as we don't plot them
+    mass_shifts # store as `mass_shifts`
+
+# now calculate means and standard errors
+mass_shifts %>%
+  gather(amino.acid, percent, A:Y) %>% # turn table into "long" format
+  group_by(amino.acid) %>% # group by amino acid
+  summarise(percent.mean = mean(percent), percent.se = se(percent)) ->
+   mods_summarized # store as `mods_summarized`
+
+# now plot
+plot <- ggplot(mods_summarized, aes(x=amino.acid, y=percent.mean)) +
+  geom_bar(stat="identity", fill='red') +
+  geom_errorbar(aes(ymin = percent.mean-percent.se, ymax = percent.mean+percent.se)) + 
+  ylab("Percent of total modifications") +
+  xlab("Modified amino acid")
+
+# save the plot as pdf
+#save_plot("plus1_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+# +16 Da mod
+
+We make a bar plot of the percent of modified peptides of a given mass shift, using the variation among samples to estimate errors.
+
+```{r}
+data_all %>%
+  filter(mass.shift==16) %>% # extract the +16 mass shift
+  group_by(sample) %>% # analyze by sample
+  summarise_each(funs(100*./Sum), -mass.shift) %>% # normalize all and calculate percent
+  select(-Sum, -Nterm, -Cterm) -> # remove Sum, Nterm, Cterm columns as we don't plot them
+    mass_shifts # store as `mass_shifts`
+
+# now calculate means and standard errors
+mass_shifts %>%
+  gather(amino.acid, percent, A:Y) %>% # turn table into "long" format
+  group_by(amino.acid) %>% # group by amino acid
+  summarise(percent.mean = mean(percent), percent.se = se(percent)) ->
+   mods_summarized # store as `mods_summarized`
+
+# now plot
+plot <- ggplot(mods_summarized, aes(x=amino.acid, y=percent.mean)) +
+  geom_bar(stat="identity", fill='red') +
+  geom_errorbar(aes(ymin = percent.mean-percent.se, ymax = percent.mean+percent.se)) + 
+  ylab("Percent of total modifications") +
+  xlab("Modified amino acid")
+
+# save the plot as pdf
+#save_plot("plus1_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+# -2 Da mod
+
+We make a bar plot of the percent of modified peptides of a given mass shift, using the variation among samples to estimate errors.
+
+```{r}
+data_all %>%
+  filter(mass.shift==-2) %>% # extract the +16 mass shift
+  group_by(sample) %>% # analyze by sample
+  summarise_each(funs(100*./Sum), -mass.shift, -time, -biol.rep) %>% # normalize all and calculate percent
+  select(-Sum, -Nterm, -Cterm) -> # remove Sum, Nterm, Cterm columns as we don't plot them
+    mass_shifts # store as `mass_shifts`
+
+# now calculate means and standard errors
+mass_shifts %>%
+  gather(amino.acid, percent, A:Y) %>% # turn table into "long" format
+  group_by(amino.acid) %>% # group by amino acid
+  summarise(percent.mean = mean(percent), percent.se = se(percent)) ->
+   mods_summarized # store as `mods_summarized`
+
+# now plot
+plot <- ggplot(mods_summarized, aes(x=amino.acid, y=percent.mean)) +
+  geom_bar(stat="identity", fill='red') +
+  geom_errorbar(aes(ymin = percent.mean-percent.se, ymax = percent.mean+percent.se)) + 
+  ylab("Percent of total modifications") +
+  xlab("Modified amino acid")
+
+# save the plot as pdf
+#save_plot("plus1_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
