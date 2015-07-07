@@ -9,7 +9,8 @@ html_files = extract_peptide_mods.html \
 		NMetExcision.html NMetExcision_figures.html \
 		NtermAcetylations.html NtermAcetylations_figures.html \
 		ProteinList_NtermAcetylations.html \
-		ProteinList_Oxidations.html
+		ProteinList_Oxidations.html \
+		extract_peptide_mods.html
 		
 		
 
@@ -30,6 +31,7 @@ NtermAcetylations.html: extract_peptide_mods.html
 NtermAcetylations_figures.html: extract_peptide_mods.html NtermAcetylations.html
 ProteinList_NtermAcetylations.html: extract_peptide_mods.html
 ProteinList_Oxidations.html: extract_peptide_mods.html
+AA_distribution_NtermAcetylations.html: extract_peptide_mods.html
 
 
 # options for R when run from the command line
