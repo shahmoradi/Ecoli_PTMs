@@ -31,8 +31,12 @@ countMethylationsMods <- function(PSM_data)
                       
                       # K + 14 modification
                       K_M14 = sum(na.omit(Modification == 14 & Modified.aa == "K")),
+                      
                       # R + 14 modification
-                      R_M14 = sum(na.omit(Modification == 14 & Modified.aa == "R"))
+                      R_M14 = sum(na.omit(Modification == 14 & Modified.aa == "R")),
+                      
+                      # E + 14 modification
+                      E_M14 = sum(na.omit(Modification == 14 & Modified.aa == "E"))
                                                 )
 
   # now combine everything into one table
