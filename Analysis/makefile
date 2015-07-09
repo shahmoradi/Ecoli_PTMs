@@ -10,26 +10,30 @@ html_files = extract_peptide_mods.html \
 		NtermAcetylations.html NtermAcetylations_figures.html \
 		ProteinList_NtermAcetylations.html \
 		ProteinList_Oxidations.html \
-		mods_by_amino_acid.html
+		AA_distribution_NtermAcetylations.html \
+		AA_distribution_Oxidations.html \
+		mods_by_amino_acid.html \
 		
 all: $(html_files)
 
 # data dependencies
-mods_vs_time.html: extract_peptide_mods.html
-mods_vs_time_figures.html: extract_peptide_mods.html mods_vs_time.html
-oxidations.html: extract_peptide_mods.html
-oxidations_figures.html: extract_peptide_mods.html oxidations.html
-phosphorylations.html: extract_peptide_mods.html
-phosphorylations_figures.html: extract_peptide_mods.html phosphorylations.html
+AA_distribution_NtermAcetylations.html: extract_peptide_mods.html
+AA_distribution_Oxidations.html: extract_peptide_mods.html
 Methylations.html: extract_peptide_mods.html
 Methylations_figures.html: extract_peptide_mods.html Methylations.html
+mods_vs_time.html: extract_peptide_mods.html
+mods_vs_time_figures.html: extract_peptide_mods.html mods_vs_time.html
+mods_by_amino_acid.html: extract_peptide_mods.html
 NMetExcision.html: extract_peptide_mods.html
 NMetExcision_figures.html: extract_peptide_mods.html NMetExcision.html
 NtermAcetylations.html: extract_peptide_mods.html
 NtermAcetylations_figures.html: extract_peptide_mods.html NtermAcetylations.html
+oxidations.html: extract_peptide_mods.html
+oxidations_figures.html: extract_peptide_mods.html oxidations.html
+phosphorylations.html: extract_peptide_mods.html
+phosphorylations_figures.html: extract_peptide_mods.html phosphorylations.html
 ProteinList_NtermAcetylations.html: extract_peptide_mods.html
 ProteinList_Oxidations.html: extract_peptide_mods.html
-AA_distribution_NtermAcetylations.html: extract_peptide_mods.html
 
 
 # options for R when run from the command line

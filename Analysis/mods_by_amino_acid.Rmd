@@ -127,3 +127,104 @@ plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=-2)
 plot # display plot
 ```
 
+# +!4 Da mod (may be methylation)
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=14)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+# +22 Da mod (may be sodium adduct)
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=22)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+# +38 Da mod (may be potassium adduct)
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=38)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+# +57 Da mod (may be capping misidentified, but mostly other mods)
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=57)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+# +80 Da mod (may be phosphorylation)
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=80)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+
+# +42 Da mod (may be acetylation, most of it is n-terminal, not all)
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=42)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+
+# +162 Da mod (may be glucosylation)
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=162)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+# +178 Da mod (may be gluconylation)
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=178)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+# -17 Da mod
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=-17)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```
+
+# -18 Da mod
+
+
+```{r}
+plot <- amino_acid_bar_plot(data_all, samples, target_mass_shift=-18)
+
+#save_plot("plus14_vs_amino_acid.pdf", plot)
+plot # display plot
+```

@@ -74,7 +74,7 @@ require(tidyr) # for table reshaping</code></pre>
 {
   write_to_log(&quot;Counting N-terminal acetylation mods&quot;)
 
-  # Count the total number of unmodified peptides and peptides with any sort of modification
+  # Group n-terminally acetylated peptides w.r.t AA
   
   PSM_data%&gt;%group_by(Modified.aa)%&gt;%summarize(Acetylated_Peptides = sum(na.omit(Modification == 42 &amp; PeptideStart == 2 &amp; Modified.pos == 1)))-&gt;AAdis
 
@@ -83,8 +83,8 @@ require(tidyr) # for table reshaping</code></pre>
     AAdis
 }</code></pre>
 <pre class="r"><code>source(&quot;./utils.R&quot;) # for function readCSVFileList() used below
-write_to_log(&quot;Running script `NtermAcetylations.Rmd`&quot;, append = FALSE)</code></pre>
-<pre><code>## [1] &quot;Running script `NtermAcetylations.Rmd`&quot;</code></pre>
+write_to_log(&quot;Running script `AA_distribution_NtermAcetylations.Rmd`&quot;, append = FALSE)</code></pre>
+<pre><code>## [1] &quot;Running script `AA_distribution_NtermAcetylations.Rmd`&quot;</code></pre>
 <pre class="r"><code># read the information about the samples
 samples &lt;- read.csv(&quot;../DataAnnotations/samples.csv&quot;)
 # turn to list
@@ -147,8 +147,10 @@ head(AAFreq)</code></pre>
 ## 4 MURI_16    3 repeat 1           E                   0
 ## 5 MURI_16    3 repeat 1           F                   0
 ## 6 MURI_16    3 repeat 1           G                   0</code></pre>
-<pre class="r"><code>AAFreqAll&lt;-AAFreq%&gt;%group_by(Modified.aa)%&gt;%summarize(TotalCount = sum(Acetylated_Peptides))
+<pre class="r"><code>## count up the frequencies of the amino-acids that get acetylated at n-terminal of protein (for the combined datasets)
+AAFreqAll&lt;-AAFreq%&gt;%group_by(Modified.aa)%&gt;%summarize(TotalCount = sum(Acetylated_Peptides))
 sortTotalAcetylatedPeptides&lt;-AAFreqAll[with(AAFreqAll, order(-TotalCount)), ]
+## List them
 head(sortTotalAcetylatedPeptides, 6)</code></pre>
 <pre><code>## Source: local data frame [6 x 2]
 ## 

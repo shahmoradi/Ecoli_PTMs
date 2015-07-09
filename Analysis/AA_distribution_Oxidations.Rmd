@@ -13,24 +13,24 @@ require(tidyr) # for table reshaping
 
 A function that takes a data frame with cleaned-up PSM output from MODa as input and calculates counts of specific modifications we are interested in.
 ```{r}
-AAdisFn <- function(PSM_data)
+AAdisFnOxi <- function(PSM_data)
 {
-  write_to_log("Counting N-terminal acetylation mods")
+  write_to_log("Counting Oxidation mods")
 
-  # Group n-terminally acetylated peptides w.r.t AA
+  # Group oxidized peptides w.r.t AA
   
-  PSM_data%>%group_by(Modified.aa)%>%summarize(Acetylated_Peptides = sum(na.omit(Modification == 42 & PeptideStart == 2 & Modified.pos == 1)))->AAdis
+  PSM_data%>%group_by(Modified.aa)%>%summarize(Oxidized_Peptides = sum(na.omit(Modification == 16)))->AAdisOxi
 
  
     #return
-    AAdis
+    AAdisOxi
 }
 ```
 
 
 ```{r}
 source("./utils.R") # for function readCSVFileList() used below
-write_to_log("Running script `AA_distribution_NtermAcetylations.Rmd`", append = FALSE)
+write_to_log("Running script `AA_distribution_Oxidations.Rmd`", append = FALSE)
 
 # read the information about the samples
 samples <- read.csv("../DataAnnotations/samples.csv")
@@ -42,7 +42,7 @@ write_to_log("Reading data")
 PSMdata.list <- readCSVFileList(sample.list, "_PSM_mods.csv", "./GeneratedDataFiles/PSMHits")
 
 # next, count all the mods
-mod_count.list <- lapply(PSMdata.list, AAdisFn)
+mod_count.list <- lapply(PSMdata.list, AAdisFnOxi)
 # and combine into one data frame
 AAdistribution <- make_data_frame_from_list(mod_count.list)
 
@@ -50,22 +50,23 @@ AAdistribution <- make_data_frame_from_list(mod_count.list)
 ProtList_summary <- inner_join(samples, AAdistribution, by = "sample")
 
 # and save
-write.csv(ProtList_summary, "./GeneratedDataFiles/AANtAcFreq.csv", row.names = FALSE)
+write.csv(ProtList_summary, "./GeneratedDataFiles/AAOxiFreq.csv", row.names = FALSE)
 ```
 
-#Combine all the n-terminal acetylation protein hits into one and analyze
+#Combine all the oxidation protein hits into one and analyze
 
 
 Read in the previously generated data table:
 ```{r}
 ## loads the frequencies of amino acid n-term acetylations at ALL time points
-AAFreq <- read.csv("./GeneratedDataFiles/AANtAcFreq.csv")
+AAFreqOxi <- read.csv("./GeneratedDataFiles/AAOxiFreq.csv")
 ## lists the top few hits
-head(AAFreq)
-## count up the frequencies of the amino-acids that get acetylated at n-terminal of protein (for the combined datasets)
-AAFreqAll<-AAFreq%>%group_by(Modified.aa)%>%summarize(TotalCount = sum(Acetylated_Peptides))
-sortTotalAcetylatedPeptides<-AAFreqAll[with(AAFreqAll, order(-TotalCount)), ]
-## List them
-head(sortTotalAcetylatedPeptides, 6)
+head(AAFreqOxi)
+## count up the frequencies of the amino-acids that get oxidized (for the combined datasets)
+AAFreqOxiAll<-AAFreqOxi%>%group_by(Modified.aa)%>%summarize(TotalOxiCount = sum(Oxidized_Peptides))
+## sort the hits
+sortTotalOxidizedPeptides<-AAFreqOxiAll[with(AAFreqOxiAll, order(-TotalOxiCount)), ]
+## List them (Cysteine is the least oxidized, but expected because it is CAPPED and fixed modification seems to work well !)
+head(sortTotalOxidizedPeptides, 6)
 ```
 
