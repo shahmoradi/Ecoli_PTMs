@@ -1,9 +1,0 @@
-1861 MURIt1.id.txt_GIs_AllReps
-1822 MURIt2.id.txt_GIs_AllReps
-1857 MURIt3.id.txt_GIs_AllReps
-1839 MURIt4.id.txt_GIs_AllReps
-1864 MURIt5.id.txt_GIs_AllReps
-1892 MURIt6.id.txt_GIs_AllReps
-1866 MURIt7.id.txt_GIs_AllReps
-1813 MURIt8.id.txt_GIs_AllReps
-1758 MURIt9.id.txt_GIs_AllReps
