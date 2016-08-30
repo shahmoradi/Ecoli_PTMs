@@ -2,7 +2,7 @@ Ecoli_PTMs
 ==========
 
 ### MODa_Setup: 
-Files and scripts for running MODa on the MURI/AG3C glucose time course proteomics data (raw data deposited at XXX)
+Files and scripts for running MODa on the MURI/AG3C glucose time course proteomics data (raw data deposited with the Proteo-meXchange Consortium via the PRIDE partner repository (accession PXD002140))
 
 ### MODa_Output: 
 Result files from MODa runs 
